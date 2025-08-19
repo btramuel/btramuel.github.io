@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>ITIS3135 | Brian Tramuel’s | Focused Falcon | Home</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="../styles/default.css" />
+  <script>
+    window.addEventListener('DOMContentLoaded', () => {
+      const h = location.href;
+      const html = document.getElementById('validation_link_html');
+      const css  = document.getElementById('validation_link_css');
+      if(html) html.href = "https://validator.w3.org/check?uri=" + encodeURIComponent(h);
+      if(css)  css.href  = "https://jigsaw.w3.org/css-validator/validator?uri=" + encodeURIComponent(h);
+    });
+  </script>
+</head>
+<body>
+  <header>
+    <h1><span class="course">ITIS3135</span> | <span class="name">Brian Tramuel’s</span> | <span class="mascot">Focused Falcon</span></h1>
+    <nav aria-label="Primary">
+      <a href="./">Home</a>
+      <a href="introduction.html">Introduction</a>
+      <a href="contract.html">Contract</a>
+    </nav>
+    <nav aria-label="Secondary">
+      <a href="crappy-page.html">Crappy Page</a>
+      <a href="projects.html">Projects</a>
+    </nav>
+  </header>
+  <main>
+    <h2>Home</h2>
+    <p>Welcome to my ITIS3135 course site. You’ll find links to my Introduction and Course Contract above, plus assignments as I add them.</p>
+  </main>
+  <footer>
+    <nav aria-label="Footer">
+      <a href="https://webpages.charlotte.edu/btramue1/" target="_blank" rel="noopener">Webspace</a>
+      <a href="https://github.com/btramuel" target="_blank" rel="noopener">GitHub.com</a>
+      <a href="https://btramuel.github.io/" target="_blank" rel="noopener">GitHub.io</a>
+      <a href="https://btramuel.github.io/itis3135/" target="_blank" rel="noopener">Course.io</a>
+      <a href="https://www.freecodecamp.org/btramue1" target="_blank" rel="noopener">FreeCodeCamp</a>
+      <a href="https://www.codecademy.com/profiles/btramue1" target="_blank" rel="noopener">Codecademy</a>
+      <a href="https://www.linkedin.com/in/brian-grant-tramuel-882121264/" target="_blank" rel="noopener">LinkedIn</a>
+      <span class="designer">Designed by Focused Falcon Web</span>
+      <a id="validation_link_html" href="#" aria-label="Validate HTML">HTML ✓</a>
+      <a id="validation_link_css"  href="#" aria-label="Validate CSS">CSS ✓</a>
+    </nav>
+  </footer>
+</body>
+</html>

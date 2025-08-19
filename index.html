@@ -1,66 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Brian Grant Tramuel | Personal Home Page</title>
+  <meta charset="UTF-8" />
+  <title>Brian Tramuel | Personal Home Page</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #f4f7fa;
-      color: #222;
-      margin: 0 auto;
-      max-width: 900px;
-      width: 90%;
-      line-height: 1.6;
+    :root{
+      --bg:#f6f7fb; --ink:#222; --head:#1a4d8f; --link:#1a4d8f; --link-visited:#6c3fc5; --card:#fff;
     }
-
-    header, footer {
-      text-align: center;
-      padding: 1em 0;
-    }
-
-    h1 {
-      font-family: Georgia, serif;
-      color: #1a4d8f;
-    }
-
-    h2 {
-      font-family: Verdana, sans-serif;
-      color: #444;
-    }
-
-    footer a {
-      margin: 0 8px;
-      text-decoration: none;
-      color: #1a4d8f;
-      font-weight: bold;
-    }
-
-    footer a:hover {
-      text-decoration: underline;
-    }
+    *{box-sizing:border-box}
+    body{ margin:0 auto; width:90%; max-width:900px; background:var(--bg); color:var(--ink); line-height:1.65;
+          font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, "Noto Sans", "Liberation Sans", sans-serif;
+          padding:1.25rem 1rem 2rem; }
+    header, footer{ text-align:center }
+    header{ padding:1rem 0 .5rem }
+    h1{ margin:0 0 .25rem; font-weight:800; letter-spacing:.2px; color:var(--head) }
+    h2{ margin:.75rem 0 .5rem; font-weight:700 }
+    main{ background:var(--card); border-radius:16px; padding:1rem; box-shadow:0 4px 16px rgba(0,0,0,.05) }
+    p{ margin:.75rem 0 }
+    footer{ margin-top:1rem; font-weight:600 }
+    footer a{ text-decoration:none; margin:0 .5rem; color:var(--link) }
+    footer a:visited{ color:var(--link-visited) }
+    footer a:hover{ text-decoration:underline }
   </style>
+  <script>
+    // validator links (work on GitHub Pages and school webspace)
+    window.addEventListener('DOMContentLoaded', () => {
+      const h = location.href;
+      const html = document.getElementById('validation_link_html');
+      const css  = document.getElementById('validation_link_css');
+      if(html) html.href = "https://validator.w3.org/check?uri=" + encodeURIComponent(h);
+      if(css)  css.href  = "https://jigsaw.w3.org/css-validator/validator?uri=" + encodeURIComponent(h);
+    });
+  </script>
 </head>
 <body>
-
   <header>
-    <h1>Brian Tramuel </h1>
+    <h1>Brian Tramuel</h1>
   </header>
-
   <main>
     <h2>Personal Home Page</h2>
-    <p>Hello! My name is Brian. I’m a Senior Computer Science major at UNC Charlotte with a concentration in Information Technology. I’m passionate about IT systems, cloud computing, and problem solving.</p>
-    <p>This page is my main landing page. From here, you can find links to my coursework, professional profiles, and projects. I aim to build a career in IT and cloud engineering, while continuing to grow my technical skills.</p>
+    <p>Hello! I’m Brian Tramuel. I’m a Computer Science major at UNC Charlotte (IT concentration). I’m into cloud, IT systems, and solving problems.</p>
+    <p>This is my professional landing page. Jump to my course site and profiles below.</p>
   </main>
-
   <footer>
-    <a href="http://ITIS3135.io">ITIS3135</a> |
-    <a href="https://github.com/btramuel" target="_blank">GitHub.com</a> |
-    <a href="https://webpages.charlotte.edu/btramue1/" target="_blank">CLT Web</a> |
-    <a href="https://btramuel.github.io" target="_blank">GitHub.io</a> |
-    <a href="https://www.linkedin.com/in/brian-grant-tramuel-882121264/" target="_blank">LinkedIn</a>
+    <nav aria-label="Primary external links">
+      <a href="itis3135/">ITIS3135</a> |
+      <a href="https://github.com/btramuel" target="_blank" rel="noopener">GitHub.com</a> |
+      <a href="https://webpages.charlotte.edu/btramue1/" target="_blank" rel="noopener">CLT Web</a> |
+      <a href="https://btramuel.github.io/" target="_blank" rel="noopener">GitHub.io</a> |
+      <a href="https://www.linkedin.com/in/brian-grant-tramuel-882121264/" target="_blank" rel="noopener">LinkedIn</a>
+      &nbsp;|&nbsp;
+      <a id="validation_link_html" href="#" aria-label="Validate HTML">HTML ✓</a>
+      <a id="validation_link_css"  href="#" aria-label="Validate CSS">CSS ✓</a>
+    </nav>
   </footer>
-
 </body>
 </html>
-
