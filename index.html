@@ -9,9 +9,11 @@
     :root{
       --bg:#f6f7fb; --ink:#222; --head:#1a4d8f; --link:#1a4d8f; --link-visited:#6c3fc5; --card:#fff;
     }
-    *{box-sizing:border-box}
+    * { box-sizing: border-box; }
     body{ margin:0 auto; width:90%; max-width:900px; background:var(--bg); color:var(--ink); line-height:1.65;
-          font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, "Noto Sans", "Liberation Sans", sans-serif;
+
+            font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, "Noto Sans", "Liberation Sans", sans-serif;
+
           padding:1.25rem 1rem 2rem; }
     header, footer{ text-align:center }
     header{ padding:1rem 0 .5rem }
@@ -30,8 +32,8 @@
       const h = location.href;
       const html = document.getElementById('validation_link_html');
       const css  = document.getElementById('validation_link_css');
-      if(html) html.href = "https://validator.w3.org/check?uri=" + encodeURIComponent(h);
-      if(css)  css.href  = "https://jigsaw.w3.org/css-validator/validator?uri=" + encodeURIComponent(h);
+      if (html) html.href = "https://validator.w3.org/check?uri=" + encodeURIComponent(h);
+      if (css)  css.href  = "https://jigsaw.w3.org/css-validator/validator?uri=" + encodeURIComponent(h);
     });
   </script>
 </head>
@@ -52,9 +54,28 @@
       <a href="https://btramuel.github.io/" target="_blank" rel="noopener">GitHub.io</a> |
       <a href="https://www.linkedin.com/in/brian-grant-tramuel-882121264/" target="_blank" rel="noopener">LinkedIn</a>
       &nbsp;|&nbsp;
-      <a id="validation_link_html" href="#" aria-label="Validate HTML">HTML ✓</a>
-      <a id="validation_link_css"  href="#" aria-label="Validate CSS">CSS ✓</a>
+     
     </nav>
   </footer>
+  <p>
+  <a id="validation_link_html" href="https://validator.w3.org/check?uri=referer">
+    <img style="border:0;width:88px;height:31px"
+         src="https://www.w3.org/Icons/valid-html401"
+         alt="Valid HTML!">
+  </a>
+  <a id="validation_link_css" href="https://jigsaw.w3.org/css-validator/check/referer">
+    <img style="border:0;width:88px;height:31px"
+         src="https://jigsaw.w3.org/css-validator/images/vcss"
+         alt="Valid CSS!">
+  </a>
+</p>
+
+<script>
+  document.getElementById("validation_link_html")
+    .setAttribute("href","https://validator.w3.org/check?uri=" + location.href);
+  document.getElementById("validation_link_css")
+    .setAttribute("href","https://jigsaw.w3.org/css-validator/validator?uri=" + location.href);
+</script>
+
 </body>
 </html>

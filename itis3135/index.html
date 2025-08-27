@@ -1,6 +1,4 @@
 <!DOCTYPE html>
-<!DOCTYPE html>
-
 <html lang="en">
 <head>
 <script crossorigin="anonymous" src="https://lint.page/kit/4d0fe3.js"></script>
@@ -59,5 +57,25 @@
 </div>
 
 </footer>
+<p>
+  <a id="validation_link_html" href="https://validator.w3.org/check?uri=referer">
+    <img style="border:0;width:88px;height:31px"
+         src="https://www.w3.org/Icons/valid-html401"
+         alt="Valid HTML!">
+  </a>
+  <a id="validation_link_css" href="https://jigsaw.w3.org/css-validator/check/referer">
+    <img style="border:0;width:88px;height:31px"
+         src="https://jigsaw.w3.org/css-validator/images/vcss"
+         alt="Valid CSS!">
+  </a>
+</p>
+
+<script>
+  document.getElementById("validation_link_html")
+    .setAttribute("href","https://validator.w3.org/check?uri=" + location.href);
+  document.getElementById("validation_link_css")
+    .setAttribute("href","https://jigsaw.w3.org/css-validator/validator?uri=" + location.href);
+</script>
+
 </body>
 </html>
