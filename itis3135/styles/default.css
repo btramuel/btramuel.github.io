@@ -1,5 +1,4 @@
-
-/* Default stylesheet for ITIS3135 — Brian Tramuel */
+/* stylesheet for ITIS3135 — Brian Tramuel */
 :root {
   --bg: #0b1220;
   --panel: #0f1b2d;
@@ -14,7 +13,12 @@
   --warn: #f59e0b;
 }
 
-* { box-sizing: border-box; }
+html { box-sizing: border-box; }
+body, header, nav, main, footer, div, p, h1, h2, h3, a, img,
+ul, li, figure, figcaption, small, section {
+  box-sizing: inherit;
+}
+
 html, body { margin: 0; padding: 0; }
 body {
   font-family: system-ui, -apple-system, Segoe UI, Roboto, Inter, Arial, sans-serif;
@@ -73,7 +77,7 @@ nav.primary a[aria-current="page"] {
 }
 
 main { padding: 2rem 0; }
-page-title { font-size: clamp(1.25rem, 1.2vw + 1rem, 1.8rem); margin-top: 0; }
+.page-title { font-size: clamp(1.25rem, 1.2vw + 1rem, 1.8rem); margin-top: 0; }
 
 .card {
   background: var(--panel);
@@ -112,8 +116,9 @@ ul.info-list b { color: var(--accent-2); }
 .footer-grid {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 1rem;
-  align-items: start;
+  row-gap: 1rem;
+  column-gap: 1rem;
+  align-items: flex-start; 
 }
 
 @media (min-width: 720px) {
@@ -141,7 +146,6 @@ footer small { color: var(--muted); display: block; margin-top: .75rem; }
 }
 .validation img { display: block; }
 
-/* Media query for small screens */
 @media (max-width: 520px) {
   nav.primary a { flex: 1 1 auto; text-align: center; }
 }

@@ -9,16 +9,20 @@
     :root{
       --bg:#f6f7fb; --ink:#222; --head:#1a4d8f; --link:#1a4d8f; --link-visited:#6c3fc5; --card:#fff;
     }
-    * { box-sizing: border-box; }
-    body{ margin:0 auto; width:90%; max-width:900px; background:var(--bg); color:var(--ink); line-height:1.65;
+    
+    html { box-sizing: border-box; }
+    body, header, footer, main, nav, p, h1, h2, a, img { box-sizing: inherit; }
 
-            font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, "Noto Sans", "Liberation Sans", sans-serif;
-
-          padding:1.25rem 1rem 2rem; }
+    body{
+      margin:0 auto; width:90%; max-width:900px; background:var(--bg); color:var(--ink); line-height:1.65;
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, "Noto Sans", "Liberation Sans", sans-serif;
+      padding:1.25rem 1rem 2rem;
+    }
     header, footer{ text-align:center }
     header{ padding:1rem 0 .5rem }
     h1{ margin:0 0 .25rem; font-weight:800; letter-spacing:.2px; color:var(--head) }
-    h2{ margin:.75rem 0 .5rem; font-weight:700 }
+    
+    .heading-2{ margin:.75rem 0 .5rem; font-weight:700 }
     main{ background:var(--card); border-radius:16px; padding:1rem; box-shadow:0 4px 16px rgba(0,0,0,.05) }
     p{ margin:.75rem 0 }
     footer{ margin-top:1rem; font-weight:600 }
@@ -27,7 +31,7 @@
     footer a:hover{ text-decoration:underline }
   </style>
   <script>
-    // validator links (work on GitHub Pages and school webspace)
+    
     window.addEventListener('DOMContentLoaded', () => {
       const h = location.href;
       const html = document.getElementById('validation_link_html');
@@ -41,41 +45,30 @@
   <header>
     <h1>Brian Tramuel</h1>
   </header>
+
   <main>
-    <h2>Personal Home Page</h2>
+    <h2 class="heading-2">Personal Home Page</h2>
     <p>Hello! I’m Brian Tramuel. I’m a Computer Science major at UNC Charlotte with a concentration in IT. I’m into cloud computing, and IT systems.</p>
     <p>This is my professional landing page. Jump to my course site and profiles below.</p>
   </main>
+
   <footer>
     <nav aria-label="Primary external links">
       <a href="itis3135/">ITIS3135</a> |
-      <a href="https://github.com/btramuel" target="_blank" rel="noopener">GitHub.com</a> |
-      <a href="https://webpages.charlotte.edu/btramue1/" target="_blank" rel="noopener">CLT Web</a> |
-      <a href="https://btramuel.github.io/" target="_blank" rel="noopener">GitHub.io</a> |
-      <a href="https://www.linkedin.com/in/brian-grant-tramuel-882121264/" target="_blank" rel="noopener">LinkedIn</a>
-      &nbsp;|&nbsp;
-     
+      <a href="https://github.com/btramuel" target="_blank" rel="noopener noreferrer">GitHub.com</a> |
+      <a href="https://webpages.charlotte.edu/btramue1/" target="_blank" rel="noopener noreferrer">CLT Web</a> |
+      <a href="https://btramuel.github.io/" target="_blank" rel="noopener noreferrer">GitHub.io</a> |
+      <a href="https://www.linkedin.com/in/brian-grant-tramuel-882121264/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
     </nav>
+
+    <p style="margin-top:.75rem">
+      <a id="validation_link_html" href="https://validator.w3.org/check?uri=referer">
+        <img style="border:0;width:88px;height:31px" src="https://www.w3.org/Icons/valid-html401" alt="Valid HTML!">
+      </a>
+      <a id="validation_link_css" href="https://jigsaw.w3.org/css-validator/check/referer">
+        <img style="border:0;width:88px;height:31px" src="https://jigsaw.w3.org/css-validator/images/vcss" alt="Valid CSS!">
+      </a>
+    </p>
   </footer>
-  <p>
-  <a id="validation_link_html" href="https://validator.w3.org/check?uri=referer">
-    <img style="border:0;width:88px;height:31px"
-         src="https://www.w3.org/Icons/valid-html401"
-         alt="Valid HTML!">
-  </a>
-  <a id="validation_link_css" href="https://jigsaw.w3.org/css-validator/check/referer">
-    <img style="border:0;width:88px;height:31px"
-         src="https://jigsaw.w3.org/css-validator/images/vcss"
-         alt="Valid CSS!">
-  </a>
-</p>
-
-<script>
-  document.getElementById("validation_link_html")
-    .setAttribute("href","https://validator.w3.org/check?uri=" + location.href);
-  document.getElementById("validation_link_css")
-    .setAttribute("href","https://jigsaw.w3.org/css-validator/validator?uri=" + location.href);
-</script>
-
 </body>
 </html>
