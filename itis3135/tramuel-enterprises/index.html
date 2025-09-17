@@ -1,0 +1,130 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Tramuel Enterprises — Web Design & Development</title>
+  <!-- Color palette (from Coolors): https://coolors.co/0b132b-1c2541-3a506b-5bc0be-f3f7f0 -->
+  <style>
+    :root {
+      --ink-900: #0b132b;
+      --ink-700: #1c2541;
+      --ink-500: #3a506b;
+      --mint-400: #5bc0be;
+      --paper-50: #f3f7f0;
+    }
+    * { box-sizing: border-box; }
+    html, body { height: 100%; }
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Inter, "Helvetica Neue", Arial, sans-serif;
+      line-height: 1.6;
+      color: var(--ink-900);
+      background: var(--paper-50);
+    }
+    a { color: var(--ink-900); text-underline-offset: 2px; }
+    a:hover { color: var(--ink-500); }
+    .container { max-width: 920px; margin: 0 auto; padding: 1.25rem; }
+    header {
+      background: linear-gradient(180deg, var(--ink-700), var(--ink-500));
+      color: white;
+      border-bottom: 4px solid var(--mint-400);
+    }
+    .brand { display: flex; align-items: center; gap: 1rem; padding: 1.25rem 0; }
+    .brand img { display: block; height: 72px; width: 138px; }
+    .brand h1 { font-size: clamp(1.5rem, 2.8vw + 1rem, 2.25rem); margin: 0; letter-spacing: 0.5px; font-weight: 800; }
+    .tagline { margin: 0.25rem 0 0 0; opacity: 0.9; font-weight: 500; }
+    main { padding: 2rem 0; }
+    h2 { margin-top: 0; color: var(--ink-700); font-size: clamp(1.25rem, 1.5vw + 1rem, 1.75rem); }
+    p { margin: 0 0 1rem 0; }
+    .about { background: white; border: 1px solid #e7ece8; border-radius: 14px; padding: 1.25rem; box-shadow: 0 4px 14px rgba(0,0,0,0.04); }
+    .features { list-style: none; padding: 0; margin: 0.75rem 0 1.25rem 0; }
+    .features li { position: relative; padding-left: 1.75rem; margin: 0.5rem 0; }
+    .features li::before { content: "◆"; position: absolute; left: 0; top: 0.1rem; font-size: 1rem; line-height: 1; color: var(--mint-400); filter: drop-shadow(0 1px 0 rgba(0,0,0,0.25)); }
+    .cta { background: white; border: 1px dashed var(--ink-500); border-radius: 14px; padding: 1.25rem; }
+    address { font-style: normal; margin-top: 0.5rem; white-space: pre-line; }
+    .contact a { color: var(--ink-700); }
+    footer { border-top: 4px solid var(--mint-400); background: var(--ink-900); color: white; padding: 1.25rem 0; }
+    .footer-grid { display: grid; grid-template-columns: 1fr; gap: 0.5rem; align-items: center; }
+    .footnote { opacity: 0.9; }
+    .validation img { margin-left: 0.25rem; }
+    @media (min-width: 640px) { .footer-grid { grid-template-columns: 1fr auto; } }
+  
+.footer-nav { display: flex; gap: .75rem; flex-wrap: wrap; margin-top: .25rem; }
+.footer-nav a { color: white; text-decoration: none; border-bottom: 1px dotted rgba(255,255,255,.5); }
+.footer-nav a:hover { border-bottom-color: white; }
+
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <div class="brand" role="banner">
+        <img src="./images/jaguar.png" alt="Tramuel Enterprises jaguar logo" width="138" height="72" />
+        <div>
+          <h1>Tramuel Enterprises</h1>
+          <p class="tagline">Design. Develop. Deliver.</p>
+        </div>
+      </div>
+    </div>
+  </header>
+  <main id="main-content">
+    <div class="container">
+      <h2>Tramuel Enterprises Services</h2>
+      <section class="about" aria-labelledby="about-heading">
+        <h3 id="about-heading" style="margin-top:0">Who we are</h3>
+        <p>Tramuel Enterprises is a Charlotte based web design firm focused on fast and reliable sites.
+        We keep things simple, ship clean code, and help students, startups, and small businesses look professional online.</p>
+        <ul class="features">
+          <li>Responsive, mobile-first sites that pass HTML & CSS validation</li>
+          <li>Clean information architecture with CRAP design principles</li>
+          <li>Fast load times using lightweight, semantic markup</li>
+          <li>WCAG-minded color contrast and keyboard navigation</li>
+          <li>GitHub + University Pages friendly deployment</li>
+          <li>Clear documentation and simple handoff</li>
+          <li>Affordable maintenance plans and quick fixes</li>
+          <li>Student portfolios and class projects polished</li>
+        </ul>
+        <p>We’d love to build your next page, refresh an old one, or audit a site for accessibility.
+        Tell us what you need, and  we’ll map a small plan and deliver on time.</p>
+      </section>
+      <section class="cta" aria-labelledby="contact-heading">
+        <h3 id="contact-heading" style="margin-top:0">Start a project</h3>
+        <p>Reach out with a short note about your idea and timeline. We reply within one business day.</p>
+        <div class="contact">
+          <address>
+            Email: <a href="mailto:hello@tramuelenterprises.co">hello@tramuelenterprises.co</a>
+            Phone: (704)-123-4567
+            Studio: 1428 Elm Street, Charlotte, North Carolina 28204
+          </address>
+        </div>
+      </section>
+    </div>
+  </main>
+  <footer>
+    <div class="container footer-grid">
+      <div class="footnote">© <span id="year"></span> Tramuel Enterprises · “Design. Develop. Deliver.”</div>
+      <div>
+        <a href="#main-content" style="color:white">Back to top ↑</a>
+        
+<nav class="footer-nav" aria-label="Footer">
+  <a href="./">Home</a>
+  <a href="#main-content">Services</a>
+  <a href="#contact-heading">Start a project</a>
+  <a href="mailto:hello@tramuelenterprises.co">Email</a>
+</nav>
+        <div class="validation">
+          <a href="https://validator.w3.org/check?uri=referer" id="validation_link_html">
+            <img src="images/button_validation_html5.png" width="88" height="31" alt="Validate webpage HTML." />
+          </a>
+          <a href="https://jigsaw.w3.org/css-validator/check/referer" id="validation_link_css">
+            <img src="images/button_validation_css.png" width="88" height="31" alt="Validate webpage CSS." />
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+</body>
+</html>
