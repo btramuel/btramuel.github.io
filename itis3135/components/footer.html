@@ -1,0 +1,35 @@
+<footer>
+  <nav aria-label="External links">
+    <a href="http://webpages.uncc.edu/btramue1/" target="_blank" rel="noreferrer">UNCC Webspace</a>
+    <a href="https://github.com/btramuel" target="_blank" rel="noreferrer">GitHub</a>
+    <a href="https://btramuel.github.io/" target="_blank" rel="noreferrer">GitHub.io</a>
+    <a href="https://btramuel.github.io/itis3135/" target="_blank" rel="noreferrer">Course.io</a>
+    <a href="https://www.freecodecamp.org/" target="_blank" rel="noreferrer">freeCodeCamp</a>
+    <a href="https://www.codecademy.com/" target="_blank" rel="noreferrer">Codecademy</a>
+    <a href="https://www.linkedin.com/" target="_blank" rel="noreferrer">LinkedIn</a>
+  </nav>
+
+  <p>Designed by <a href="https://btramuel.github.io/itis3135/brillianttortoise.%20site/" target="_blank" rel="noreferrer">Brilliant Tortoise</a></p>
+
+  <p>&copy; <span id="year"></span> Brian Tramuel</p>
+
+  <p>
+    <a id="validation_link_html" target="_blank" rel="noreferrer">
+      <img src="/itis3135/tramuelenterprises.co/images/button_validation_html5.png" alt="Validate HTML"
+           onerror="this.outerHTML='Validate HTML'">
+    </a>
+    <a id="validation_link_css" target="_blank" rel="noreferrer">
+      <img src="/itis3135/tramuelenterprises.co/images/button_validation_css.png" alt="Validate CSS"
+           onerror="this.outerHTML='Validate CSS'">
+    </a>
+  </p>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+    const u = location.href;
+    const htmlA = document.getElementById("validation_link_html");
+    const cssA  = document.getElementById("validation_link_css");
+    if (htmlA) htmlA.setAttribute("href", "https://validator.w3.org/check?uri=" + encodeURIComponent(u));
+    if (cssA)  cssA.setAttribute("href", "https://jigsaw.w3.org/css-validator/validator?uri=" + encodeURIComponent(u));
+  </script>
+</footer>
