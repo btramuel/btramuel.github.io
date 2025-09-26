@@ -388,6 +388,6 @@ a:focus, button:focus, [tabindex]:focus {
 
 @media (prefers-reduced-motion: reduce) {
     * {
-        scroll-behavior: auto !important;
+       
     }
 }
