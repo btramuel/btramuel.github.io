@@ -1,10 +1,11 @@
-
 <!DOCTYPE html>
 <html lang="en">
-
-<link rel="stylesheet" href="styles/default.css">
+<head>
+  <link rel="stylesheet" href="styles/default.css">
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Tramuel Enterprises - Charlotte-based web design firm specializing in fast, reliable, and accessible websites for students, startups, and small businesses.">
+  <meta name="keywords" content="web design, Charlotte, responsive websites, accessibility, HTML, CSS, student portfolios">
   <title>ITIS3135 | Brian Tramuel's | Brilliant Tortoise | Home</title>
   <!-- Color palette (from Coolors): https://coolors.co/0b132b-1c2541-3a506b-5bc0be-f3f7f0 -->
   <style>
@@ -16,6 +17,7 @@
       --paper-50: #f3f7f0;
     }
     * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
     html, body { height: 100%; }
     body {
       margin: 0;
@@ -24,8 +26,12 @@
       color: var(--ink-900);
       background: var(--paper-50);
     }
-    a { color: var(--ink-900); text-underline-offset: 2px; }
-    a:hover { color: var(--ink-500); }
+    a { 
+      color: var(--ink-900); 
+      text-underline-offset: 2px; 
+      transition: color 0.2s ease;
+    }
+    a:hover, a:focus { color: var(--ink-500); }
     .container { max-width: 920px; margin: 0 auto; padding: 1.25rem; }
     header {
       background: linear-gradient(180deg, var(--ink-700), var(--ink-500));
@@ -34,41 +40,192 @@
     }
     .brand { display: flex; align-items: center; gap: 1rem; padding: 1.25rem 0; }
     .brand img { display: block; height: 72px; width: 138px; }
-    .brand h1 { font-size: clamp(1.5rem, 2.8vw + 1rem, 2.25rem); margin: 0; letter-spacing: 0.5px; font-weight: 800; }
+    .brand h1 { 
+      font-size: clamp(1.5rem, 2.8vw + 1rem, 2.25rem); 
+      margin: 0; 
+      letter-spacing: 0.5px; 
+      font-weight: 800; 
+    }
     .tagline { margin: 0.25rem 0 0 0; opacity: 0.9; font-weight: 500; }
     main { padding: 2rem 0; }
-    h2 { margin-top: 0; color: var(--ink-700); font-size: clamp(1.25rem, 1.5vw + 1rem, 1.75rem); }
+    .services-header {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+    .services-header img {
+      height: 48px;
+      width: auto;
+    }
+    h2 { 
+      margin: 0; 
+      color: var(--ink-700); 
+      font-size: clamp(1.25rem, 1.5vw + 1rem, 1.75rem); 
+    }
+    h3 { color: var(--ink-700); }
     p { margin: 0 0 1rem 0; }
-    .about { background: white; border: 1px solid #e7ece8; border-radius: 14px; padding: 1.25rem; box-shadow: 0 4px 14px rgba(0,0,0,0.04); }
-    .features { list-style: none; padding: 0; margin: 0.75rem 0 1.25rem 0; }
-    .features li { position: relative; padding-left: 1.75rem; margin: 0.5rem 0; }
-    .features li::before { content: "◆"; position: absolute; left: 0; top: 0.1rem; font-size: 1rem; line-height: 1; color: var(--mint-400); filter: drop-shadow(0 1px 0 rgba(0,0,0,0.25)); }
-    .cta { background: white; border: 1px dashed var(--ink-500); border-radius: 14px; padding: 1.25rem; }
-    address { font-style: normal; margin-top: 0.5rem; white-space: pre-line; }
-    .contact a { color: var(--ink-700); }
-    footer { border-top: 4px solid var(--mint-400); background: var(--ink-900); color: white; padding: 1.25rem 0; }
-    .footer-grid { display: grid; grid-template-columns: 1fr; gap: 0.5rem; align-items: center; }
+    .about, .cta { 
+      background: white; 
+      border: 1px solid #e7ece8; 
+      border-radius: 14px; 
+      padding: 1.25rem; 
+      box-shadow: 0 4px 14px rgba(0,0,0,0.04);
+      margin-bottom: 2rem;
+      transition: box-shadow 0.3s ease, transform 0.2s ease;
+    }
+    .about:hover, .cta:hover {
+      box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+      transform: translateY(-2px);
+    }
+    .cta { border: 1px dashed var(--ink-500); }
+    .features { 
+      list-style: none; 
+      padding: 0; 
+      margin: 0.75rem 0 1.25rem 0; 
+      display: grid;
+      gap: 0.75rem;
+    }
+    .features li { 
+      position: relative; 
+      padding: 0.75rem 0.75rem 0.75rem 2.5rem; 
+      background: var(--paper-50);
+      border-radius: 8px;
+      border-left: 3px solid var(--mint-400);
+      transition: background-color 0.2s ease;
+    }
+    .features li:hover {
+      background: #eef5f4;
+    }
+    .features li::before { 
+      content: "◆"; 
+      position: absolute; 
+      left: 0.75rem; 
+      top: 0.85rem; 
+      font-size: 1rem; 
+      line-height: 1; 
+      color: var(--mint-400); 
+      filter: drop-shadow(0 1px 0 rgba(0,0,0,0.25)); 
+    }
+    address { 
+      font-style: normal; 
+      margin-top: 0.5rem; 
+      white-space: pre-line; 
+      background: var(--paper-50);
+      padding: 1rem;
+      border-radius: 8px;
+      border-left: 3px solid var(--mint-400);
+    }
+    .contact a { 
+      color: var(--ink-700); 
+      font-weight: 500;
+      text-decoration: underline;
+      text-decoration-color: var(--mint-400);
+    }
+    .contact a:hover, .contact a:focus {
+      color: var(--mint-400);
+      text-decoration-color: var(--ink-700);
+    }
+    footer { 
+      border-top: 4px solid var(--mint-400); 
+      background: var(--ink-900); 
+      color: white; 
+      padding: 1.25rem 0; 
+    }
+    .footer-grid { 
+      display: grid; 
+      grid-template-columns: 1fr; 
+      gap: 1rem; 
+      align-items: start; 
+    }
     .footnote { opacity: 0.9; }
-    .validation img { margin-left: 0.25rem; }
-    @media (min-width: 640px) { .footer-grid { grid-template-columns: 1fr auto; } }
-  
-.footer-nav { display: flex; gap: .75rem; flex-wrap: wrap; margin-top: .25rem; }
-.footer-nav a { color: white; text-decoration: none; border-bottom: 1px dotted rgba(255,255,255,.5); }
-.footer-nav a:hover { border-bottom-color: white; }
-
+    .validation { margin-top: 1rem; }
+    .validation img { 
+      margin-left: 0.25rem; 
+      transition: opacity 0.2s ease;
+    }
+    .validation img:hover { opacity: 0.8; }
+    .footer-nav { 
+      display: flex; 
+      gap: 1rem; 
+      flex-wrap: wrap; 
+      margin-top: 0.75rem; 
+    }
+    .footer-nav a { 
+      color: white; 
+      text-decoration: none; 
+      border-bottom: 1px dotted rgba(255,255,255,.5); 
+      padding: 0.25rem 0;
+      transition: border-bottom-color 0.2s ease;
+    }
+    .footer-nav a:hover, .footer-nav a:focus { 
+      border-bottom-color: white; 
+    }
+    .back-to-top {
+      display: inline-block;
+      color: white !important;
+      text-decoration: none;
+      padding: 0.5rem 1rem;
+      background: rgba(255,255,255,0.1);
+      border-radius: 6px;
+      transition: background-color 0.2s ease;
+      margin-bottom: 0.5rem;
+    }
+    .back-to-top:hover, .back-to-top:focus {
+      background: rgba(255,255,255,0.2);
+      color: white !important;
+    }
+    
+    /* Skip to main content link for accessibility */
+    .skip-link {
+      position: absolute;
+      top: -40px;
+      left: 6px;
+      background: var(--ink-900);
+      color: white;
+      padding: 8px;
+      text-decoration: none;
+      border-radius: 4px;
+      transition: top 0.2s ease;
+    }
+    .skip-link:focus {
+      top: 6px;
+    }
+    
+    @media (min-width: 640px) { 
+      .footer-grid { grid-template-columns: 1fr auto; gap: 2rem; align-items: center; } 
+      .features { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (min-width: 768px) {
+      .validation { margin-top: 0; }
+    }
+    
+    /* Improved focus indicators */
+    button:focus, input:focus, textarea:focus, select:focus, a:focus {
+      outline: 2px solid var(--mint-400);
+      outline-offset: 2px;
+    }
   </style>
 </head>
 
-<script src=\"/itis3135/scripts/HTMLInclude.js\" defer></script>
+<body>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+  
+  <script src="/itis3135/scripts/HTMLInclude.js" defer></script>
   
   <main id="main-content">
     <div class="container">
-      <h2>Tramuel Enterprises Services</h2>
+      <div class="services-header">
+        <h2>Tramuel Enterprises Services</h2>
+        <img src="images/jaguar.png" alt="Jaguar logo" />
+      </div>
+      
       <section class="about" aria-labelledby="about-heading">
         <h3 id="about-heading" style="margin-top:0">Who we are</h3>
-        <p>Tramuel Enterprises is a Charlotte based web design firm focused on fast and reliable sites.
+        <p>Tramuel Enterprises is a Charlotte-based web design firm focused on fast and reliable sites.
         We keep things simple, ship clean code, and help students, startups, and small businesses look professional online.</p>
-        <ul class="features">
+        
+        <ul class="features" role="list">
           <li>Responsive, mobile-first sites that pass HTML & CSS validation</li>
           <li>Clean information architecture with CRAP design principles</li>
           <li>Fast load times using lightweight, semantic markup</li>
@@ -78,46 +235,54 @@
           <li>Affordable maintenance plans and quick fixes</li>
           <li>Student portfolios and class projects polished</li>
         </ul>
-        <p>We’d love to build your next page, refresh an old one, or audit a site for accessibility.
-        Tell us what you need, and  we’ll map a small plan and deliver on time.</p>
+        
+        <p>We'd love to build your next page, refresh an old one, or audit a site for accessibility.
+        Tell us what you need, and we'll map a small plan and deliver on time.</p>
       </section>
+      
       <section class="cta" aria-labelledby="contact-heading">
         <h3 id="contact-heading" style="margin-top:0">Start a project</h3>
         <p>Reach out with a short note about your idea and timeline. We reply within one business day.</p>
+        
         <div class="contact">
           <address>
-            Email: <a href="mailto:hello@tramuelenterprises.co">hello@tramuelenterprises.co</a>
-            Phone: (704)-123-4567
-            Studio: 1428 Elm Street, Charlotte, North Carolina 28204
+Email: <a href="mailto:hello@tramuelenterprises.co" aria-label="Email Tramuel Enterprises">hello@tramuelenterprises.co</a>
+Phone: <a href="tel:+17041234567" aria-label="Call Tramuel Enterprises">(704) 123-4567</a>
+Studio: 1428 Elm Street, Charlotte, North Carolina 28204
           </address>
         </div>
       </section>
     </div>
   </main>
-  <footer>
+  
+  <footer role="contentinfo">
     <div class="container footer-grid">
-      <div class="footnote">© <span id="year"></span> Tramuel Enterprises · “Design. Develop. Deliver.”</div>
       <div>
-        <a href="#main-content" style="color:white">Back to top ↑</a>
+        <div class="footnote">© <span id="year"></span> Tramuel Enterprises · "Design. Develop. Deliver."</div>
+        <nav class="footer-nav" aria-label="Footer navigation">
+          <a href="./">Home</a>
+          <a href="#main-content">Services</a>
+          <a href="#contact-heading">Start a project</a>
+          <a href="mailto:hello@tramuelenterprises.co">Email</a>
+        </nav>
+      </div>
+      
+      <div>
+        <a href="#main-content" class="back-to-top" aria-label="Back to top of page">Back to top ↑</a>
         
-<nav class="footer-nav" aria-label="Footer">
-  <a href="./">Home</a>
-  <a href="#main-content">Services</a>
-  <a href="#contact-heading">Start a project</a>
-  <a href="mailto:hello@tramuelenterprises.co">Email</a>
-</nav>
         <div class="validation">
-          <a href="https://validator.w3.org/check?uri=referer" id="validation_link_html">
-            <img src="images/button_validation_html5.png" width="88" height="31" alt="Validate webpage HTML." />
+          <a href="https://validator.w3.org/check?uri=referer" id="validation_link_html" aria-label="Validate HTML">
+            <img src="images/button_validation_html5.png" width="88" height="31" alt="Valid HTML5" />
           </a>
-          <a href="https://jigsaw.w3.org/css-validator/check/referer" id="validation_link_css">
-            <img src="images/button_validation_css.png" width="88" height="31" alt="Validate webpage CSS." />
+          <a href="https://jigsaw.w3.org/css-validator/check/referer" id="validation_link_css" aria-label="Validate CSS">
+            <img src="images/button_validation_css.png" width="88" height="31" alt="Valid CSS" />
           </a>
         </div>
       </div>
     </div>
   </footer>
+  
   <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
-<div data-include="components/footer.html"></div>
+  <div data-include="components/footer.html"></div>
 </body>
 </html>
