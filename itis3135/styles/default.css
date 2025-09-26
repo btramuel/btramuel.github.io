@@ -391,3 +391,14 @@ a:focus, button:focus, [tabindex]:focus {
        
     }
 }
+/* --- Home page layout tweaks --- */
+main {
+  margin-top: 2rem;      /* controls how far down from the nav/header */
+  text-align: center;    /* centers the content inside <main> */
+}
+
+.page-title {
+  text-align: center;    /* centers the Home heading */
+  margin-top: 0;         /* removes extra space above */
+}
+
