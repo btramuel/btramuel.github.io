@@ -1,39 +1,130 @@
 <!DOCTYPE html>
 <html lang="en">
-\1
-<link rel="stylesheet" href="/itis3135/styles/default.css">
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>ITIS3135 | Brian Tramuel's | Brilliant Tortoise | About</title>
-  <link rel="stylesheet" href="styles/style.css">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="About Brilliant Tortoise - Learn about our commitment to quality bubble tea and fresh ingredients">
+    <meta name="keywords" content="about us, bubble tea story, quality tea, campus drinks">
+    <title>About Us | Brilliant Tortoise Bubble Tea</title>
+    <link rel="stylesheet" href="/itis3135/styles/default.css">
+    <link rel="stylesheet" href="styles/style.css">
 </head>
-\1
-<script src=\"/itis3135/scripts/HTMLInclude.js\" defer></script>
-  
-
-  <main class="container">
-    <h2>About Brilliant Tortoise Bubble Tea</h2>
-    <p><strong>Brilliant Tortoise</strong> Could slow-brewed tea still serve a campus rush? Turns out yes. We prep leaves,  then pour fast so you’re back to class with a great sip.</p>
-    <p>Small by design, just a short menu of drinks we love. Look for the honey & yellow logo and the BT shell stamp on every cup.</p>
- </main>
-
-  <footer>
-    <div class="container grid">
-      <div>
-        <nav class="footer-nav" aria-label="Footer">
-          <a href="./index.html" style="color:white">Home</a> ·
-          <a href="./about.html" style="color:white">About</a>
-        </nav>
-        <div class="valid">
-          <a href="https://validator.w3.org/check?uri=referer"><img src="images/button_validation_html5.png" width="88" height="31" alt="Validate HTML"></a>
-          <a href="https://jigsaw.w3.org/css-validator/check/referer"><img src="images/button_validation_css.png" width="88" height="31" alt="Validate CSS"></a>
+<body>
+    <script src="/itis3135/scripts/HTMLInclude.js" defer></script>
+    
+    <!-- Site Header -->
+    <header role="banner">
+        <div class="container">
+            <div class="brand">
+                <div class="logo" aria-label="Brilliant Tortoise Logo">
+                    🐢
+                </div>
+                <div>
+                    <h1>Brilliant Tortoise</h1>
+                    <p class="tagline"><em>Bubble Tea & More</em></p>
+                </div>
+            </div>
+            <nav aria-label="Main navigation">
+                <a href="./index.html">Home</a>
+                <a href="./about.html" aria-current="page">About</a>
+            </nav>
         </div>
-      </div>
-      <div>
-        <p style="margin:0">Page designed by <a href="../tramuelenterprises.co/" style="color:white; border-bottom:1px dotted rgba(255,255,255,.6)">Tramuel Enterprises</a></p>
-      </div>
-    </div>
-  </footer>
-<div data-include="/itis3135/components/footer.html"></div>
+    </header>
+
+    <main class="container" role="main">
+        <h2>About Brilliant Tortoise Bubble Tea</h2>
+        
+        <article class="about-content">
+            <section class="story-section">
+                <h3>Our Story</h3>
+                <p><strong>Brilliant Tortoise</strong> started with a simple question: Could slow-brewed tea still serve a campus rush? Turns out, yes. We prep leaves with care, then pour fast so you're back to class with a great sip.</p>
+                
+                <p>Small by design, we focus on just a short menu of drinks we love. Look for the honey & yellow logo and the BT shell stamp on every cup.</p>
+            </section>
+            
+            <section class="mission-section">
+                <h3>Our Mission</h3>
+                <div class="mission-grid">
+                    <div class="mission-item">
+                        <div class="mission-icon">🌿</div>
+                        <h4>Quality First</h4>
+                        <p>We source premium tea leaves and use only natural sweeteners to create authentic flavors.</p>
+                    </div>
+                    <div class="mission-item">
+                        <div class="mission-icon">⚡</div>
+                        <h4>Fast Service</h4>
+                        <p>Designed for busy students and professionals who need their tea fix quickly.</p>
+                    </div>
+                    <div class="mission-item">
+                        <div class="mission-icon">🎯</div>
+                        <h4>Focused Menu</h4>
+                        <p>A curated selection of drinks we've perfected, rather than overwhelming choices.</p>
+                    </div>
+                </div>
+            </section>
+            
+            <section class="values-section">
+                <h3>What We Believe</h3>
+                <ul class="values-list">
+                    <li><strong>Freshness matters:</strong> Tea brewed daily, boba made fresh</li>
+                    <li><strong>Quality over quantity:</strong> Better to do a few things excellently</li>
+                    <li><strong>Community focused:</strong> Serving the campus community with care</li>
+                    <li><strong>Sustainable practices:</strong> Eco-friendly cups and local sourcing when possible</li>
+                </ul>
+            </section>
+            
+            <section class="location-section">
+                <h3>Find Us</h3>
+                <div class="location-info">
+                    <p><strong>Campus Location:</strong> Student Union Building, Level 2</p>
+                    <p><strong>Hours:</strong> Monday-Friday 7AM-7PM | Saturday-Sunday 9AM-5PM</p>
+                    <p><strong>Contact:</strong> brillianttortoise@campus.edu</p>
+                </div>
+            </section>
+        </article>
+    </main>
+
+    <footer role="contentinfo">
+        <div class="container grid">
+            <div class="footer-content">
+                <nav class="footer-nav" aria-label="Footer navigation">
+                    <a href="./index.html">Home</a>
+                    <span class="separator">·</span>
+                    <a href="./about.html" aria-current="page">About</a>
+                </nav>
+                <div class="validation" aria-label="Page validation">
+                    <a href="https://validator.w3.org/check?uri=referer" 
+                       target="_blank" 
+                       rel="noopener noreferrer"
+                       title="Validate HTML">
+                        <img src="images/button_validation_html5.png" 
+                             width="88" 
+                             height="31" 
+                             alt="Valid HTML"
+                             loading="lazy">
+                    </a>
+                    <a href="https://jigsaw.w3.org/css-validator/check/referer" 
+                       target="_blank" 
+                       rel="noopener noreferrer"
+                       title="Validate CSS">
+                        <img src="images/button_validation_css.png" 
+                             width="88" 
+                             height="31" 
+                             alt="Valid CSS"
+                             loading="lazy">
+                    </a>
+                </div>
+            </div>
+            <div class="footer-credit">
+                <p>Page designed by 
+                    <a href="../tramuelenterprises.co/" 
+                       target="_blank" 
+                       rel="noopener noreferrer">
+                        Tramuel Enterprises
+                    </a>
+                </p>
+            </div>
+        </div>
+    </footer>
 </body>
 </html>

@@ -1,59 +1,122 @@
 <!DOCTYPE html>
 <html lang="en">
-\1
-<link rel="stylesheet" href="/itis3135/styles/default.css">
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>ITIS3135 | Brian Tramuel's | Brilliant Tortoise | Home</title>
-  <link rel="stylesheet" href="styles/style.css">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Brilliant Tortoise Bubble Tea - Premium matcha, milk teas, and seasonal specials with fresh boba pearls">
+    <meta name="keywords" content="bubble tea, boba, matcha, milk tea, oolong, honey, grass jelly">
+    <title>Brilliant Tortoise Bubble Tea | Premium Boba & Matcha</title>
+    <link rel="stylesheet" href="/itis3135/styles/default.css">
+    <link rel="stylesheet" href="styles/style.css">
 </head>
-\1
-<script src=\"/itis3135/scripts/HTMLInclude.js\" defer></script>
-  
+<body>
+    <script src="/itis3135/scripts/HTMLInclude.js" defer></script>
+    
+    <!-- Site Header -->
+    <header role="banner">
+        <div class="container">
+            <div class="brand">
+                <div class="logo" aria-label="Brilliant Tortoise Logo">
+                    🐢
+                </div>
+                <div>
+                    <h1>Brilliant Tortoise</h1>
+                    <p class="tagline"><em>Bubble Tea & More</em></p>
+                </div>
+            </div>
+            <nav aria-label="Main navigation">
+                <a href="./index.html" aria-current="page">Home</a>
+                <a href="./about.html">About</a>
+            </nav>
+        </div>
+    </header>
 
-  <main class="container">
-    <h2>Signature Sips</h2>
-    <section class="lede">
-      <p>We brew slow, serve fast. Matcha, milk teas, fruit teas, and seasonal specials — topped with boba.</p>
-      <div class="menu">
-        <div class="card">
-          <h3>Matcha Shell</h3>
-          <p class="meta">ceremonial matcha, milk, honey drizzle</p>
-        </div>
-        <div class="card">
-          <h3>Tortoise Trail Milk Tea</h3>
-          <p class="meta">black tea, brown sugar boba</p>
-        </div>
-        <div class="card">
-          <h3>Golden Honey Oolong</h3>
-          <p class="meta">light oolong, honey, grass jelly</p>
-        </div>
-      </div>
-      <ul class="features">
-        <li>Real tea, brewed fresh</li>
-        <li>Oat & almond milk options</li>
-        <li>Choose boba, jelly, or popping pearls</li>
-      </ul>
-    </section>
-  </main>
+    <main class="container" role="main">
+        <h2>Signature Sips</h2>
+        <section class="lede" aria-labelledby="intro-heading">
+            <h3 id="intro-heading" class="sr-only">Our Story</h3>
+            <p class="intro-text">We brew slow, serve fast. Matcha, milk teas, fruit teas, and seasonal specials — topped with boba.</p>
+            
+            <div class="menu" role="region" aria-labelledby="menu-heading">
+                <h3 id="menu-heading" class="menu-title">Featured Drinks</h3>
+                <div class="menu-grid">
+                    <div class="card">
+                        <h4>Matcha Shell</h4>
+                        <p class="meta">Ceremonial matcha, milk, honey drizzle</p>
+                        <span class="price" aria-label="Price">$5.50</span>
+                    </div>
+                    <div class="card">
+                        <h4>Tortoise Trail Milk Tea</h4>
+                        <p class="meta">Black tea, brown sugar boba</p>
+                        <span class="price" aria-label="Price">$4.75</span>
+                    </div>
+                    <div class="card">
+                        <h4>Golden Honey Oolong</h4>
+                        <p class="meta">Light oolong, honey, grass jelly</p>
+                        <span class="price" aria-label="Price">$5.25</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="features-section">
+                <h3 class="features-title">What Makes Us Special</h3>
+                <ul class="features" role="list">
+                    <li>Real tea, brewed fresh daily</li>
+                    <li>Oat & almond milk options available</li>
+                    <li>Choose boba, jelly, or popping pearls</li>
+                    <li>All-natural sweeteners and organic teas</li>
+                </ul>
+            </div>
+            
+            <div class="cta-section">
+                <button type="button" class="cta-button" onclick="window.location.href='./about.html'">
+                    Learn More About Us
+                </button>
+            </div>
+        </section>
+    </main>
 
-  <footer>
-    <div class="container grid">
-      <div>
-        <nav class="footer-nav" aria-label="Footer">
-          <a href="./index.html" style="color:white">Home</a> ·
-          <a href="./about.html" style="color:white">About</a>
-        </nav>
-        <div class="valid">
-          <a href="https://validator.w3.org/check?uri=referer"><img src="images/button_validation_html5.png" width="88" height="31" alt="Validate HTML"></a>
-          <a href="https://jigsaw.w3.org/css-validator/check/referer"><img src="images/button_validation_css.png" width="88" height="31" alt="Validate CSS"></a>
+    <footer role="contentinfo">
+        <div class="container grid">
+            <div class="footer-content">
+                <nav class="footer-nav" aria-label="Footer navigation">
+                    <a href="./index.html" aria-current="page">Home</a>
+                    <span class="separator">·</span>
+                    <a href="./about.html">About</a>
+                </nav>
+                <div class="validation" aria-label="Page validation">
+                    <a href="https://validator.w3.org/check?uri=referer" 
+                       target="_blank" 
+                       rel="noopener noreferrer"
+                       title="Validate HTML">
+                        <img src="images/button_validation_html5.png" 
+                             width="88" 
+                             height="31" 
+                             alt="Valid HTML"
+                             loading="lazy">
+                    </a>
+                    <a href="https://jigsaw.w3.org/css-validator/check/referer" 
+                       target="_blank" 
+                       rel="noopener noreferrer"
+                       title="Validate CSS">
+                        <img src="images/button_validation_css.png" 
+                             width="88" 
+                             height="31" 
+                             alt="Valid CSS"
+                             loading="lazy">
+                    </a>
+                </div>
+            </div>
+            <div class="footer-credit">
+                <p>Page designed by 
+                    <a href="../tramuelenterprises.co/" 
+                       target="_blank" 
+                       rel="noopener noreferrer">
+                        Tramuel Enterprises
+                    </a>
+                </p>
+            </div>
         </div>
-      </div>
-      <div>
-        <p style="margin:0">Page designed by <a href="../tramuelenterprises.co/" style="color:white; border-bottom:1px dotted rgba(255,255,255,.6)">Tramuel Enterprises</a></p>
-      </div>
-    </div>
-  </footer>
-<div data-include="/itis3135/components/footer.html"></div>
+    </footer>
 </body>
 </html>
