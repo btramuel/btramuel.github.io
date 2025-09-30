@@ -6,69 +6,205 @@
   <title>Brian Tramuel | Landing Home Page</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <style>
-    :root{
-      --bg:#f6f7fb; --ink:#222; --head:#1a4d8f; --link:#1a4d8f; --link-visited:#6c3fc5; --card:#fff;
+    :root {
+      --primary: #2563eb;
+      --primary-dark: #1e40af;
+      --secondary: #0ea5e9;
+      --bg-gradient-start: #f0f9ff;
+      --bg-gradient-end: #e0f2fe;
+      --text-dark: #1e293b;
+      --text-medium: #475569;
+      --card-bg: #ffffff;
+      --card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+      --card-shadow-hover: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
     }
     
     html { box-sizing: border-box; }
-    body, header, footer, main, nav, p, h1, h2, a, img { box-sizing: inherit; }
+    *, *:before, *:after { box-sizing: inherit; }
 
-    body{
-      margin:0 auto; width:90%; max-width:900px; background:var(--bg); color:var(--ink); line-height:1.65;
+    body {
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(135deg, var(--bg-gradient-start) 0%, var(--bg-gradient-end) 100%);
+      min-height: 100vh;
+      color: var(--text-dark);
+      line-height: 1.6;
       font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, "Noto Sans", "Liberation Sans", sans-serif;
-      padding:1.25rem 1rem 2rem;
     }
-    header, footer{ text-align:center }
-    header{ padding:1rem 0 .5rem }
-    h1{ margin:0 0 .25rem; font-weight:800; letter-spacing:.2px; color:var(--head) }
-    
-    .heading-2{ margin:.75rem 0 .5rem; font-weight:700 }
-    main{ background:var(--card); border-radius:16px; padding:1rem; box-shadow:0 4px 16px rgba(0,0,0,.05) }
-    p{ margin:.75rem 0 }
-    footer{ margin-top:1rem; font-weight:600 }
-    footer a{ text-decoration:none; margin:0 .5rem; color:var(--link) }
-    footer a:visited{ color:var(--link-visited) }
-    footer a:hover{ text-decoration:underline }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 2rem 1rem;
+    }
+
+    header {
+      text-align: center;
+      padding: 3rem 0 2rem;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 3rem;
+      font-weight: 800;
+      color: var(--primary);
+      letter-spacing: -0.5px;
+    }
+
+    .subtitle {
+      margin-top: 0.5rem;
+      font-size: 1.125rem;
+      color: var(--text-medium);
+      font-weight: 500;
+    }
+
+    main {
+      background: var(--card-bg);
+      border-radius: 20px;
+      padding: 2.5rem;
+      box-shadow: var(--card-shadow);
+      margin-bottom: 2rem;
+    }
+
+    h2 {
+      margin: 0 0 1.5rem;
+      font-size: 1.875rem;
+      font-weight: 700;
+      color: var(--primary-dark);
+    }
+
+    p {
+      margin: 1rem 0;
+      font-size: 1.0625rem;
+      color: var(--text-medium);
+      line-height: 1.7;
+    }
+
+    footer {
+      text-align: center;
+      padding: 1.5rem 0 2rem;
+    }
+
+    nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 1.5rem;
+    }
+
+    nav a {
+      display: inline-block;
+      padding: 0.625rem 1.25rem;
+      background: var(--card-bg);
+      color: var(--primary);
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: 600;
+      box-shadow: var(--card-shadow);
+      border: 2px solid transparent;
+    }
+
+    nav a:hover {
+      background: var(--primary);
+      color: white;
+      box-shadow: var(--card-shadow-hover);
+    }
+
+    nav a:visited {
+      color: var(--primary);
+    }
+
+    nav a:visited:hover {
+      color: white;
+    }
+
+    .validation-badges {
+      margin-top: 1.5rem;
+      display: flex;
+      gap: 0.5rem;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .validation-badges a {
+      display: inline-block;
+      opacity: 0.7;
+    }
+
+    .validation-badges a:hover {
+      opacity: 1;
+    }
+
+    .validation-badges img {
+      border: 0;
+      width: 88px;
+      height: 31px;
+    }
+
+    @media (max-width: 640px) {
+      h3 {
+        font-size: 2.25rem;
+      }
+
+      main {
+        padding: 1.5rem;
+      }
+
+      nav {
+        flex-direction: column;
+        gap: 0.75rem;
+      }
+
+      nav a {
+        width: 100%;
+        max-width: 280px;
+        text-align: center;
+      }
+    }
   </style>
   <script>
-    
     window.addEventListener('DOMContentLoaded', () => {
       const h = location.href;
       const html = document.getElementById('validation_link_html');
-      const css  = document.getElementById('validation_link_css');
+      const css = document.getElementById('validation_link_css');
       if (html) html.href = "https://validator.w3.org/check?uri=" + encodeURIComponent(h);
-      if (css)  css.href  = "https://jigsaw.w3.org/css-validator/validator?uri=" + encodeURIComponent(h);
+      if (css) css.href = "https://jigsaw.w3.org/css-validator/validator?uri=" + encodeURIComponent(h);
     });
   </script>
 </head>
 <body>
-  <header>
-    <h1>Brian Tramuel</h1>
-  </header>
+  <div class="container">
+    <header>
+      <h1>Brian Tramuel</h1>
+      <p class="subtitle">Computer Science Major | Cloud Computing & IT Systems</p>
+    </header>
 
-  <main>
-    <h2 class="heading-2">Landing Home Page</h2>
-    <p>Hello! I’m Brian Tramuel. I’m a Computer Science major at UNC Charlotte with a concentration in IT. I’m into cloud computing, and IT systems.</p>
-    <p>This is my professional landing page. Jump to my course site and profiles below.</p>
-  </main>
+    <main>
+      <h2>Welcome</h2>
+      <p>Hello! I'm Brian Tramuel, a Computer Science major at UNC Charlotte with a concentration in IT. I'm passionate about cloud computing and IT systems.</p>
+      <p>This is my professional landing page. Explore my course site and connect with me through the links below.</p>
+    </main>
             
-  <footer>
-    <nav aria-label="Primary external links">
-      <a href="itis3135/">ITIS3135</a> |
-      <a href="https://github.com/btramuel" target="_blank" rel="noopener noreferrer">GitHub.com</a> |
-      <a href="https://webpages.charlotte.edu/btramue1/" target="_blank" rel="noopener noreferrer">CLT Web</a> |
-      <a href="https://btramuel.github.io/" target="_blank" rel="noopener noreferrer">GitHub.io</a> |
-      <a href="https://www.linkedin.com/in/brian-grant-tramuel-882121264/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-    </nav>
+    <footer>
+      <nav aria-label="Primary external links">
+        <a href="itis3135/">ITIS3135</a>
+        <a href="https://github.com/btramuel" target="_blank" rel="noopener noreferrer">GitHub</a>
+        <a href="https://webpages.charlotte.edu/btramue1/" target="_blank" rel="noopener noreferrer">CLT Web</a>
+        <a href="https://btramuel.github.io/" target="_blank" rel="noopener noreferrer">GitHub.io</a>
+        <a href="https://www.linkedin.com/in/brian-grant-tramuel-882121264/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+      </nav>
 
-    <p style="margin-top:.75rem">
-      <a id="validation_link_html" href="https://validator.w3.org/check?uri=referer">
-        <img style="border:0;width:88px;height:31px" src="https://www.w3.org/Icons/valid-html401" alt="Valid HTML!">
-      </a>
-      <a id="validation_link_css" href="https://jigsaw.w3.org/css-validator/check/referer">
-        <img style="border:0;width:88px;height:31px" src="https://jigsaw.w3.org/css-validator/images/vcss" alt="Valid CSS!">
-      </a>
-    </p>
-  </footer>
+      <div class="validation-badges">
+        <a id="validation_link_html" href="https://validator.w3.org/check?uri=referer">
+          <img src="https://www.w3.org/Icons/valid-html401" alt="Valid HTML!">
+        </a>
+        <a id="validation_link_css" href="https://jigsaw.w3.org/css-validator/check/referer">
+          <img src="https://jigsaw.w3.org/css-validator/images/vcss" alt="Valid CSS!">
+        </a>
+      </div>
+    </footer>
+  </div>
 </body>
 </html>
