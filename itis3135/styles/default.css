@@ -3,15 +3,15 @@
 /* CSS Custom Properties */
 :root {
   /* Brilliant Tortoise Color Palette */
-  --bg: #1a3c1a;           /* Deep tortoise shell green */
-  --bg-secondary: #295e06; /* Rich leaf green */
-  --panel: #204b20;        /* Darker panel green */
-  --panel-hover: #295e06;  /* Hover effect green */
+  --bg:  #0b1220;          /* Deep tortoise shell green */
+  --bg-secondary: #060a5e; /* Rich leaf green */
+  --panel: #111827;       /* Darker panel green */
+  --panel-hover: #0b122050;  /* Hover effect green */
 
   --text: #f8fafc;         /* Off-white for readability */
   --muted: #d1d5db;        /* Soft gray for muted text */
 
-  --accent: #d4af37;       /* Gold highlight (brilliance) */
+  --accent: #f8f8f8;       /* Gold highlight (brilliance) */
   --accent-2: #3b7a57;     /* Teal/sea-tortoise tone */
   --accent-glow: rgba(212, 175, 55, 0.2); /* Golden glow */
 
@@ -71,7 +71,7 @@ ul, li, figure, figcaption, small, section {
 
 body {
   font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
-  background: linear-gradient(135deg, #1a3c1a 0%, #295e06 50%, #3b7a57 100%);
+  background: linear-gradient(135deg, #100d45 0%,  #0b122050 0%, #131947 100%);
   background-attachment: fixed;
   color: var(--text);
   line-height: var(--line-height-base);
@@ -420,4 +420,3 @@ a:hover, a:focus {
 a:active {
   color: var(--accent);   /* gold when active */
 }
-

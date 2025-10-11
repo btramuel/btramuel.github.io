@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>FCC Full Stack JavaScript Outline</title>
+  <meta name="description" content="Tracks my progress through the FCC Full Stack JavaScript curriculum.">
+  <style>
+    :root {
+      --bg: #0b1220;
+      --panel: #111827;
+      --text: #e5e7eb;
+      --muted: #9ca3af;
+      --accent: #22c55e;
+      --border: #1f2937;
+    }
+    html, body {
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(180deg, var(--bg), #0f172a);
+      color: var(--text);
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+      line-height: 1.6;
+    }
+    .wrap {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 24px;
+    }
+    header, footer, .card {
+      background: rgba(17, 24, 39, 0.6);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 16px 20px;
+      box-shadow: 0 10px 30px rgba(0,0,0,.25);
+      position: relative;
+      overflow: hidden;
+      margin-top: 18px;
+    }
+    header::after {
+      content: "";
+      position: absolute;
+      inset: -20% -10% auto auto;
+      width: 240px;
+      height: 240px;
+      background: radial-gradient(closest-side, rgba(34,197,94,.25), transparent 70%);
+      transform: rotate(25deg);
+      pointer-events: none;
+    }
+    nav a {
+      color: var(--text);
+      text-decoration: none;
+      margin-right: 16px;
+      padding: 6px 10px;
+      border-radius: 10px;
+      border: 1px solid transparent;
+    }
+    nav a:hover { border-color: var(--accent); }
+    nav a[aria-current="page"] { border-color: var(--accent); }
+    h1, h2 { line-height: 1.2; }
+    .kicker {
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: .12em;
+      color: var(--muted);
+    }
+    .tag {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: #0b1326;
+      color: var(--muted);
+      font-size: 12px;
+      margin-left: 8px;
+    }
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 16px;
+      margin-top: 18px;
+    }
+    .stat-card {
+      background: rgba(17, 24, 39, 0.6);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 20px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .stat-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+    }
+    .stat-icon.primary { background: rgba(34, 197, 94, 0.15); color: var(--accent); }
+    .stat-icon.muted { background: rgba(156, 163, 175, 0.15); color: var(--muted); }
+    .stat-value { font-size: 28px; font-weight: 700; }
+    .stat-label { font-size: 13px; color: var(--muted); }
+    .progress-section {
+      margin: 20px 0;
+    }
+    .progress-bar {
+      height: 8px;
+      background: var(--border);
+      border-radius: 999px;
+      overflow: hidden;
+      margin-top: 8px;
+    }
+    .progress-fill {
+      height: 100%;
+      background: var(--accent);
+      transition: width 0.3s ease;
+    }
+    .progress-text {
+      display: flex;
+      justify-content: space-between;
+      font-size: 14px;
+      margin-bottom: 4px;
+    }
+    .search-box {
+      position: relative;
+      margin: 20px 0;
+    }
+    .search-box input {
+      width: 100%;
+      padding: 12px 40px;
+      background: rgba(17, 24, 39, 0.6);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      color: var(--text);
+      font-size: 15px;
+    }
+    .search-box input::placeholder { color: var(--muted); }
+    .search-icon {
+      position: absolute;
+      left: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--muted);
+    }
+    .clear-btn {
+      position: absolute;
+      right: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      color: var(--muted);
+      cursor: pointer;
+      padding: 4px;
+    }
+    .clear-btn:hover { color: var(--text); }
+    table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+      overflow: hidden;
+      border-radius: 14px;
+      border: 1px solid var(--border);
+    }
+    thead th {
+      text-align: left;
+      background: #0b1326;
+      padding: 12px 14px;
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 1;
+      text-transform: uppercase;
+      font-size: 12px;
+      letter-spacing: 0.12em;
+    }
+    tbody td {
+      padding: 12px 14px;
+      vertical-align: middle;
+      border-bottom: 1px solid var(--border);
+    }
+    tbody tr:hover { background: rgba(34, 197, 94, 0.06); }
+    tbody tr:last-child td { border-bottom: none; }
+    .checkbox {
+      width: 20px;
+      height: 20px;
+      cursor: pointer;
+      accent-color: var(--accent);
+    }
+    .completed {
+      text-decoration: line-through;
+      color: var(--muted);
+    }
+    .badge {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 999px;
+      border: 1px solid rgba(34, 197, 94, 0.3);
+      background: rgba(34, 197, 94, 0.15);
+      color: var(--accent);
+      font-size: 11px;
+      margin-left: 8px;
+    }
+    .ack {
+      border-left: 4px solid var(--accent);
+      padding-left: 12px;
+      margin-top: 10px;
+    }
+    .muted { color: var(--muted); }
+    .no-results {
+      text-align: center;
+      padding: 40px;
+      color: var(--muted);
+    }
+    @media (max-width: 720px) {
+      thead { display: none; }
+      tbody tr { 
+        display: block; 
+        border-bottom: 1px solid var(--border);
+        margin-bottom: 12px;
+      }
+      tbody td { 
+        display: grid; 
+        grid-template-columns: 120px 1fr; 
+        gap: 10px;
+        border-bottom: none;
+      }
+      tbody td::before { 
+        color: var(--muted);
+        font-weight: 600;
+      }
+      tbody td:first-child::before { content: "Complete"; }
+      tbody td:nth-child(2)::before { content: "Section"; }
+      tbody td:nth-child(3)::before { content: "Steps"; }
+      tbody td:nth-child(4)::before { content: "Summary"; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header class="card">
+      <div class="kicker">ITIS 3135 • Front‑End Web App Dev</div>
+      <h1>FCC Full Stack JavaScript Outline <span class="tag"></span></h1>
+      <nav aria-label="Main">
+        <a href="/index.html">Home</a>
+        <a href="/intro.html">Intro</a>
+        <a href="/contract.html">Contract</a>
+        <a href="/fccfsjs_outline.html" aria-current="page">FCC FSJS Outline</a>
+      </nav>
+    </header>
+
+    <div class="stats-grid" id="stats">
+      <div class="stat-card">
+        <div class="stat-icon primary">✓</div>
+        <div>
+          <div class="stat-value" id="completed-steps">17</div>
+          <div class="stat-label">Completed Steps</div>
+        </div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon muted">⏱</div>
+        <div>
+          <div class="stat-value" id="remaining-steps">979</div>
+          <div class="stat-label">Remaining Steps</div>
+        </div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon muted">📅</div>
+        <div>
+          <div class="stat-value">Nov 23</div>
+          <div class="stat-label">Est. Completion</div>
+        </div>
+      </div>
+    </div>
+
+    <section class="card">
+      <h2>Curriculum Sections (JavaScript)</h2>
+      
+      <div class="progress-section">
+        <div class="progress-text">
+          <span id="progress-percent">2% Complete</span>
+          <span class="muted" id="progress-fraction">17 of 996 steps complete</span>
+        </div>
+        <div class="progress-bar">
+          <div class="progress-fill" id="progress-fill" style="width: 2%"></div>
+        </div>
+      </div>
+
+      <div class="search-box">
+        <span class="search-icon">🔍</span>
+        <input type="search" id="search" placeholder="Search curriculum sections..." />
+        <button class="clear-btn" id="clear-search" style="display: none;">✕</button>
+      </div>
+
+      <table role="table" id="curriculum-table">
+        <thead>
+          <tr>
+            <th scope="col" style="width: 50px;"></th>
+            <th scope="col">Section</th>
+            <th scope="col" style="width: 120px;">Steps</th>
+            <th scope="col">Summary</th>
+          </tr>
+        </thead>
+        <tbody id="curriculum-body">
+          
+        </tbody>
+      </table>
+      <div id="no-results" class="no-results" style="display: none;">
+        No sections found matching your search
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>My 6‑Week Plan & Commitment</h2>
+      <table>
+        <thead>
+          <tr><th>Part</th><th>Dates</th><th>Focus</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Part 1: Code Editors + Variables & Strings</td>
+            <td>Oct 13, 2025 – Oct 19, 2025</td>
+            <td>Code Editors; Variables and Strings</td>
+          </tr>
+          <tr>
+            <td>Part 2: Booleans & Numbers</td>
+            <td>Oct 20, 2025 – Oct 26, 2025</td>
+            <td>Booleans and Numbers</td>
+          </tr>
+          <tr>
+            <td>Part 3: Arrays, Objects, and Control Flow</td>
+            <td>Oct 27, 2025 – Nov 02, 2025</td>
+            <td>Arrays; Objects; Conditionals & Loops</td>
+          </tr>
+          <tr>
+            <td>Part 4: Functions & Scope; DOM Basics</td>
+            <td>Nov 03, 2025 – Nov 09, 2025</td>
+            <td>Functions; Scope; DOM Basics</td>
+          </tr>
+          <tr>
+            <td>Part 5: Fetch/API, Local Storage, ES Modules</td>
+            <td>Nov 10, 2025 – Nov 16, 2025</td>
+            <td>APIs; Local Storage; Modules</td>
+          </tr>
+          <tr>
+            <td>Part 6: Review & Projects</td>
+            <td>Nov 17, 2025 – Nov 23, 2025</td>
+            <td>Review; Mini‑projects</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p class="ack"><strong>Commitment:</strong> I intend to complete the freeCodeCamp Full‑Stack JavaScript section within the next 6 weeks. I understand this is <em>one</em> assignment and I'm responsible for pacing myself.</p>
+      <p class="muted">Signature: Brian G. Tramuel &nbsp; Date: Oct 11, 2025</p>
+    </section>
+
+    <footer class="card">
+      <small class="muted">© 2025 Brian Tramuel — Course site</small>
+    </footer>
+  </div>
+
+  <script>
+    const curriculumData = [
+      { id: "code-editors", name: "Code Editors", steps: 5, summary: "Get set up with editors and key features you'll use daily." },
+      { id: "variables-and-strings", name: "Variables and Strings", steps: 62, summary: "Create variables, store text, and learn basic string operations." },
+      { id: "booleans-and-numbers", name: "Booleans and Numbers", steps: 37, summary: "Work with numeric types, comparisons, and true/false logic." },
+      { id: "functions", name: "Functions", steps: 38, summary: "Create reusable code blocks with parameters and return values." },
+      { id: "arrays", name: "Arrays", steps: 35, summary: "Store and manipulate ordered lists of data." },
+      { id: "objects", name: "Objects", steps: 28, summary: "Organize data using key-value pairs and access object properties." },
+      { id: "loops", name: "Loops", steps: 22, summary: "Repeat actions efficiently with for, while, and iteration methods." },
+      { id: "javascript-fundamentals-review", name: "JavaScript Fundamentals Review", steps: 30, summary: "Reinforce core concepts through comprehensive practice exercises." },
+      { id: "higher-order-functions", name: "Higher Order Functions and Callbacks", steps: 37, summary: "Master functions that accept or return other functions." },
+      { id: "dom-manipulation", name: "DOM Manipulation and Events", steps: 87, summary: "Interact with web pages dynamically using JavaScript and handle user events." },
+      { id: "javascript-accessibility", name: "JavaScript and Accessibility", steps: 42, summary: "Build inclusive web experiences following accessibility best practices." },
+      { id: "debugging", name: "Debugging", steps: 8, summary: "Identify and fix errors using browser tools and techniques." },
+      { id: "basic-regex", name: "Basic Regex", steps: 47, summary: "Match and manipulate text patterns with regular expressions." },
+      { id: "form-validation", name: "Form Validation", steps: 103, summary: "Validate user input to ensure data quality and security." },
+      { id: "dates", name: "Dates", steps: 5, summary: "Work with date and time values in JavaScript applications." },
+      { id: "audio-video-events", name: "Audio and Video Events", steps: 55, summary: "Control media playback and respond to audio/video events." },
+      { id: "maps-and-sets", name: "Maps and Sets", steps: 37, summary: "Use advanced data structures for unique values and key-value storage." },
+      { id: "localstorage-crud", name: "localStorage and CRUD Operations", steps: 78, summary: "Persist data in the browser and perform create, read, update, delete operations." },
+      { id: "classes", name: "Classes", steps: 68, summary: "Implement object-oriented programming with ES6 class syntax." },
+      { id: "recursion", name: "Recursion", steps: 112, summary: "Solve problems by having functions call themselves strategically." },
+      { id: "functional-programming", name: "Functional Programming", steps: 23, summary: "Apply pure functions, immutability, and declarative programming patterns." },
+      { id: "asynchronous-javascript", name: "Asynchronous JavaScript", steps: 36, summary: "Handle async operations with promises, async/await, and fetch API." },
+      { id: "javascript-review", name: "JavaScript Review", steps: 0, summary: "Final comprehensive review of all JavaScript concepts.", isReview: true }
+    ];
+
+    const TOTAL_STEPS = curriculumData.reduce((acc, s) => acc + s.steps, 0);
+    const STORAGE_KEY = 'fcc-curriculum-progress';
+    let completedSections = new Set();
+
+    // Load progress from localStorage
+    function loadProgress() {
+      const saved = localStorage.getItem(STORAGE_KEY);
+      if (saved) {
+        try {
+          completedSections = new Set(JSON.parse(saved));
+        } catch (e) {
+          console.error('Failed to load progress:', e);
+        }
+      }
+    }
+
+    // Save progress to localStorage
+    function saveProgress() {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(Array.from(completedSections)));
+    }
+
+    // Calculate stats
+    function updateStats() {
+      const completedSteps = curriculumData
+        .filter(s => completedSections.has(s.id))
+        .reduce((acc, s) => acc + s.steps, 0);
+      const remainingSteps = TOTAL_STEPS - completedSteps;
+      const percentage = Math.round((completedSteps / TOTAL_STEPS) * 100);
+
+      document.getElementById('completed-steps').textContent = completedSteps;
+      document.getElementById('remaining-steps').textContent = remainingSteps;
+      document.getElementById('progress-percent').textContent = percentage + '% Complete';
+      document.getElementById('progress-fraction').textContent = `${completedSteps} of ${TOTAL_STEPS} steps complete`;
+      document.getElementById('progress-fill').style.width = percentage + '%';
+    }
+
+    // Toggle section completion
+    function toggleSection(id) {
+      if (completedSections.has(id)) {
+        completedSections.delete(id);
+      } else {
+        completedSections.add(id);
+      }
+      saveProgress();
+      updateStats();
+      renderTable();
+    }
+
+    // Render table
+    function renderTable(searchQuery = '') {
+      const tbody = document.getElementById('curriculum-body');
+      const noResults = document.getElementById('no-results');
+      const query = searchQuery.toLowerCase();
+      
+      const filtered = curriculumData.filter(section => 
+        section.name.toLowerCase().includes(query) ||
+        section.summary.toLowerCase().includes(query)
+      );
+
+      if (filtered.length === 0) {
+        tbody.innerHTML = '';
+        noResults.style.display = 'block';
+        return;
+      }
+
+      noResults.style.display = 'none';
+      tbody.innerHTML = filtered.map(section => {
+        const isCompleted = completedSections.has(section.id);
+        return `
+          <tr>
+            <td>
+              <input type="checkbox" class="checkbox" ${isCompleted ? 'checked' : ''} 
+                     onchange="toggleSection('${section.id}')" />
+            </td>
+            <td>
+              <span class="${isCompleted ? 'completed' : ''}" style="font-weight: 500;">
+                ${section.name}
+              </span>
+              ${section.isReview ? '<span class="badge">Review</span>' : ''}
+            </td>
+            <td class="muted">${section.steps > 0 ? section.steps + ' steps' : '—'}</td>
+            <td class="muted" style="font-size: 14px;">${section.summary}</td>
+          </tr>
+        `;
+      }).join('');
+    }
+
+    // Search functionality
+    const searchInput = document.getElementById('search');
+    const clearBtn = document.getElementById('clear-search');
+
+    searchInput.addEventListener('input', (e) => {
+      const value = e.target.value;
+      clearBtn.style.display = value ? 'block' : 'none';
+      renderTable(value);
+    });
+
+    clearBtn.addEventListener('click', () => {
+      searchInput.value = '';
+      clearBtn.style.display = 'none';
+      renderTable();
+    });
+
+    // Initialize
+    loadProgress();
+    updateStats();
+    renderTable();
+  </script>
+</body>
+</html>
