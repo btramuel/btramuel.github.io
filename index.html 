@@ -178,13 +178,12 @@
   <div class="container">
     <header>
       <h1>Brian Tramuel</h1>
-      <p class="subtitle">Computer Science Major | Cloud Computing & IT Systems</p>
-    </header>
+      <p class="subtitle">Computer Science Major </p>    </header>
 
     <main>
       <h2>Welcome</h2>
-      <p>Hello! I'm Brian Tramuel, a Computer Science major at UNC Charlotte with a concentration in IT. I'm passionate about cloud computing and IT systems.</p>
-      <p>This is my professional landing page. Explore my course site and connect with me through the links below.</p>
+      <p>Hello! I'm Brian Tramuel, a Computer Science major at UNC Charlotte with a concentration in IT. I'm passionate about cloud computing.</p>
+      <p>This is my landing page. Explore my course site and connect with me through the links below.</p>
     </main>
             
     <footer>
