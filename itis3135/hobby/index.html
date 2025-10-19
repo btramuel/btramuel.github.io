@@ -1,0 +1,1039 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🧱LEGO Building — Master Builder's Hub</title>
+  <meta name="description" content="Discover the joy of LEGO building - from iconic sets to creative techniques. Join the community of passionate builders and collectors.">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@600;700&family=Inter:wght@400;500;600&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --lego-red: hsl(0, 85%, 55%);
+      --lego-yellow: hsl(48, 100%, 55%);
+      --lego-blue: hsl(210, 85%, 55%);
+      --lego-green: hsl(140, 70%, 45%);
+      
+      --bg-primary: hsl(220, 15%, 12%);
+      --bg-secondary: hsl(220, 12%, 18%);
+      --bg-tertiary: hsl(220, 10%, 22%);
+      
+      /* Text Colors */
+      --text-primary: hsl(0, 0%, 95%);
+      --text-secondary: hsl(0, 0%, 70%);
+      --text-tertiary: hsl(0, 0%, 55%);
+      
+      /* Borders & Accents */
+      --border-subtle: rgba(255, 255, 255, 0.08);
+      --border-medium: rgba(255, 255, 255, 0.15);
+      --glow-red: rgba(239, 68, 68, 0.3);
+      --glow-yellow: rgba(251, 191, 36, 0.3);
+      --glow-blue: rgba(96, 165, 250, 0.3);
+      --glow-green: rgba(74, 222, 128, 0.3);
+      
+      /* Typography */
+      --font-display: 'Fredoka', 'Poppins', sans-serif;
+      --font-heading: 'Poppins', sans-serif;
+      --font-body: 'Inter', system-ui, sans-serif;
+      
+      /* Spacing System (4px base) */
+      --space-xs: 0.5rem;
+      --space-sm: 0.75rem;
+      --space-md: 1rem;
+      --space-lg: 1.5rem;
+      --space-xl: 2rem;
+      --space-2xl: 3rem;
+      --space-3xl: 4rem;
+      
+      /* Border Radius */
+      --radius-sm: 0.5rem;
+      --radius-md: 0.75rem;
+      --radius-lg: 1rem;
+      --radius-xl: 1.5rem;
+      
+      /* Shadows */
+      --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.3);
+      --shadow-md: 0 4px 8px rgba(0, 0, 0, 0.4);
+      --shadow-lg: 0 8px 16px rgba(0, 0, 0, 0.5);
+      --shadow-glow-red: 0 0 20px var(--glow-red);
+      --shadow-glow-yellow: 0 0 20px var(--glow-yellow);
+      --shadow-glow-blue: 0 0 20px var(--glow-blue);
+      --shadow-glow-green: 0 0 20px var(--glow-green);
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    html {
+      scroll-behavior: smooth;
+    }
+    
+    body {
+      font-family: var(--font-body);
+      font-size: 1.125rem;
+      line-height: 1.7;
+      color: var(--text-primary);
+      background: linear-gradient(165deg, var(--bg-primary) 0%, var(--bg-secondary) 50%, var(--bg-primary) 100%);
+      background-attachment: fixed;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+    
+    h1 {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+      background: linear-gradient(135deg, var(--lego-red), var(--lego-yellow), var(--lego-blue));
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0 0 30px rgba(239, 68, 68, 0.2);
+    }
+    
+    h2 {
+      font-family: var(--font-heading);
+      font-size: clamp(1.75rem, 4vw, 2.5rem);
+      font-weight: 700;
+      margin-bottom: var(--space-lg);
+      color: var(--text-primary);
+      letter-spacing: -0.01em;
+    }
+    
+    h3 {
+      font-family: var(--font-heading);
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-bottom: var(--space-md);
+      color: var(--text-primary);
+    }
+    
+    p {
+      margin-bottom: var(--space-md);
+      color: var(--text-secondary);
+    }
+    
+    strong {
+      color: var(--text-primary);
+      font-weight: 600;
+    }
+    
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(17, 24, 39, 0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 2px solid var(--border-subtle);
+      padding: var(--space-lg) var(--space-xl);
+      box-shadow: var(--shadow-md);
+      animation: slideDown 0.6s ease-out;
+    }
+    
+    @keyframes slideDown {
+      from {
+        transform: translateY(-100%);
+        opacity: 0;
+      }
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+    
+    .header-content {
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+    
+    h1 {
+      margin-bottom: var(--space-md);
+    }
+    
+    nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-xs);
+      align-items: center;
+    }
+    
+    nav a {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.625rem 1.25rem;
+      font-family: var(--font-heading);
+      font-weight: 600;
+      font-size: 1rem;
+      text-decoration: none;
+      color: var(--text-primary);
+      background: rgba(255, 255, 255, 0.05);
+      border: 2px solid transparent;
+      border-radius: var(--radius-lg);
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    nav a::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+      transition: left 0.5s ease;
+    }
+    
+    nav a:hover::before {
+      left: 100%;
+    }
+    
+    nav a:hover {
+      background: rgba(255, 255, 255, 0.1);
+      border-color: var(--border-medium);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-sm);
+    }
+    
+    nav a.active {
+      background: rgba(96, 165, 250, 0.15);
+      border-color: var(--lego-blue);
+      box-shadow: 0 0 20px rgba(96, 165, 250, 0.2);
+    }
+    
+    nav a:active {
+      transform: translateY(0);
+    }
+    
+    .nav-divider {
+      color: var(--text-tertiary);
+      font-size: 1.25rem;
+      margin: 0 var(--space-xs);
+      user-select: none;
+    }
+    
+    main {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: var(--space-2xl) var(--space-xl);
+    }
+    
+    section {
+      display: none;
+      background: var(--bg-secondary);
+      border: 2px solid var(--border-subtle);
+      border-radius: var(--radius-xl);
+      padding: var(--space-2xl);
+      margin-bottom: var(--space-2xl);
+      box-shadow: var(--shadow-lg);
+      animation: fadeInUp 0.6s ease-out;
+    }
+    
+    section.active {
+      display: block;
+    }
+    
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    #what {
+      border-top: 4px solid var(--lego-red);
+      box-shadow: var(--shadow-lg), 0 -4px 20px rgba(239, 68, 68, 0.15);
+    }
+    
+    #who {
+      border-top: 4px solid var(--lego-yellow);
+      box-shadow: var(--shadow-lg), 0 -4px 20px rgba(251, 191, 36, 0.15);
+    }
+    
+    #when {
+      border-top: 4px solid var(--lego-blue);
+      box-shadow: var(--shadow-lg), 0 -4px 20px rgba(96, 165, 250, 0.15);
+    }
+    
+    #where {
+      border-top: 4px solid var(--lego-green);
+      box-shadow: var(--shadow-lg), 0 -4px 20px rgba(74, 222, 128, 0.15);
+    }
+    
+    #how {
+      border-top: 4px solid var(--lego-red);
+      box-shadow: var(--shadow-lg), 0 -4px 20px rgba(239, 68, 68, 0.15);
+    }
+    
+    #why {
+      border-top: 4px solid var(--lego-blue);
+      box-shadow: var(--shadow-lg), 0 -4px 20px rgba(96, 165, 250, 0.15);
+    }
+    
+    #ai-prompts {
+      border-top: 4px solid var(--lego-green);
+      box-shadow: var(--shadow-lg), 0 -4px 20px rgba(74, 222, 128, 0.15);
+    }
+    
+    .content-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: var(--space-2xl);
+      margin-top: var(--space-xl);
+    }
+    
+    .content-card {
+      background: var(--bg-tertiary);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: var(--space-xl);
+      transition: all 0.3s ease;
+    }
+    
+    .content-card:hover {
+      border-color: var(--border-medium);
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-md);
+    }
+    
+    figure {
+      background: var(--bg-tertiary);
+      border: 2px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: var(--space-md);
+      margin: 0 0 var(--space-lg) 0;
+      transition: all 0.3s ease;
+      overflow: hidden;
+    }
+    
+    figure:hover {
+      border-color: var(--border-medium);
+      transform: scale(1.02);
+      box-shadow: var(--shadow-md);
+    }
+    
+    figure img {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: var(--radius-md);
+      transition: transform 0.3s ease;
+    }
+    
+    figure:hover img {
+      transform: scale(1.05);
+    }
+    
+    figcaption {
+      margin-top: var(--space-md);
+      font-size: 0.95rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+    
+    .ai-prompt {
+      margin-top: var(--space-sm);
+      padding: var(--space-md);
+      background: rgba(0, 0, 0, 0.3);
+      border-left: 3px solid var(--lego-blue);
+      border-radius: var(--radius-sm);
+      font-style: italic;
+      font-size: 0.875rem;
+      color: var(--text-tertiary);
+      font-family: 'Courier New', monospace;
+    }
+    
+    .ai-prompt::before {
+      content: 'AI Prompt: ';
+      font-weight: 600;
+      color: var(--lego-blue);
+    }
+    
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: var(--bg-tertiary);
+      border: 2px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      margin: var(--space-lg) 0;
+    }
+    
+    thead {
+      background: rgba(96, 165, 250, 0.15);
+    }
+    
+    th {
+      padding: var(--space-md) var(--space-lg);
+      text-align: left;
+      font-weight: 600;
+      font-family: var(--font-heading);
+      color: var(--lego-blue);
+      border-bottom: 2px solid var(--border-medium);
+    }
+    
+    td {
+      padding: var(--space-md) var(--space-lg);
+      border-bottom: 1px solid var(--border-subtle);
+      color: var(--text-secondary);
+    }
+    
+    tbody tr:last-child td {
+      border-bottom: none;
+    }
+    
+    tbody tr {
+      transition: background 0.2s ease;
+    }
+    
+    tbody tr:hover {
+      background: rgba(255, 255, 255, 0.03);
+    }
+    
+    ul, ol {
+      margin: var(--space-lg) 0;
+      padding-left: var(--space-xl);
+    }
+    
+    li {
+      margin-bottom: var(--space-sm);
+      color: var(--text-secondary);
+    }
+    
+    li::marker {
+      color: var(--lego-blue);
+    }
+    
+    .intro {
+      font-size: 1.25rem;
+      color: var(--text-primary);
+      margin-bottom: var(--space-xl);
+      padding: var(--space-lg);
+      background: rgba(96, 165, 250, 0.08);
+      border-left: 4px solid var(--lego-blue);
+      border-radius: var(--radius-md);
+    }
+    
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: var(--space-lg);
+      margin: var(--space-xl) 0;
+    }
+    
+    .stat-card {
+      background: var(--bg-tertiary);
+      border: 2px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: var(--space-xl);
+      text-align: center;
+      transition: all 0.3s ease;
+    }
+    
+    .stat-card:hover {
+      border-color: var(--lego-blue);
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-glow-blue);
+    }
+    
+    .stat-number {
+      font-size: 2.5rem;
+      font-weight: 700;
+      font-family: var(--font-heading);
+      background: linear-gradient(135deg, var(--lego-yellow), var(--lego-red));
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      display: block;
+      margin-bottom: var(--space-sm);
+    }
+    
+    .stat-label {
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+      font-weight: 500;
+    }
+    
+    footer {
+      background: var(--bg-secondary);
+      border-top: 2px solid var(--border-subtle);
+      padding: var(--space-2xl) var(--space-xl);
+      margin-top: var(--space-3xl);
+    }
+    
+    .footer-content {
+      max-width: 1400px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-md);
+      justify-content: center;
+      margin-top: var(--space-lg);
+    }
+    
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-xs);
+      padding: 0.75rem 1.5rem;
+      font-family: var(--font-heading);
+      font-weight: 600;
+      text-decoration: none;
+      color: var(--text-primary);
+      background: rgba(96, 165, 250, 0.15);
+      border: 2px solid var(--lego-blue);
+      border-radius: var(--radius-lg);
+      transition: all 0.3s ease;
+      box-shadow: 0 0 10px rgba(96, 165, 250, 0.1);
+    }
+    
+    .btn:hover {
+      background: rgba(96, 165, 250, 0.25);
+      transform: translateY(-2px);
+      box-shadow: 0 0 20px rgba(96, 165, 250, 0.3);
+    }
+    
+    .btn:active {
+      transform: translateY(0);
+    }
+    
+    .code-block {
+      background: rgba(0, 0, 0, 0.4);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: var(--space-lg);
+      margin: var(--space-lg) 0;
+      overflow-x: auto;
+      font-family: 'Courier New', monospace;
+      font-size: 0.9rem;
+      color: var(--lego-green);
+    }
+    
+    @media (max-width: 768px) {
+      header {
+        padding: var(--space-md) var(--space-md);
+      }
+      
+      h1 {
+        font-size: 2rem;
+        margin-bottom: var(--space-sm);
+      }
+      
+      nav {
+        gap: var(--space-xs);
+      }
+      
+      nav a {
+        padding: 0.5rem 0.875rem;
+        font-size: 0.9rem;
+      }
+      
+      .nav-divider {
+        display: none;
+      }
+      
+      main {
+        padding: var(--space-xl) var(--space-md);
+      }
+      
+      section {
+        padding: var(--space-xl);
+      }
+      
+      .content-grid {
+        grid-template-columns: 1fr;
+        gap: var(--space-xl);
+      }
+      
+      .stats-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      h2 {
+        font-size: 1.75rem;
+      }
+      
+      body {
+        font-size: 1rem;
+      }
+      
+      .intro {
+        font-size: 1.1rem;
+      }
+    }
+    
+    :focus-visible {
+      outline: 3px solid var(--lego-blue);
+      outline-offset: 2px;
+    }
+    
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+      
+      html {
+        scroll-behavior: auto;
+      }
+    }
+    
+    .text-accent-red { color: var(--lego-red); }
+    .text-accent-yellow { color: var(--lego-yellow); }
+    .text-accent-blue { color: var(--lego-blue); }
+    .text-accent-green { color: var(--lego-green); }
+    
+    .highlight {
+      background: linear-gradient(120deg, transparent 0%, var(--lego-yellow) 0%);
+      background-repeat: no-repeat;
+      background-size: 100% 40%;
+      background-position: 0 90%;
+      padding: 0 0.2em;
+    }
+  </style>
+  
+  <script>
+    function showSection(sectionId, event) {
+      if (event) {
+        event.preventDefault();
+      }
+      
+      // Hide all sections
+      document.querySelectorAll('main section').forEach(section => {
+        section.classList.remove('active');
+      });
+      
+      // Show target section
+      const targetSection = document.getElementById(sectionId);
+      if (targetSection) {
+        targetSection.classList.add('active');
+      }
+      
+      // Update navigation active state
+      document.querySelectorAll('nav a').forEach(link => {
+        link.classList.remove('active');
+      });
+      
+      const activeLink = document.querySelector(`nav a[href="#${sectionId}"]`);
+      if (activeLink) {
+        activeLink.classList.add('active');
+      }
+      
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+      
+      // Update URL without page reload
+      if (history.pushState) {
+        history.pushState(null, null, `#${sectionId}`);
+      }
+    }
+    
+    document.addEventListener('DOMContentLoaded', () => {
+      
+      const hash = window.location.hash.substring(1);
+      const initialSection = hash || 'what';
+      showSection(initialSection);
+      
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+          // Focus on first nav link
+          document.querySelector('nav a')?.focus();
+        }
+      });
+    });
+    
+    // Handle browser back/forward buttons
+    window.addEventListener('popstate', () => {
+      const hash = window.location.hash.substring(1) || 'what';
+      showSection(hash);
+    });
+  </script>
+</head>
+
+<body>
+  <header role="banner">
+    <div class="header-content">
+      <h1>🧱LEGO Building — Master Builder's Hub</h1>
+      <nav role="navigation" aria-label="Main section navigation">
+        <a href="#what" onclick="showSection('what', event)" class="active" data-testid="nav-what">What</a>
+        <span class="nav-divider" aria-hidden="true">◈</span>
+        <a href="#who" onclick="showSection('who', event)" data-testid="nav-who">Who</a>
+        <span class="nav-divider" aria-hidden="true">◈</span>
+        <a href="#when" onclick="showSection('when', event)" data-testid="nav-when">When</a>
+        <span class="nav-divider" aria-hidden="true">◈</span>
+        <a href="#where" onclick="showSection('where', event)" data-testid="nav-where">Where</a>
+        <span class="nav-divider" aria-hidden="true">◈</span>
+        <a href="#how" onclick="showSection('how', event)" data-testid="nav-how">How</a>
+        <span class="nav-divider" aria-hidden="true">◈</span>
+        <a href="#why" onclick="showSection('why', event)" data-testid="nav-why">Why</a>
+        <span class="nav-divider" aria-hidden="true">◈</span>
+        <a href="#ai-prompts" onclick="showSection('ai-prompts', event)" data-testid="nav-ai">AI Prompts</a>
+      </nav>
+    </div>
+  </header>
+
+  <main role="main">
+    <section id="what" class="active" aria-labelledby="what-heading">
+      <h2 id="what-heading">What is LEGO Building & Collecting?</h2>
+      
+      <p class="intro">
+        LEGO building is a <strong class="text-accent-red">creative, hands on hobby</strong> that combines artistic expression, 
+        engineering challenges, and nostalgic joy. From architectural models to beloved pop culture icons, 
+        each build offers a unique journey from scattered bricks to stunning display piece.
+      </p>
+      
+      <div class="stats-grid">
+        <div class="stat-card">
+          <span class="stat-number">50+</span>
+          <span class="stat-label">Years of Building</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-number">1000s</span>
+          <span class="stat-label">of Unique Sets</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-number">∞</span>
+          <span class="stat-label">Creative Possibilities</span>
+        </div>
+      </div>
+      
+      <div class="content-grid">
+        <figure data-testid="figure-pacman">
+          <img src="images/10323.jpg" alt="LEGO PAC-MAN Arcade set 10323 - A buildable retro arcade machine with mechanical gameplay features and authentic details" loading="lazy" decoding="async" width="800" height="600">
+          <figcaption>
+            <strong>PAC-MAN Arcade (10323)</strong> — A nostalgic masterpiece featuring a buildable retro arcade cabinet 
+            with working mechanical gameplay, authentic 1980s design, and incredible attention to detail.
+          </figcaption>
+        </figure>
+        
+        <div class="content-card">
+          <h3>Why LEGO Building is Special</h3>
+          <p><strong class="text-accent-yellow">Clear Goals</strong> — Every set comes with step by step instructions that guide you from start to finish.</p>
+          <p><strong class="text-accent-blue">Satisfying Progress</strong> — Watch your creation take shape brick by brick, with tangible progress in every session.</p>
+          <p><strong class="text-accent-green">Display Pride</strong> — Complete builds become conversation pieces and artistic displays in your space.</p>
+          
+          <table>
+            <thead>
+              <tr>
+                <th>Build Type</th>
+                <th>Examples</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Play Features</strong></td>
+                <td>PAC-MAN's moving maze, NES with working TV</td>
+              </tr>
+              <tr>
+                <td><strong>Display Models</strong></td>
+                <td>Helmets, vehicles, architectural landmarks</td>
+              </tr>
+              <tr>
+                <td><strong>Modular Builds</strong></td>
+                <td>Skyscrapers like Daily Bugle, city buildings</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section id="who" aria-labelledby="who-heading">
+      <h2 id="who-heading">Who Are LEGO Builders?</h2>
+      
+      <p class="intro">
+        The LEGO community spans all ages and backgrounds — from <strong class="text-accent-yellow">casual evening builders</strong> 
+        seeking relaxation, to <strong class="text-accent-yellow">dedicated collectors</strong> curating impressive displays, 
+        to <strong class="text-accent-yellow">creative designers</strong> pushing the limits of brick built art.
+      </p>
+      
+      <div class="content-grid">
+        <figure data-testid="figure-nes">
+          <img src="images/71374.jpg" alt="LEGO Nintendo Entertainment System set 71374 - A detailed NES replica with buildable cartridge and retro TV screen" loading="lazy" decoding="async" width="800" height="600">
+          <figcaption>
+            <strong>Nintendo Entertainment System (71374)</strong> — An incredibly detailed replica of the classic NES console, 
+            complete with a buildable game cartridge, controller, and a retro TV with scrolling Super Mario Bros. scenes.
+          </figcaption>
+        </figure>
+        
+        <div class="content-card">
+          <h3>The Perfect Builder Profile</h3>
+          <p>LEGO building appeals to anyone who values:</p>
+          
+          <ul>
+            <li><strong>Nostalgia & Pop Culture</strong> — Relive favorite movies, games, and shows through brick form</li>
+            <li><strong>Mindful Relaxation</strong> — Enjoy focused, meditative building sessions after work</li>
+            <li><strong>Display & Aesthetics</strong> — Create stunning decorative pieces for home or office</li>
+            <li><strong>Technical Challenges</strong> — Appreciate clever building techniques and engineering</li>
+            <li><strong>Community Connection</strong> — Share builds, tips, and passion with fellow enthusiasts</li>
+          </ul>
+          
+          <p class="intro">
+            Whether you're a <span class="highlight">film buff</span> building iconic movie sets, 
+            a <span class="highlight">gamer</span> recreating retro consoles, or an 
+            <span class="highlight">architecture enthusiast</span> constructing famous landmarks — there's a perfect LEGO set waiting for you.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="when" aria-labelledby="when-heading">
+      <h2 id="when-heading">When to Build</h2>
+      
+      <p class="intro">
+        The beauty of LEGO building is its <strong class="text-accent-blue">flexibility</strong>. 
+        Whether you have 30 minutes before bed or a full weekend afternoon, there's always time to make progress.
+      </p>
+      
+      <div class="content-grid">
+        <figure data-testid="figure-delorean">
+          <img src="images/10300.jpg" alt="LEGO Back to the Future Time Machine DeLorean set 10300 - Iconic time-traveling car with configurable movie options" loading="lazy" decoding="async" width="800" height="600">
+          <figcaption>
+            <strong>Back to the Future Time Machine (10300)</strong> — The legendary DeLorean DMC-12 with configurable 
+            parts for all three movie versions, flux capacitor, and amazing details that bring the films to life.
+            <div class="ai-prompt">Create a cinematic photorealistic image of the LEGO DeLorean set 10300 with dramatic blue lighting and smoke effects</div>
+          </figcaption>
+        </figure>
+        
+        <div class="content-card">
+          <h3>Building Session Guide</h3>
+          <p>Short sessions (30–60 minutes) work perfectly for most builders. Larger models can be enjoyed across multiple evenings or dedicated weekend builds.</p>
+          
+          <table>
+            <thead>
+              <tr>
+                <th>Build Size</th>
+                <th>Piece Count</th>
+                <th>Typical Time</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Small Sets</strong></td>
+                <td>≤ 1,000 pieces</td>
+                <td>1–2 evenings</td>
+              </tr>
+              <tr>
+                <td><strong>Medium Sets</strong></td>
+                <td>1,000–3,000 pieces</td>
+                <td>3–5 evenings</td>
+              </tr>
+              <tr>
+                <td><strong>Large Sets</strong></td>
+                <td>≥ 3,000 pieces</td>
+                <td>Full weekend or longer</td>
+              </tr>
+              <tr>
+                <td><strong>Ultimate Collector</strong></td>
+                <td>≥ 5,000 pieces</td>
+                <td>Multiple weeks</td>
+              </tr>
+            </tbody>
+          </table>
+          
+          <p class="intro">
+            <strong>Pro Tip:</strong> Don't rush! The building process itself is therapeutic. 
+            Put on your favorite music or podcast and enjoy the journey.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="where" aria-labelledby="where-heading">
+      <h2 id="where-heading">Where to Display Your Builds</h2>
+      
+      <p class="intro">
+        Your completed builds deserve proper display! The right location protects your investment and showcases 
+        your <strong class="text-accent-green">creative achievements</strong> to their full potential.
+      </p>
+      
+      <div class="content-grid">
+        <figure data-testid="figure-daily-bugle">
+          <img src="images/76178.jpg" alt="LEGO Daily Bugle set 76178 - Massive Marvel skyscraper with detailed interior scenes and numerous minifigures" loading="lazy" decoding="async" width="800" height="600">
+          <figcaption>
+            <strong>Daily Bugle (76178)</strong> — A towering Marvel masterpiece standing over 32 inches tall, 
+            packed with iconic scenes, 25 minifigures, and incredible architectural details of J. Jonah Jameson's newspaper headquarters.
+          </figcaption>
+        </figure>
+        
+        <div class="content-card">
+          <h3>Display Best Practices</h3>
+          
+          <ul>
+            <li><strong class="text-accent-red">Avoid Direct Sunlight</strong> — UV rays can fade colors over time. Choose shaded areas or use UV-protective glass.</li>
+            <li><strong class="text-accent-yellow">Minimize Dust Exposure</strong> — Display cases or glass cabinets keep builds pristine and reduce cleaning needs.</li>
+            <li><strong class="text-accent-blue">Stable Surfaces</strong> — Use sturdy shelving that can support the weight of larger models (some sets weigh 15+ lbs).</li>
+            <li><strong class="text-accent-green">Proper Spacing</strong> — Leave room between builds for air circulation and easy viewing from all angles.</li>
+          </ul>
+          
+          <h3>Popular Display Solutions</h3>
+          <ul>
+            <li><strong>Desk Displays</strong> — Perfect for helmets, small vehicles, and character builds</li>
+            <li><strong>IKEA DETOLF Cabinets</strong> — Glass display cases beloved by collectors worldwide</li>
+            <li><strong>Floating Wall Shelves</strong> — Ideal for modular buildings and architectural sets</li>
+            <li><strong>LED Lighting Kits</strong> — Add dramatic lighting to showcase details (especially for Star Wars and architecture sets)</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+>
+    <section id="how" aria-labelledby="how-heading">
+      <h2 id="how-heading">How to Build Like a Pro</h2>
+      
+      <p class="intro">
+        Master these <strong class="text-accent-red">essential techniques</strong> and <strong class="text-accent-red">organizational tips</strong> 
+        to transform your building experience from good to exceptional.
+      </p>
+      
+      <div class="content-grid">
+        <figure data-testid="figure-batmobile">
+          <img src="images/76240.jpg" alt="LEGO Batmobile Tumbler set 76240 - Large display model of the Dark Knight's armored vehicle with authentic details" loading="lazy" decoding="async" width="800" height="600">
+          <figcaption>
+            <strong>Batmobile Tumbler (76240)</strong> — The iconic armored vehicle from The Dark Knight trilogy, 
+            featuring an opening roof, detailed interior, and impressive 18-inch length. A must-have for Batman fans.
+          </figcaption>
+        </figure>
+        
+        <div class="content-card">
+          <h3>Building Workflow</h3>
+          <ol>
+            <li><strong>Organize Your Workspace</strong> — Clear a large, flat surface with good lighting. A white tablecloth helps small pieces stand out.</li>
+            <li><strong>Sort Strategically</strong> — Organize by bag number (not color). Open one numbered bag at a time to avoid overwhelming chaos.</li>
+            <li><strong>Use Sorting Trays</strong> — Small bowls, ice cube trays, or dedicated brick sorting containers keep pieces accessible.</li>
+            <li><strong>Follow Instructions Carefully</strong> — Take your time with each step. It's easier to build correctly than to deconstruct mistakes.</li>
+            <li><strong>Keep the Brick Separator Handy</strong> — Every set includes one. It saves your fingernails and teeth!</li>
+            <li><strong>Take Progress Photos</strong> — Document major milestones. It's rewarding to look back at the journey.</li>
+          </ol>
+          
+          <div class="intro">
+            <strong>Advanced Tip:</strong> For massive sets (3,000+ pieces), build in stages over multiple sessions. 
+            Mark your place in the instruction booklet and store in-progress builds safely between sessions.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- WHY SECTION -->
+    <section id="why" aria-labelledby="why-heading">
+      <h2 id="why-heading">Why Build with LEGO?</h2>
+      
+      <p class="intro">
+        Beyond the tangible result, LEGO building offers profound <strong class="text-accent-blue">mental</strong>, 
+        <strong class="text-accent-blue">emotional</strong>, and <strong class="text-accent-blue">social benefits</strong> 
+        that make it more than just a hobby — it's a lifestyle.
+      </p>
+      
+      <div class="content-grid">
+        <figure data-testid="figure-hogwarts">
+          <img src="images/76419.jpg" alt="LEGO Hogwarts Castle and Grounds set 76419 - Microscale model of Hogwarts with surrounding landscape and iconic landmarks" loading="lazy" decoding="async" width="800" height="600">
+          <figcaption>
+            <strong>Hogwarts Castle and Grounds (76419)</strong> — A breathtaking microscale recreation of the entire 
+            Hogwarts castle, grounds, and Black Lake. Perfect for Harry Potter fans seeking an iconic display piece.
+          </figcaption>
+        </figure>
+        
+        <div class="content-card">
+          <h3>The Deep Benefits of Building</h3>
+          
+          <p><strong class="text-accent-yellow">Mindfulness & Meditation</strong></p>
+          <p>Building requires focus and presence. Each brick placement demands attention, naturally quieting mental chatter 
+          and reducing anxiety. Many builders describe it as "active meditation."</p>
+          
+          <p><strong class="text-accent-red">Creative Expression</strong></p>
+          <p>While following instructions develops spatial reasoning, modifying sets or creating MOCs 
+          (My Own Creations) unlocks unlimited creative potential.</p>
+          
+          <p><strong class="text-accent-blue">Achievement & Pride</strong></p>
+          <p>Completing a challenging build provides a genuine sense of accomplishment. Your finished model 
+          serves as a permanent reminder of your dedication and skill.</p>
+          
+          <p><strong class="text-accent-green">Community Connection</strong></p>
+          <p>Join millions of builders worldwide sharing tips, techniques, and creations on forums, 
+          social media, and at conventions. The LEGO community is welcoming, supportive, and passionate.</p>
+          
+          <ul>
+            <li><strong>Stress Relief:</strong> Repetitive, focused activity calms the mind</li>
+            <li><strong>Screen-Free Time:</strong> Healthy break from digital devices</li>
+            <li><strong>Generational Bonding:</strong> Build with kids, friends, or partners</li>
+            <li><strong>Home Decor:</strong> Completed sets are genuine conversation starters</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- AI PROMPTS SECTION -->
+    <section id="ai-prompts" aria-labelledby="ai-prompts-heading">
+      <h2 id="ai-prompts-heading">AI Prompts Used</h2>
+      
+      <p class="intro">
+        These websites captions were used with AI for assistance for <strong class="text-accent-green">content refinement</strong>, 
+         <strong class="text-accent-green">code optimization</strong>. All images are actual LEGO product photos from official sets.
+      </p>
+      
+      <div class="content-card">
+        <h3>Content & Structure Prompts</h3>
+        <div class="code-block">
+          <p><strong>Prompt 1:</strong> "Improve the description for the LEGO PAC-MAN Arcade set to be more engaging and highlight key features like the mechanical gameplay and nostalgic design."</p>
+          <p><strong>Prompt 2:</strong> "Create compelling section introductions that follow CRAP design principles - Contrast, Repetition, Alignment, Proximity."</p>
+          <p><strong>Prompt 3:</strong> "Generate a list of benefits for LEGO building that covers mental health, creativity, and community aspects."</p>
+        </div>
+        
+        <h3>Accessibility & SEO Prompts</h3>
+        <div class="code-block">
+          <p><strong>Prompt 7:</strong> "Review HTML structure for WCAG 2.1 AA compliance and suggest ARIA label improvements."</p>
+          <p><strong>Prompt 8:</strong> "Generate descriptive alt text for LEGO set images that includes set numbers and key features."</p>
+          <p><strong>Prompt 9:</strong> "Create a meta description that accurately represents the site content for SEO purposes."</p>
+        </div>
+        
+        <p class="intro">
+          <strong>Note:</strong> All LEGO set images are official product photography. 
+           the actual images used are authentic LEGO product photos.
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <footer role="contentinfo">
+    <div class="footer-content">
+      <p>Designed and built with passion by <a href="https://webpages.charlotte.edu/btramue1/itis3135/" class="btn" target="_blank" rel="noopener noreferrer" data-testid="link-design-firm">Brilliant Tortoise Design Firm</a></p>
+      
+      <div class="footer-links">
+        <a href="https://validator.w3.org/nu/?doc=https%3A%2F%2Fwebpages.charlotte.edu%2Fbtramue1%2Fitis3135%2Fhobby%2F" class="btn" target="_blank" rel="noopener noreferrer" data-testid="link-html-validator">
+          Validate HTML
+        </a>
+        <a href="https://jigsaw.w3.org/css-validator/validator?uri=https%3A%2F%2Fwebpages.charlotte.edu%2Fbtramue1%2Fitis3135%2Fhobby%2F&profile=css3svg&usermedium=all" class="btn" target="_blank" rel="noopener noreferrer" data-testid="link-css-validator">
+          Validate CSS
+        </a>
+        <a href="https://wave.webaim.org/report#/https://webpages.charlotte.edu/btramue1/itis3135/hobby/" class="btn" target="_blank" rel="noopener noreferrer" data-testid="link-accessibility">
+          Check Accessibility
+        </a>
+      </div>
+      
+      <p style="margin-top: var(--space-lg); color: var(--text-tertiary); font-size: 0.9rem;">
+        Built with passion and bricks | LEGO® is a trademark of the LEGO Group
+      </p>
+    </div>
+  </footer>
+</body>
+</html>
