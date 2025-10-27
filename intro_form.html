@@ -1,0 +1,480 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Introduction Form</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --primary: #427cd2;
+      --primary-dark: #6b7081;
+      --secondary: #10b981;
+      --danger: #ef4444;
+      --warning: #f59e0b;
+      --bg: #f8fafc;
+      --surface: #ffffff;
+      --border: #e2e8f0;
+      --text: #1e293b;
+      --text-muted: #64748b;
+      --shadow: 0 1px 3px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.06);
+      --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      background: linear-gradient(135deg, #545e87 0%, #4f4558 100%);
+      min-height: 100vh;
+      padding: 2rem 1rem;
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      background: var(--surface);
+      border-radius: 16px;
+      box-shadow: var(--shadow-lg);
+      padding: 2.5rem;
+      animation: fadeIn 0.5s ease-in;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    h2 {
+      color: var(--primary);
+      font-size: 2rem;
+      margin-bottom: 0.5rem;
+      font-weight: 700;
+    }
+
+    h3 {
+      color: var(--text-muted);
+      font-size: 1.125rem;
+      font-weight: 400;
+      margin-bottom: 2rem;
+    }
+
+    #progress-container {
+      background: var(--border);
+      height: 8px;
+      border-radius: 4px;
+      overflow: hidden;
+      margin-bottom: 2rem;
+    }
+
+    #progress-bar {
+      height: 100%;
+      background: linear-gradient(90deg, var(--primary), var(--secondary));
+      width: 0%;
+      transition: width 0.3s ease;
+      border-radius: 4px;
+    }
+
+    #progress-text {
+      text-align: center;
+      font-size: 0.875rem;
+      color: var(--text-muted);
+      margin-top: 0.5rem;
+    }
+
+    fieldset {
+      border: 2px solid var(--border);
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+      transition: border-color 0.3s ease;
+    }
+
+    fieldset:hover {
+      border-color: var(--primary);
+    }
+
+    legend {
+      font-weight: 600;
+      color: var(--primary);
+      padding: 0 0.75rem;
+      font-size: 1.125rem;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 1rem;
+      font-weight: 500;
+      color: var(--text);
+    }
+
+    input[type="text"],
+    input[type="date"],
+    input[type="file"],
+    textarea,
+    input:not([type="submit"]):not([type="reset"]):not([type="button"]) {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      border: 2px solid var(--border);
+      border-radius: 8px;
+      font-size: 1rem;
+      margin-top: 0.25rem;
+      transition: all 0.3s ease;
+      font-family: inherit;
+    }
+
+    input:focus,
+    textarea:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+    }
+
+    input[required]:not([value=""]) {
+      border-left: 4px solid var(--secondary);
+    }
+
+    textarea {
+      min-height: 100px;
+      resize: vertical;
+    }
+
+    #bullets input {
+      margin-top: 0.5rem;
+    }
+
+    #bullets li {
+      margin-bottom: 0.75rem;
+    }
+
+    .course-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr 2fr 2fr auto;
+      gap: 0.75rem;
+      margin-bottom: 1rem;
+      align-items: center;
+    }
+
+    .course-row input {
+      margin-top: 0;
+    }
+
+    .course-row button {
+      padding: 0.75rem 1rem;
+      background: var(--danger);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 500;
+      transition: all 0.2s ease;
+      white-space: nowrap;
+    }
+
+    .course-row button:hover {
+      background: #dc2626;
+      transform: translateY(-2px);
+    }
+
+    button {
+      padding: 0.875rem 1.5rem;
+      font-size: 1rem;
+      font-weight: 600;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      font-family: inherit;
+    }
+
+    button[type="submit"] {
+      background: var(--primary);
+      color: white;
+    }
+
+    button[type="submit"]:hover {
+      background: var(--primary-dark);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(37, 99, 235, 0.3);
+    }
+
+    button[type="reset"] {
+      background: var(--warning);
+      color: white;
+    }
+
+    button[type="reset"]:hover {
+      background: #d97706;
+      transform: translateY(-2px);
+    }
+
+    button[type="button"]#clearBtn {
+      background: var(--text-muted);
+      color: white;
+    }
+
+    button[type="button"]#clearBtn:hover {
+      background: #475569;
+      transform: translateY(-2px);
+    }
+
+    button[type="button"]#addCourseBtn {
+      background: var(--secondary);
+      color: white;
+      width: 100%;
+      margin-top: 0.5rem;
+    }
+
+    button[type="button"]#addCourseBtn:hover {
+      background: #059669;
+      transform: translateY(-2px);
+    }
+
+    .controls {
+      display: flex;
+      gap: 1rem;
+      margin-top: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .controls button {
+      flex: 1;
+      min-width: 150px;
+    }
+
+    #image-preview-container {
+      margin-top: 1rem;
+      text-align: center;
+    }
+
+    #image-preview {
+      max-width: 300px;
+      max-height: 300px;
+      border-radius: 12px;
+      box-shadow: var(--shadow);
+      display: none;
+      margin: 0 auto;
+    }
+
+    #result {
+      animation: fadeIn 0.5s ease-in;
+    }
+
+    #result figure {
+      text-align: center;
+      margin: 2rem 0;
+    }
+
+    #result figure img {
+      max-width: 400px;
+      width: 100%;
+      border-radius: 12px;
+      box-shadow: var(--shadow-lg);
+      margin-bottom: 1rem;
+    }
+
+    #result figcaption {
+      font-style: italic;
+      color: var(--text-muted);
+    }
+
+    #result ul {
+      list-style-position: inside;
+      margin: 1rem 0;
+      padding-left: 1rem;
+    }
+
+    #result li {
+      margin-bottom: 0.75rem;
+      line-height: 1.8;
+    }
+
+    #result hr {
+      margin: 2rem 0;
+      border: none;
+      border-top: 2px solid var(--border);
+    }
+
+    #result a {
+      color: var(--primary);
+      text-decoration: none;
+      word-break: break-all;
+    }
+
+    #result a:hover {
+      text-decoration: underline;
+    }
+
+    #result p {
+      margin: 1rem 0;
+      line-height: 1.8;
+    }
+
+    #restartBtn {
+      background: var(--primary);
+      color: white;
+      width: 100%;
+      padding: 1rem;
+      font-size: 1.125rem;
+    }
+
+    #restartBtn:hover {
+      background: var(--primary-dark);
+      transform: translateY(-2px);
+    }
+
+    [hidden] {
+      display: none !important;
+    }
+
+    @media (max-width: 768px) {
+      body {
+        padding: 1rem 0.5rem;
+      }
+
+      .container {
+        padding: 1.5rem;
+        border-radius: 12px;
+      }
+
+      h2 {
+        font-size: 1.5rem;
+      }
+
+      .course-row {
+        grid-template-columns: 1fr;
+      }
+
+      .controls {
+        flex-direction: column;
+      }
+
+      .controls button {
+        width: 100%;
+      }
+
+      #result figure img {
+        max-width: 100%;
+      }
+    }
+
+    @media (min-width: 769px) and (max-width: 1024px) {
+      .course-row {
+        grid-template-columns: 1fr 1fr 1fr;
+      }
+
+      .course-row button {
+        grid-column: span 3;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="container">
+    <h2>Introduction Form</h2>
+    <h3>Please submit the form below.</h3>
+
+    <div id="progress-container">
+      <div id="progress-bar"></div>
+    </div>
+    <div id="progress-text">0% Complete</div>
+
+    <form id="introForm" novalidate>
+      <fieldset>
+        <legend>Identity</legend>
+        <label>First Name <input required name="firstName" placeholder="e.g., Brian" /></label>
+        <label>Middle (optional) <input name="middle" placeholder="e.g., M." /></label>
+        <label>Nickname (optional) <input name="nick" placeholder="e.g., Preferred name" /></label>
+        <label>Last Name<input required name="lastName" placeholder="e.g., Tramuel" /></label>
+      </fieldset>
+
+      <fieldset>
+        <legend>Acknowledgment</legend>
+        <label>Statement <input required name="ackStmt" placeholder="e.g., I understand the syllabus and course policies." /></label>
+        <label>Date* <input required type="date" name="ackDate" /></label>
+      </fieldset>
+
+      <fieldset>
+        <legend>Mascot</legend>
+        <label>Adjective <input required name="mascAdj" placeholder="e.g., Brilliant" /></label>
+        <label>Animal <input required name="mascAnimal" placeholder="e.g., Tortoise" /></label>
+        <label>Divider <input required name="divider" placeholder="e.g., | " /></label>
+      </fieldset>
+
+      <fieldset>
+        <legend>Picture</legend>
+        <label>Default Image URL
+          <input required name="imgUrl" placeholder="e.g., https://example.com/your-intro-image.jpg" />
+        </label>
+        <label>Upload <input type="file" accept="image/*" id="imgFile" /></label>
+        <div id="image-preview-container">
+          <img id="image-preview" alt="Image preview" />
+        </div>
+        <label>Caption<input required name="imgCap" placeholder="e.g., UNC Charlotte — Fall 2025" /></label>
+      </fieldset>
+
+      <fieldset>
+        <legend>Personal Statement</legend>
+        <textarea required name="statement" placeholder="e.g., Senior at UNC Charlotte ."></textarea>
+      </fieldset>
+
+      <fieldset>
+        <legend>Seven Main Bullets</legend>
+        <ol id="bullets">
+          <li><input required name="b1" placeholder="e.g., Personal Background:" /></li>
+          <li><input required name="b2" placeholder="e.g., Academic Background:" /></li>
+          <li><input required name="b3" placeholder="e.g., Professional Background:" /></li>
+          <li><input required name="b4" placeholder="e.g., Courses this semester: ..." /></li>
+          <li><input required name="b5" placeholder="e.g., Hobbies:" /></li>
+          <li><input required name="b6" placeholder="e.g., Goals:" /></li>
+          <li><input required name="b7" placeholder="e.g., Fun fact:" /></li>
+        </ol>
+      </fieldset>
+
+      <fieldset>
+        <legend>Courses</legend>
+        <div id="courses"></div>
+        <button type="button" id="addCourseBtn">+ Add Course</button>
+      </fieldset>
+
+      <fieldset>
+        <legend>Quote</legend>
+        <label>Quote <input required name="quote" placeholder="e.g., There is no growth in the comfort zone." /></label>
+        <label>Author <input required name="quoteAuthor" placeholder="e.g., Unknown" /></label>
+      </fieldset>
+
+      <fieldset>
+        <legend>Optional</legend>
+        <label>Funny thing <input name="funny" placeholder="e.g., Something funny about yourself" /></label>
+        <label>Something to share <input name="share" placeholder="e.g., Something you'd like to share" /></label>
+      </fieldset>
+
+      <fieldset>
+        <legend>Links</legend>
+        <div id="links">
+          <input required name="link1" placeholder="e.g., https://www.linkedin.com/in/..." />
+          <input required name="link2" placeholder="e.g., https://github.com/username" />
+          <input required name="link3" placeholder="e.g., https://yourportfolio.com" />
+          <input required name="link4" placeholder="e.g., https://webpages.charlotte.edu/UNCCID/" />
+          <input required name="link5" placeholder="e.g., https://..." />
+        </div>
+      </fieldset>
+
+      <div class="controls">
+        <button type="submit">Submit</button>
+        <button type="reset" id="resetBtn">Reset</button>
+        <button type="button" id="clearBtn">Clear</button>
+      </div>
+    </form>
+
+    <section id="result" hidden></section>
+  </main>
+
+  <script src="scripts/introduction.js" defer></script>
+</body>
+</html>
