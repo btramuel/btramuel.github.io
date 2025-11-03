@@ -4,6 +4,8 @@
   <meta charset="utf-8" />
   <title>Introduction Form</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
   <style>
     * {
       margin: 0;
@@ -376,6 +378,17 @@
 </head>
 <body>
   <main class="container">
+    <nav style="margin-bottom: 1.5rem; text-align:center; font-weight:600;">
+      <a href="index.html">Home</a> |
+      <a href="introduction.html">Introduction</a> |
+      <a href="contract.html">Contract</a> |
+      <a href="website-evaluations.html">Web Evaluations</a> |
+      <a href="MY%20CRAPPY%20PAGE.HTM">Crappy Page</a> |
+      <a href="fccfsjs_outline.html">FCC Progress</a> |
+      <a href="hobby/index.html">Hobby</a> |
+      <a href="intro_form.html">Introduction Form</a>
+    </nav>
+
     <h2>Introduction Form</h2>
     <h3>Please submit the form below.</h3>
 
@@ -388,8 +401,8 @@
       <fieldset>
         <legend>Identity</legend>
         <label>First Name <input required name="firstName" placeholder="e.g., Brian" /></label>
-        <label>Middle (optional) <input name="middle" placeholder="e.g., M." /></label>
-        <label>Nickname (optional) <input name="nick" placeholder="e.g., Preferred name" /></label>
+        <label>Middle (optional) <input name="middle" /></label>
+        <label>Nickname (optional) <input name="nickname" /></label>
         <label>Last Name<input required name="lastName" placeholder="e.g., Tramuel" /></label>
       </fieldset>
 
@@ -444,14 +457,14 @@
 
       <fieldset>
         <legend>Quote</legend>
-        <label>Quote <input required name="quote" placeholder="e.g., There is no growth in the comfort zone." /></label>
-        <label>Author <input required name="quoteAuthor" placeholder="e.g., Unknown" /></label>
+        <label>Quote <input required name="quote" placeholder="e.g., I doubt, therefore i think, therfore i am." /></label>
+        <label>Author <input required name="quoteAuthor" placeholder="e.g., Oda" /></label>
       </fieldset>
 
       <fieldset>
         <legend>Optional</legend>
-        <label>Funny thing <input name="funny" placeholder="e.g., Something funny about yourself" /></label>
-        <label>Something to share <input name="share" placeholder="e.g., Something you'd like to share" /></label>
+        <label>Funny thing <input name="funny" /></label>
+        <label>Something to share <input name="share"/></label>
       </fieldset>
 
       <fieldset>
@@ -469,12 +482,14 @@
         <button type="submit">Submit</button>
         <button type="reset" id="resetBtn">Reset</button>
         <button type="button" id="clearBtn">Clear</button>
+        <button type="button" id="generateHTMLBtn">Generate HTML</button>
       </div>
     </form>
 
     <section id="result" hidden></section>
   </main>
 
+  <script src="scripts/generate_html.js" defer></script>
   <script src="scripts/introduction.js" defer></script>
 </body>
 </html>
