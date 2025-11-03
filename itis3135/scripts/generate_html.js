@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const form   = document.getElementById("introForm");
   const result = document.getElementById("result");
   const h2     = document.querySelector("h2");
-  const btn    = document.getElementById("generateJSONBtn");
+  const btn    = document.getElementById("generateJSONBtn"); 
 
   if (!form || !result || !h2 || !btn) return;
 
@@ -21,8 +21,7 @@ document.addEventListener("DOMContentLoaded", () => {
     for (let i = 1; i <= 7; i++) {
       const raw = (f.get("b" + i) || "").trim();
       const low = raw.toLowerCase();
-      const idx = low.indexOf(prefix);
-      if (idx === 0) {
+      if (low.startsWith(prefix)) {
         const colon = raw.indexOf(":");
         return colon >= 0 ? raw.slice(colon + 1).trim() : raw.trim();
       }
@@ -54,19 +53,17 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
 
-    if (!out.length) {
-      out.push({ department: "", number: "", name: "", reason: "" });
-    }
+    if (!out.length) out.push({ department: "", number: "", name: "", reason: "" });
     return out;
   }
 
   function inferLinkName(url, i) {
     const u = url.toLowerCase();
-    if (u.includes("linkedin.com")) return "LinkedIn";
-    if (u.includes("github.io"))   return "GitHub Page";
-    if (u.includes("github.com"))  return "GitHub";
-    if (u.includes("freecodecamp"))return "freeCodeCamp";
-    if (u.includes("codecademy"))  return "Codecademy";
+    if (u.includes("linkedin.com"))  return "LinkedIn";
+    if (u.includes("github.io"))     return "GitHub Page";
+    if (u.includes("github.com"))    return "GitHub";
+    if (u.includes("freecodecamp"))  return "freeCodeCamp";
+    if (u.includes("codecademy"))    return "Codecademy";
     if (u.includes("charlotte.edu")) return "UNCC Page";
     return `Website ${i}`;
   }
@@ -90,7 +87,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const f = new FormData(form);
 
     const firstName     = (f.get("firstName") || "").trim();
-    const preferredName = (f.get("nick") || "").trim();
+    const preferredName = (f.get("nickname") || "").trim(); 
     const middle        = (f.get("middle") || "").trim();
     const middleInitial = middle ? middle[0] : "";
     const lastName      = (f.get("lastName") || "").trim();
@@ -106,10 +103,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const personalBackground     = pickFromBullets(f, "personal background");
     const professionalBackground = pickFromBullets(f, "professional background");
     const academicBackground     = pickFromBullets(f, "academic background");
-    const subjectBackground      = pickFromBullets(f, "web development background")   // common in this course
-                                  || pickFromBullets(f, "subject background");        // fallback
-    const primaryComputer        = pickFromBullets(f, "primary computer")             // if student typed this label
-                                  || "";                                              // else leave blank
+    const subjectBackground      = pickFromBullets(f, "web development background")
+                                   || pickFromBullets(f, "subject background");
+    const primaryComputer        = pickFromBullets(f, "primary computer") || "";
 
     const courses = collectCourses();
     const links   = collectLinks(f);
@@ -134,7 +130,7 @@ document.addEventListener("DOMContentLoaded", () => {
       links
     };
 
-    h2.textContent = "Introduction HTML"; 
+    h2.textContent = "Introduction HTML";
     form.hidden = true;
     result.hidden = false;
 
