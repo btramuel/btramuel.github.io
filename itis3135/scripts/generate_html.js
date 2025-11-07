@@ -1,95 +1,151 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const form   = document.getElementById("introForm");
-  const result = document.getElementById("result");
-  const h2     = document.querySelector("h2");
-  const btn    = document.getElementById("generateHTMLBtn"); 
+  const form = document.getElementById("introForm");
+  const header = document.querySelector("h2");
+  let result = document.getElementById("result");
+  const htmlBtn = document.getElementById("generateHTMLBtn");
 
-  if (!form || !result || !h2 || !btn) return;
+  if (!result) {
+    result = document.createElement("section");
+    result.id = "result";
+    result.hidden = true;
+    form.insertAdjacentElement("afterend", result);
+  }
 
   const esc = (s = "") =>
     String(s)
-      .replaceAll("&", "&amp;")
-      .replaceAll("<", "&lt;")
-      .replaceAll(">", "&gt;")
-      .replaceAll('"', "&quot;")
-      .replaceAll("'", "&#39;");
+      .replaceAll("&","&amp;")
+      .replaceAll("<","&lt;")
+      .replaceAll(">","&gt;")
+      .replaceAll('"',"&quot;")
+      .replaceAll("'","&#39;");
 
-  btn.addEventListener("click", () => {
-    if (!form.checkValidity()) {
-      form.reportValidity();
-      return;
-    }
+  function getVal(fd, key) {
+    const v = fd.get(key);
+    return v == null ? "" : String(v).trim();
+  }
 
-    const f = new FormData(form);
-
-    const first = (f.get("firstName") || "").trim();
-    const mid   = (f.get("middle") || "").trim();
-    const last  = (f.get("lastName") || "").trim();
-    const fullName = [first, mid, last].filter(Boolean).join(" ");
-
-    const mascAdj    = (f.get("mascAdj") || "").trim();
-    const mascAnimal = (f.get("mascAnimal") || "").trim();
-    const mascot     = [mascAdj, mascAnimal].filter(Boolean).join(" ");
-
-    const imgUrl    = (f.get("imgUrl") || "").trim();
-    const imgCap    = (f.get("imgCap") || "").trim();
-    const statement = (f.get("statement") || "").trim();
-
-    const bulletLis = [];
+  function collectBullets(fd) {
+    const out = [];
     for (let i = 1; i <= 7; i++) {
-      const v = (f.get("b" + i) || "").trim();
-      if (v) bulletLis.push(`<li>${esc(v)}</li>`);
+      const v = getVal(fd, "b" + i);
+      if (v) out.push(v);
     }
+    return out;
+  }
 
-    const parts = [];
-    parts.push(`<h2>Introduction HTML</h2>`);
+  function collectLinks(fd) {
+    const out = [];
+    for (let i = 1; i <= 5; i++) {
+      const v = getVal(fd, "link" + i);
+      if (v) out.push(v);
+    }
+    return out;
+  }
 
-    const h3Line = [fullName, mascot ? `★ ${mascot}` : ""].filter(Boolean).join(" ");
-    if (h3Line) parts.push(`<h3>${esc(h3Line)}</h3>`);
+  function collectCourses() {
+    const box = document.getElementById("courses");
+    if (!box) return [];
+    const rows = Array.from(box.querySelectorAll(".course-row"));
+    return rows
+      .map((row) => {
+        const obj = {};
+        const inputs = Array.from(row.querySelectorAll("input"));
+        inputs.forEach((inp, i) => {
+          const name = inp.name || "";
+          const val = inp.value.trim();
+          if (!val) return;
+          if (name) obj[name] = val;
+          else if (i === 0) obj.department = val;
+          else if (i === 1) obj.number = val;
+          else if (i === 2) obj.title = val;
+          else if (i === 3) obj.schedule = val;
+          else obj["field" + i] = val;
+        });
+        return obj;
+      })
+      .filter((o) => Object.keys(o).length > 0);
+  }
 
-    if (imgUrl) {
-      parts.push(
-`<figure>
-    <img src="${esc(imgUrl)}" alt="Headshot of ${esc(fullName || "student")}" />
-    ${imgCap ? `<figcaption>${esc(imgCap)}</figcaption>` : ""}
-</figure>`
+  function buildHTML(fd) {
+    const first = getVal(fd, "firstName");
+    const middle = getVal(fd, "middle");
+    const last = getVal(fd, "lastName");
+    const nick = getVal(fd, "nickname");
+    const full = [first, middle, last].filter(Boolean).join(" ");
+    const nickname = nick ? ` "${nick}"` : "";
+
+    const adj = getVal(fd, "mascAdj");
+    const animal = getVal(fd, "mascAnimal");
+    const star = "★";
+    const mascot = [adj, animal].filter(Boolean).join(" ");
+
+    const img = getVal(fd, "imgUrl");
+    const cap = getVal(fd, "imgCap");
+
+    const stmt = getVal(fd, "statement");
+
+    const bullets = collectBullets(fd)
+      .map((b) => `    <li>${b}</li>`)
+      .join("\n");
+
+    const links = collectLinks(fd)
+      .map((l) => `    <li><a href="${l}" target="_blank" rel="noopener">${l}</a></li>`)
+      .join("\n");
+
+    const courses = collectCourses();
+    let courseHTML = "";
+    if (courses.length) {
+      const headers = Array.from(
+        courses.reduce((s, o) => {
+          Object.keys(o).forEach((k) => s.add(k));
+          return s;
+        }, new Set())
       );
+      const headRow = "<tr>" + headers.map((h) => `<th>${h}</th>`).join("") + "</tr>";
+      const rows = courses
+        .map((o) => "<tr>" + headers.map((h) => `<td>${o[h] || ""}</td>`).join("") + "</tr>")
+        .join("\n");
+      courseHTML = `
+<h3>Courses</h3>
+<table>
+${headRow}
+${rows}
+</table>`;
     }
 
-    if (statement) parts.push(`<p>${esc(statement)}</p>`);
-    if (bulletLis.length) parts.push(`<ul>\n  ${bulletLis.join("\n  ")}\n</ul>`);
+    return `<h2>Introduction HTML</h2>
+<h3>${full}${nickname} ${star} ${mascot}</h3>
+<figure>
+  <img src="${img}" alt="Picture of ${full}" />
+  <figcaption>${cap}</figcaption>
+</figure>
+<p>${stmt}</p>
+<ul>
+${bullets}
+</ul>
+${links ? `<h3>Links</h3>\n<ul>\n${links}\n</ul>` : ""}
+${courseHTML}`.trim();
+  }
 
-    const quote = (f.get("quote") || "").trim();
-    const quoteAuthor = (f.get("quoteAuthor") || "").trim();
-    if (quote) parts.push(`<blockquote>“${esc(quote)}” — ${esc(quoteAuthor || "Unknown")}</blockquote>`);
-
-    const introHTML = parts.join("\n");
-
-    h2.textContent = "Introduction HTML";
+  function show(htmlText) {
+    header.textContent = "Introduction HTML";
     form.hidden = true;
+
     result.hidden = false;
     result.innerHTML = `
-<div style="display:flex; gap:.5rem; flex-wrap:wrap; margin-bottom:.75rem;">
-  <button id="copyBtn">Copy Code</button>
-  <button id="restartBtn" style="margin-left:auto;">Restart Form</button>
-</div>
-<section>
-  <pre><code class="language-html">${esc(introHTML)}</code></pre>
-</section>
+<pre><code class="language-html">${esc(htmlText)}</code></pre>
 `;
 
-    if (window.hljs?.highlightAll) hljs.highlightAll();
+    if (window.hljs) {
+      const code = result.querySelector("code");
+      window.hljs.highlightElement(code);
+    }
+  }
 
-    document.getElementById("copyBtn")?.addEventListener("click", async () => {
-      try {
-        await navigator.clipboard.writeText(introHTML);
-        const b = document.getElementById("copyBtn");
-        b.textContent = "Copied!";
-        setTimeout(() => (b.textContent = "Copy Code"), 1200);
-      } catch {
-        alert("Copy failed — select the code and copy manually.");
-      }
-    });
-    document.getElementById("restartBtn")?.addEventListener("click", () => location.reload());
+  htmlBtn.addEventListener("click", (e) => {
+    e.preventDefault();
+    const fd = new FormData(form);
+    const html = buildHTML(fd);
+    show(html);
   });
 });
