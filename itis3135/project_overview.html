@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Project Overview | Client Project - Part 1</title>
+  <style>
+    /* CSS Variables */
+    :root {
+      --max-width: 1000px;
+      --primary-color: #2563eb;
+      --primary-dark: #1e40af;
+      --secondary-color: #0ea5e9;
+      --bg-dark: #1f2937;
+      --bg-light: #f9fafb;
+      --bg-accent: #eff6ff;
+      --border-color: #e5e7eb;
+      --text-primary: #111827;
+      --text-secondary: #6b7280;
+      --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+      --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+      --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+      --radius-sm: 6px;
+      --radius-md: 8px;
+      --radius-lg: 12px;
+    }
+
+    /* Reset & Base */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      line-height: 1.6;
+      color: var(--text-primary);
+      background: var(--bg-light);
+    }
+
+    /* Header */
+    header {
+      background: linear-gradient(135deg, var(--bg-dark) 0%, #374151 100%);
+      color: white;
+      padding: 2rem 1.5rem;
+      box-shadow: var(--shadow-md);
+      text-align: center;
+    }
+
+    header h1 {
+      font-size: 1.75rem;
+      font-weight: 700;
+      letter-spacing: -0.025em;
+      margin-bottom: 1rem;
+    }
+
+    header nav {
+      margin: 1rem 0;
+      line-height: 2;
+    }
+
+    header nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+      transition: all 0.2s ease;
+      padding: 0 0.5rem;
+    }
+
+    header nav a:hover {
+      color: var(--secondary-color);
+    }
+
+    header p {
+      margin-top: 0.75rem;
+    }
+
+    header p a {
+      color: var(--secondary-color);
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    header p a:hover {
+      color: white;
+      text-decoration: underline;
+    }
+
+    /* Main Container */
+    main {
+      max-width: var(--max-width);
+      margin: 2rem auto;
+      padding: 0 1.5rem 3rem;
+    }
+
+    /* Page Title */
+    h2 {
+      font-size: 2rem;
+      font-weight: 800;
+      color: var(--text-primary);
+      margin-bottom: 0.5rem;
+      letter-spacing: -0.025em;
+    }
+
+    /* Meta Information */
+    .meta {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      margin-bottom: 1.5rem;
+      padding-bottom: 1.5rem;
+      border-bottom: 2px solid var(--border-color);
+    }
+
+    .meta code {
+      background: var(--bg-accent);
+      color: var(--primary-color);
+      font-weight: 600;
+    }
+
+    /* Alert/Note Box */
+    .note {
+      background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+      border-left: 4px solid #f59e0b;
+      padding: 1.25rem;
+      border-radius: var(--radius-md);
+      margin: 2rem 0;
+      box-shadow: var(--shadow-sm);
+      font-size: 0.95rem;
+      line-height: 1.7;
+    }
+
+    /* Section Headings */
+    h3 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--primary-dark);
+      margin-top: 3rem;
+      margin-bottom: 1rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 3px solid var(--primary-color);
+    }
+
+    h4 {
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-top: 1.5rem;
+      margin-bottom: 0.75rem;
+    }
+
+    /* Paragraphs & Lists */
+    p {
+      margin-bottom: 1rem;
+      color: var(--text-primary);
+    }
+
+    ul, ol {
+      margin: 1rem 0 1rem 1.5rem;
+    }
+
+    li {
+      margin-bottom: 0.5rem;
+      color: var(--text-primary);
+    }
+
+    /* Code Elements */
+    code {
+      background: #f1f5f9;
+      color: #e11d48;
+      padding: 0.2rem 0.5rem;
+      border-radius: var(--radius-sm);
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 0.9em;
+      font-weight: 500;
+    }
+
+    /* Links */
+    a {
+      color: var(--primary-color);
+      text-decoration: none;
+      font-weight: 500;
+      transition: all 0.2s ease;
+    }
+
+    a:hover {
+      color: var(--primary-dark);
+      text-decoration: underline;
+    }
+
+    a[target="_blank"]::after {
+      content: " ↗";
+      font-size: 0.85em;
+    }
+
+    /* Grid Layout */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+      margin: 1.5rem 0;
+    }
+
+    .grid > div {
+      background: white;
+      padding: 1.25rem;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border-color);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .grid p {
+      margin-bottom: 0.75rem;
+    }
+
+    .grid p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* Figures & Images */
+    figure {
+      margin: 2rem 0;
+      background: white;
+      padding: 1.5rem;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border-color);
+      box-shadow: var(--shadow-md);
+    }
+
+    figure img {
+      width: 100%;
+      height: auto;
+      border-radius: var(--radius-sm);
+      background: var(--bg-light);
+      border: 1px solid var(--border-color);
+    }
+
+    figcaption {
+      margin-top: 1rem;
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      font-style: italic;
+      text-align: center;
+    }
+
+    /* Tables */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 2rem 0;
+      background: white;
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      box-shadow: var(--shadow-md);
+      font-size: 0.9rem;
+      border: 2px solid var(--border-color);
+    }
+
+    thead {
+      background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+      color: white;
+    }
+
+    th {
+      padding: 1rem;
+      text-align: left;
+      font-weight: 600;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    td {
+      padding: 1rem;
+      border: 1px solid var(--border-color);
+      vertical-align: top;
+      line-height: 1.6;
+    }
+
+    tbody tr:hover {
+      background: var(--bg-accent);
+      transition: background 0.2s ease;
+    }
+
+    /* Strong Text */
+    strong {
+      color: var(--primary-dark);
+      font-weight: 600;
+    }
+
+    /* Emphasis */
+    em {
+      color: var(--secondary-color);
+      font-style: italic;
+    }
+
+    /* Footer */
+    footer {
+      background: var(--bg-dark);
+      color: white;
+      padding: 2rem 1.5rem;
+      margin-top: 4rem;
+      text-align: center;
+    }
+
+    footer nav {
+      margin-bottom: 1rem;
+      line-height: 2;
+    }
+
+    footer nav a {
+      color: var(--secondary-color);
+      text-decoration: none;
+      font-weight: 500;
+      padding: 0 0.25rem;
+    }
+
+    footer nav a:hover {
+      color: white;
+      text-decoration: underline;
+    }
+
+    footer p {
+      margin: 0.5rem 0;
+      color: #d1d5db;
+    }
+
+    footer p a {
+      color: var(--secondary-color);
+      text-decoration: none;
+    }
+
+    footer p a:hover {
+      color: white;
+      text-decoration: underline;
+    }
+
+    footer img {
+      vertical-align: middle;
+      margin: 0.5rem 0.25rem;
+    }
+
+    /* Author Info */
+    .author-meta {
+      margin-top: 3rem;
+      padding-top: 2rem;
+      border-top: 2px solid var(--border-color);
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      text-align: center;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      header h1 {
+        font-size: 1.5rem;
+      }
+
+      header nav {
+        line-height: 2.5;
+      }
+
+      h2 {
+        font-size: 1.75rem;
+      }
+
+      h3 {
+        font-size: 1.25rem;
+      }
+
+      .grid {
+        grid-template-columns: 1fr;
+      }
+
+      table {
+        font-size: 0.85rem;
+      }
+
+      th, td {
+        padding: 0.75rem;
+      }
+
+      main {
+        padding: 0 1rem 2rem;
+      }
+    }
+
+    /* Print Styles */
+    @media print {
+      header, footer {
+        background: white;
+        color: black;
+      }
+
+      a {
+        text-decoration: underline;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>ITIS3135 | Brian Tramuel's | Brilliant Tortoise</h1>
+    <nav>
+      <a href="index.html">Home</a> |
+      <a href="introduction.html">Introduction</a> |
+      <a href="contract.html">Contract</a> |
+      <a href="website-evaluations.html">Web Evaluations</a> |
+      <a href="MY CRAPPY PAGE.HTM">Crappy Page</a> |
+      <a href="fccfsjs_outline.html">FCC Progress</a> |
+      <a href="hobby/index.html">Hobby</a> |
+      <a href="intro_form.html">Introduction Form</a> |
+      <a href="project_overview.html">Project Overview</a>
+    </nav>
+
+    <p>
+      <a href="https://webpages.charlotte.edu/btramue1/itis3135/" target="_blank" rel="noreferrer">
+        UNCC WebSpace
+      </a>
+      |
+      <a href="https://btramuel.github.io/itis3135/" target="_blank" rel="noreferrer">
+        GitHub.io
+      </a>
+    </p>
+  </header>
+
+  <main>
+    <h2>Project Overview</h2>
+    <p class="meta">
+      Course: ITIS 3135 • Assignment: Client Project - Part 1 • Page: <code>project_overview.html</code>
+    </p>
+
+    <div class="note">
+      This document follows the assignment rubric, including Project Name, Project Overview, Site Map, Page Designs, Dynamic Functionality, and Client Information.
+    </div>
+
+    <h3>1. Project Name</h3>
+    <p><strong>Working title:</strong> <em>SQL Starter Hub</em></p>
+
+    <h3>2. Project Overview</h3>
+    
+    <h4>Function and purpose</h4>
+    <p>This site teaches beginners the fundamentals of SQL. It delivers simple lessons, examples, and practice tools to help a first-time learner understand how to work with databases and write queries.</p>
+
+    <h4>Intended users</h4>
+    <ul>
+      <li>Beginner programmers learning SQL</li>
+      <li>Students or professionals who want a quick SQL refresher</li>
+    </ul>
+
+    <h4>Website content overview</h4>
+    <ul>
+      <li>Intro to SQL concepts, why SQL matters</li>
+      <li>Beginner lessons for SELECT, FROM, WHERE, ORDER BY</li>
+      <li>Reference sheets for common clauses and functions</li>
+      <li>Interactive practice tool with mock tables</li>
+      <li>FAQs, study tips, and links to more learning</li>
+      <li>Contact form to request help or tutoring</li>
+    </ul>
+
+    <h3>3. Client Information</h3>
+    <div class="grid">
+      <div>
+        <p><strong>Name:</strong> Jaden Lee</p>
+        <p><strong>Organization:</strong> Brilliant Tortoise</p>
+      </div>
+      <div>
+        <p><strong>Email:</strong> [private]</p>
+        <p><strong>Phone:</strong> [private]</p>
+      </div>
+    </div>
+    <p class="meta">Preferred contact: email. If publishing personal contact details is not appropriate, mark them as [private] and use the Contact page.</p>
+
+    <h3>4. Wireframe</h3>
+    <p>The wireframe shows the layout used across all SQL Starter Hub pages.</p>
+    <p><a href="https://drive.google.com/file/d/1JR870bauIfwdHqqXh4jQSYECViqOO0fz/view?usp=share_link" target="_blank" rel="noopener">View wireframe in Drive</a></p>
+    <figure>
+      <img src="images/wireframe home.drawio.png" alt="Wireframe for SQL Starter Hub home page" />
+      <figcaption>Figure 1. Core layout including header navigation, content area, and footer.</figcaption>
+    </figure>
+
+    <h3>5. Site Map</h3>
+    <p>The sitemap describes all pages and how they connect for a smooth learning path.</p>
+    <p><a href="https://drive.google.com/file/d/1UJtM9jO42PC03L93Cnb61imuXF-ZuT9b/view?usp=share_link" target="_blank" rel="noopener">View sitemap in Drive</a></p>
+    <figure>
+      <img src="images/site map.drawio.png" alt="Sitemap showing SQL Starter Hub pages and navigation" />
+      <figcaption>Figure 2. Sitemap showing Home, What Is SQL, Basic Commands, Practice Tool, and Contact pages.</figcaption>
+    </figure>
+
+    <h3>6. Page Design</h3>
+    <p>For every page in the sitemap, fill in the table below. Add or remove rows as needed.</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Page name</th>
+          <th>Purpose</th>
+          <th>Audience</th>
+          <th>Content</th>
+          <th>Data fields</th>
+          <th>Validation</th>
+          <th>Links / Controls</th>
+          <th>Actions / Behavior</th>
+          <th>Notes</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Home (index.html)</td>
+          <td>Introduce the site and direct new learners to start SQL basics.</td>
+          <td>All learners</td>
+          <td>Hero section, quick start button, lesson highlights.</td>
+          <td>None</td>
+          <td>n/a</td>
+          <td>Start Learning, Lessons, Practice.</td>
+          <td>Smooth scroll and highlight active links.</td>
+          <td>Keep layout simple for beginners.</td>
+        </tr>
+        <tr>
+          <td>What Is SQL</td>
+          <td>Explain what SQL is and why it is used.</td>
+          <td>Beginners</td>
+          <td>Simple definition, real examples, diagrams of tables.</td>
+          <td>None</td>
+          <td>n/a</td>
+          <td>Next, Previous, Learn More.</td>
+          <td>Expandable definitions.</td>
+          <td>Use plain language.</td>
+        </tr>
+        <tr>
+          <td>Basic Commands</td>
+          <td>Introduce SELECT, FROM, WHERE, ORDER BY.</td>
+          <td>Beginners</td>
+          <td>Examples, small tables, step-by-step query breakdowns.</td>
+          <td>Practice fields for writing a sample query.</td>
+          <td>Check for blank input, highlight errors.</td>
+          <td>Try Query, Reset.</td>
+          <td>Auto-format sample queries.</td>
+          <td>Show hints when user gets stuck.</td>
+        </tr>
+        <tr>
+          <td>Practice Tool</td>
+          <td>Let users try SQL queries in a simulated environment.</td>
+          <td>Beginners and advanced refreshers.</td>
+          <td>Mock database table preview and query box.</td>
+          <td>Query text field.</td>
+          <td>Detect missing SELECT or semicolon.</td>
+          <td>Run Query, Clear.</td>
+          <td>Use JavaScript to simulate SQL responses.</td>
+          <td>Show sample tasks to guide users.</td>
+        </tr>
+        <tr>
+          <td>Contact</td>
+          <td>Let learners reach the SQL tutor.</td>
+          <td>All visitors</td>
+          <td>Form with simple message fields.</td>
+          <td>Name, email, message.</td>
+          <td>Required fields and email format.</td>
+          <td>Submit, Clear.</td>
+          <td>Show confirmation on submit.</td>
+          <td>Respect privacy.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3>7. Dynamic Functionality</h3>
+    <p>Interactive features planned for this project.</p>
+    <ul>
+      <li><strong>SQL Practice Simulator</strong> on the Practice Tool page, uses JavaScript to fake simple SQL results for SELECT queries.</li>
+      <li><strong>Interactive examples</strong> on the Basic Commands page, highlight and animate query parts when clicked.</li>
+      <li><strong>Accordion FAQ</strong> on What Is SQL page using jQuery UI.</li>
+      <li><strong>Form validation</strong> on Contact page to check name, email, and message before submitting.</li>
+      <li><strong>JSON lesson loader</strong> to fetch and display SQL lessons dynamically.</li>
+    </ul>
+    <p><strong>Why these features:</strong> They make the learning experience hands-on and allow beginners to practice without installing anything.</p>
+
+    <h4>Inspiration links</h4>
+    <ul>
+      <li>W3Schools SQL Tutorial - clear beginner flow</li>
+      <li>SQLite Tutorial sample tables - simple datasets for practice</li>
+      <li>MDN Web Docs, form validation patterns - for the Contact page</li>
+      <li>DataTables examples - table sorting and paging ideas</li>
+    </ul>
+
+    <h3>Notes & Submission</h3>
+    <ul>
+      <li>Publish this page at <code>/itis3135/project_overview.html</code> with your standard header and footer.</li>
+      <li>Use simple language. Avoid filler words.</li>
+      <li>Submit the full URL to this page in Canvas.</li>
+    </ul>
+
+    <p class="author-meta">Author: Brian Tramuel • Updated: 11/07/2025 18:00</p>
+  </main>
+
+  <footer>
+    <nav aria-label="External links">
+      <a href="http://webpages.uncc.edu/btramue1/" target="_blank" rel="noreferrer">| UNCC Webspace | </a>
+      <a href="https://github.com/btramuel" target="_blank" rel="noreferrer">GitHub | </a>
+      <a href="https://btramuel.github.io/" target="_blank" rel="noreferrer">GitHub.io | </a>
+      <a href="https://btramuel.github.io/itis3135/" target="_blank" rel="noreferrer">Course.io | </a>
+      <a href="https://www.freecodecamp.org/" target="_blank" rel="noreferrer">freeCodeCamp | </a>
+      <a href="https://www.codecademy.com/" target="_blank" rel="noreferrer">Codecademy | </a>
+      <a href="https://www.linkedin.com/" target="_blank" rel="noreferrer">LinkedIn | </a>
+    </nav>
+
+    <p>Designed by <a href="https://btramuel.github.io/itis3135/brillianttortoise.%20site/" target="_blank" rel="noreferrer">Brilliant Tortoise</a></p>
+
+    <p>&copy; <span id="year"></span> Brian Tramuel</p>
+
+    <p>
+      <a id="validation-link-html" target="_blank" rel="noreferrer">
+        <img src="tramuelenterprises.co/images/button_validation_html5.png" alt="Validate HTML">
+      </a>
+
+      <a id="validation-link-css" target="_blank" rel="noreferrer">
+        <img src="tramuelenterprises.co/images/button_validation_css.png" alt="Validate CSS">
+      </a>
+    </p>
+
+    <script>
+      document.getElementById('year').textContent = new Date().getFullYear();
+      const u = location.href;
+      const htmlA = document.getElementById("validation-link-html");
+      const cssA  = document.getElementById("validation-link-css");
+      if (htmlA) htmlA.setAttribute("href", "https://validator.w3.org/check?uri=" + encodeURIComponent(u));
+      if (cssA)  cssA.setAttribute("href", "https://jigsaw.w3.org/css-validator/validator?uri=" + encodeURIComponent(u));
+    </script>
+  </footer>
+</body>
+</html>
