@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Practice Tool - SQL Starter Hub</title>
+    <meta name="description" content="Practice SQL queries with our interactive tool. Write and execute queries against a sample database.">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header class="header">
+        <nav class="nav-container">
+            <div class="nav-content">
+                <a href="index.html" class="logo">
+                    <svg class="logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <ellipse cx="12" cy="5" rx="9" ry="3"></ellipse>
+                        <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path>
+                        <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path>
+                    </svg>
+                    <span class="logo-text">SQL Starter Hub</span>
+                </a>
+                <div class="nav-links">
+                    <a href="index.html" class="nav-link">Home</a>
+                    <a href="what-is-sql.html" class="nav-link">What Is SQL</a>
+                    <a href="basic-commands.html" class="nav-link">Basic Commands</a>
+                    <a href="practice.html" class="nav-link active">Practice Tool</a>
+                    <a href="contact.html" class="nav-link">Contact</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="content-page">
+        <div class="container">
+            <h1 class="page-title">SQL Practice Tool</h1>
+            <p class="lead-text">
+                Practice your SQL skills with our interactive query tool. Write queries against a sample student database and see the results instantly.
+            </p>
+
+            <section class="practice-section">
+                <h2 class="section-heading">Sample Data: Students Table</h2>
+                <p class="content-text">
+                    This is the data you can query. Try selecting specific columns, filtering with WHERE, or sorting with ORDER BY.
+                </p>
+
+                <div class="table-container">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Name</th>
+                                <th>Grade</th>
+                                <th>Major</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>Alice Johnson</td>
+                                <td>95</td>
+                                <td>Computer Science</td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>Bob Smith</td>
+                                <td>87</td>
+                                <td>Mathematics</td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td>Carol Davis</td>
+                                <td>92</td>
+                                <td>Engineering</td>
+                            </tr>
+                            <tr>
+                                <td>4</td>
+                                <td>David Wilson</td>
+                                <td>78</td>
+                                <td>Computer Science</td>
+                            </tr>
+                            <tr>
+                                <td>5</td>
+                                <td>Eve Martinez</td>
+                                <td>94</td>
+                                <td>Mathematics</td>
+                            </tr>
+                            <tr>
+                                <td>6</td>
+                                <td>Frank Brown</td>
+                                <td>82</td>
+                                <td>Engineering</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="query-editor">
+                    <h2 class="section-heading">Write Your SQL Query</h2>
+                    <textarea id="sqlQuery" class="sql-textarea" placeholder="Enter your SQL query here...
+Example: SELECT * FROM students WHERE grade > 90;">SELECT * FROM students;</textarea>
+                    <button id="runQueryBtn" class="btn btn-primary btn-lg">
+                        <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                        </svg>
+                        Run Query
+                    </button>
+                </div>
+
+                <div id="queryResult" class="query-result hidden"></div>
+
+                <div class="suggested-queries">
+                    <h2 class="section-heading">Suggested Practice Queries</h2>
+                    <p class="content-text">
+                        Click any query below to load it into the editor and try it out:
+                    </p>
+                    <div class="query-buttons">
+                        <button class="query-btn" data-query="SELECT * FROM students;">Show all students</button>
+                        <button class="query-btn" data-query="SELECT name, grade FROM students;">Show names and grades</button>
+                        <button class="query-btn" data-query="SELECT * FROM students WHERE grade >= 90;">Students with grade 90+</button>
+                        <button class="query-btn" data-query="SELECT * FROM students WHERE major = 'Computer Science';">Computer Science majors</button>
+                        <button class="query-btn" data-query="SELECT * FROM students ORDER BY grade DESC;">Sort by grade (high to low)</button>
+                        <button class="query-btn" data-query="SELECT name, major FROM students WHERE grade > 85 ORDER BY name;">Filter and sort combined</button>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-section">
+                    <h3 class="footer-title">SQL Starter Hub</h3>
+                    <p class="footer-text">
+                        Learn SQL fundamentals with simple lessons, examples, and practice tools.
+                    </p>
+                </div>
+
+                <div class="footer-section">
+                    <h3 class="footer-title">Quick Links</h3>
+                    <nav class="footer-links">
+                        <a href="index.html">Home</a>
+                        <a href="what-is-sql.html">What Is SQL</a>
+                        <a href="basic-commands.html">Basic Commands</a>
+                        <a href="practice.html">Practice Tool</a>
+                        <a href="contact.html">Contact</a>
+                    </nav>
+                </div>
+
+                <div class="footer-section">
+                    <h3 class="footer-title">Contact</h3>
+                    <div class="footer-text">
+                        <p><strong>Client:</strong> Jaden Lee</p>
+                        <p><strong>Organization:</strong> Brilliant Tortoise</p>
+                        <p><a href="contact.html" class="footer-link">Send us a message</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

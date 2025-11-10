@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - SQL Starter Hub</title>
+    <meta name="description" content="Get in touch with SQL Starter Hub. Send us your questions, feedback, or suggestions.">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header class="header">
+        <nav class="nav-container">
+            <div class="nav-content">
+                <a href="index.html" class="logo">
+                    <svg class="logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <ellipse cx="12" cy="5" rx="9" ry="3"></ellipse>
+                        <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path>
+                        <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path>
+                    </svg>
+                    <span class="logo-text">SQL Starter Hub</span>
+                </a>
+                <div class="nav-links">
+                    <a href="index.html" class="nav-link">Home</a>
+                    <a href="what-is-sql.html" class="nav-link">What Is SQL</a>
+                    <a href="basic-commands.html" class="nav-link">Basic Commands</a>
+                    <a href="practice.html" class="nav-link">Practice Tool</a>
+                    <a href="contact.html" class="nav-link active">Contact</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="content-page">
+        <div class="container contact-container">
+            <h1 class="page-title">Get In Touch</h1>
+            <p class="lead-text">
+                Have questions about SQL or feedback about our lessons? We'd love to hear from you. Fill out the form below and we'll get back to you as soon as possible.
+            </p>
+
+            <div class="contact-content">
+                <form id="contactForm" class="contact-form">
+                    <div class="form-group">
+                        <label for="name" class="form-label">Name *</label>
+                        <input 
+                            type="text" 
+                            id="name" 
+                            name="name" 
+                            class="form-input" 
+                            required
+                            placeholder="Your full name"
+                        >
+                        <span class="form-error" id="nameError"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email" class="form-label">Email *</label>
+                        <input 
+                            type="email" 
+                            id="email" 
+                            name="email" 
+                            class="form-input" 
+                            required
+                            placeholder="your.email@example.com"
+                        >
+                        <span class="form-error" id="emailError"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="subject" class="form-label">Subject *</label>
+                        <input 
+                            type="text" 
+                            id="subject" 
+                            name="subject" 
+                            class="form-input" 
+                            required
+                            placeholder="What is this about?"
+                        >
+                        <span class="form-error" id="subjectError"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="message" class="form-label">Message *</label>
+                        <textarea 
+                            id="message" 
+                            name="message" 
+                            class="form-textarea" 
+                            required
+                            rows="6"
+                            placeholder="Tell us more about your question or feedback..."
+                        ></textarea>
+                        <span class="form-error" id="messageError"></span>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary btn-lg" id="submitBtn">
+                        Send Message
+                    </button>
+
+                    <div id="formSuccess" class="form-success hidden">
+                        <svg class="success-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                            <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                        </svg>
+                        <h3>Message Sent Successfully!</h3>
+                        <p>Thank you for contacting us. We'll get back to you as soon as possible.</p>
+                    </div>
+                </form>
+
+                <div class="contact-info">
+                    <div class="info-card">
+                        <h3 class="info-title">Contact Information</h3>
+                        <div class="info-item">
+                            <strong>Client:</strong>
+                            <p>Jaden Lee</p>
+                        </div>
+                        <div class="info-item">
+                            <strong>Organization:</strong>
+                            <p>Brilliant Tortoise</p>
+                        </div>
+                    </div>
+
+                    <div class="info-card">
+                        <h3 class="info-title">Quick Links</h3>
+                        <ul class="info-links">
+                            <li><a href="what-is-sql.html">What Is SQL?</a></li>
+                            <li><a href="basic-commands.html">Basic Commands</a></li>
+                            <li><a href="practice.html">Practice Tool</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-section">
+                    <h3 class="footer-title">SQL Starter Hub</h3>
+                    <p class="footer-text">
+                        Learn SQL fundamentals with simple lessons, examples, and practice tools.
+                    </p>
+                </div>
+
+                <div class="footer-section">
+                    <h3 class="footer-title">Quick Links</h3>
+                    <nav class="footer-links">
+                        <a href="index.html">Home</a>
+                        <a href="what-is-sql.html">What Is SQL</a>
+                        <a href="basic-commands.html">Basic Commands</a>
+                        <a href="practice.html">Practice Tool</a>
+                        <a href="contact.html">Contact</a>
+                    </nav>
+                </div>
+
+                <div class="footer-section">
+                    <h3 class="footer-title">Contact</h3>
+                    <div class="footer-text">
+                        <p><strong>Client:</strong> Jaden Lee</p>
+                        <p><strong>Organization:</strong> Brilliant Tortoise</p>
+                        <p><a href="contact.html" class="footer-link">Send us a message</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

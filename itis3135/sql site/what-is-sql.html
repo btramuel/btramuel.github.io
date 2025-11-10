@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>What Is SQL? - SQL Starter Hub</title>
+    <meta name="description" content="Learn what SQL is and why it's essential for managing databases. Understand the basics of Structured Query Language.">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header class="header">
+        <nav class="nav-container">
+            <div class="nav-content">
+                <a href="index.html" class="logo">
+                    <svg class="logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <ellipse cx="12" cy="5" rx="9" ry="3"></ellipse>
+                        <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path>
+                        <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path>
+                    </svg>
+                    <span class="logo-text">SQL Starter Hub</span>
+                </a>
+                <div class="nav-links">
+                    <a href="index.html" class="nav-link">Home</a>
+                    <a href="what-is-sql.html" class="nav-link active">What Is SQL</a>
+                    <a href="basic-commands.html" class="nav-link">Basic Commands</a>
+                    <a href="practice.html" class="nav-link">Practice Tool</a>
+                    <a href="contact.html" class="nav-link">Contact</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="content-page">
+        <div class="container">
+            <h1 class="page-title">What Is SQL?</h1>
+            
+            <section class="content-section">
+                <p class="lead-text">
+                    SQL (Structured Query Language) is a powerful programming language designed for managing and manipulating data stored in relational databases. It's the standard language for interacting with database systems like MySQL, PostgreSQL, Oracle, and SQL Server.
+                </p>
+
+                <h2 class="section-heading">Why Learn SQL?</h2>
+                <ul class="content-list">
+                    <li><strong>Universal Standard:</strong> SQL is used across virtually all relational database systems, making it a valuable skill in any tech environment.</li>
+                    <li><strong>Data Analysis:</strong> Query and analyze large datasets to extract meaningful insights for business decisions.</li>
+                    <li><strong>Career Opportunities:</strong> SQL knowledge is required for roles in data analysis, database administration, backend development, and more.</li>
+                    <li><strong>Easy to Learn:</strong> SQL's English-like syntax makes it accessible to beginners while remaining powerful for complex operations.</li>
+                </ul>
+
+                <h2 class="section-heading">Basic SQL Operations</h2>
+                <p class="content-text">
+                    SQL allows you to perform four fundamental operations on database data, often referred to as CRUD:
+                </p>
+
+                <div class="operation-grid">
+                    <div class="operation-card">
+                        <h3 class="operation-title">Create</h3>
+                        <p class="operation-description">Add new data to your database</p>
+                        <div class="code-block">
+                            <pre><code>INSERT INTO users (name, email)
+VALUES ('John Doe', 'john@example.com');</code></pre>
+                        </div>
+                    </div>
+
+                    <div class="operation-card">
+                        <h3 class="operation-title">Read</h3>
+                        <p class="operation-description">Retrieve and view existing data</p>
+                        <div class="code-block">
+                            <pre><code>SELECT name, email
+FROM users
+WHERE active = true;</code></pre>
+                        </div>
+                    </div>
+
+                    <div class="operation-card">
+                        <h3 class="operation-title">Update</h3>
+                        <p class="operation-description">Modify existing data records</p>
+                        <div class="code-block">
+                            <pre><code>UPDATE users
+SET email = 'newemail@example.com'
+WHERE id = 1;</code></pre>
+                        </div>
+                    </div>
+
+                    <div class="operation-card">
+                        <h3 class="operation-title">Delete</h3>
+                        <p class="operation-description">Remove data from your database</p>
+                        <div class="code-block">
+                            <pre><code>DELETE FROM users
+WHERE inactive_days > 365;</code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <h2 class="section-heading">Real-World Example</h2>
+                <p class="content-text">
+                    Imagine you run an online bookstore. You have a database table called <code class="inline-code">books</code> with information about each book. Here's how you might use SQL:
+                </p>
+
+                <div class="code-block">
+                    <pre><code>SELECT title, author, price
+FROM books
+WHERE category = 'Science Fiction'
+  AND price < 20
+ORDER BY price ASC;</code></pre>
+                </div>
+
+                <p class="content-text">
+                    This query retrieves the title, author, and price of all science fiction books that cost less than $20, sorted by price from lowest to highest.
+                </p>
+
+                <div class="next-steps">
+                    <h2 class="section-heading">Next Steps</h2>
+                    <p class="content-text">Ready to learn the essential SQL commands?</p>
+                    <a href="basic-commands.html" class="btn btn-primary">Learn Basic Commands</a>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-section">
+                    <h3 class="footer-title">SQL Starter Hub</h3>
+                    <p class="footer-text">
+                        Learn SQL fundamentals with simple lessons, examples, and practice tools.
+                    </p>
+                </div>
+
+                <div class="footer-section">
+                    <h3 class="footer-title">Quick Links</h3>
+                    <nav class="footer-links">
+                        <a href="index.html">Home</a>
+                        <a href="what-is-sql.html">What Is SQL</a>
+                        <a href="basic-commands.html">Basic Commands</a>
+                        <a href="practice.html">Practice Tool</a>
+                        <a href="contact.html">Contact</a>
+                    </nav>
+                </div>
+
+                <div class="footer-section">
+                    <h3 class="footer-title">Contact</h3>
+                    <div class="footer-text">
+                        <p><strong>Client:</strong> Jaden Lee</p>
+                        <p><strong>Organization:</strong> Brilliant Tortoise</p>
+                        <p><a href="contact.html" class="footer-link">Send us a message</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

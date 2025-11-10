@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Basic SQL Commands - SQL Starter Hub</title>
+    <meta name="description" content="Learn essential SQL commands including SELECT, FROM, WHERE, and ORDER BY with practical examples.">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header class="header">
+        <nav class="nav-container">
+            <div class="nav-content">
+                <a href="index.html" class="logo">
+                    <svg class="logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <ellipse cx="12" cy="5" rx="9" ry="3"></ellipse>
+                        <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path>
+                        <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path>
+                    </svg>
+                    <span class="logo-text">SQL Starter Hub</span>
+                </a>
+                <div class="nav-links">
+                    <a href="index.html" class="nav-link">Home</a>
+                    <a href="what-is-sql.html" class="nav-link">What Is SQL</a>
+                    <a href="basic-commands.html" class="nav-link active">Basic Commands</a>
+                    <a href="practice.html" class="nav-link">Practice Tool</a>
+                    <a href="contact.html" class="nav-link">Contact</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="content-page">
+        <div class="container">
+            <h1 class="page-title">Basic SQL Commands</h1>
+            <p class="lead-text">
+                Master these fundamental SQL commands to start querying databases effectively. Each command plays a crucial role in retrieving and organizing your data.
+            </p>
+
+            <div class="commands-grid">
+                <div class="command-card">
+                    <h2 class="command-title">SELECT</h2>
+                    <p class="command-description">
+                        The SELECT statement is used to retrieve data from a database. You specify which columns you want to see in your results.
+                    </p>
+                    <div class="code-block">
+                        <pre><code>SELECT column1, column2
+FROM table_name;</code></pre>
+                    </div>
+                    <div class="example-box">
+                        <h4 class="example-title">Example:</h4>
+                        <div class="code-block">
+                            <pre><code>SELECT first_name, last_name, email
+FROM customers;</code></pre>
+                        </div>
+                        <p class="example-note">This retrieves the first name, last name, and email of all customers.</p>
+                    </div>
+                </div>
+
+                <div class="command-card">
+                    <h2 class="command-title">FROM</h2>
+                    <p class="command-description">
+                        The FROM clause specifies which table you want to retrieve data from. It's required in every SELECT statement.
+                    </p>
+                    <div class="code-block">
+                        <pre><code>SELECT *
+FROM table_name;</code></pre>
+                    </div>
+                    <div class="example-box">
+                        <h4 class="example-title">Example:</h4>
+                        <div class="code-block">
+                            <pre><code>SELECT *
+FROM products;</code></pre>
+                        </div>
+                        <p class="example-note">The asterisk (*) means "all columns" - this retrieves every column from the products table.</p>
+                    </div>
+                </div>
+
+                <div class="command-card">
+                    <h2 class="command-title">WHERE</h2>
+                    <p class="command-description">
+                        The WHERE clause filters records based on specific conditions. Only rows that meet the condition are included in the results.
+                    </p>
+                    <div class="code-block">
+                        <pre><code>SELECT column1, column2
+FROM table_name
+WHERE condition;</code></pre>
+                    </div>
+                    <div class="example-box">
+                        <h4 class="example-title">Example:</h4>
+                        <div class="code-block">
+                            <pre><code>SELECT product_name, price
+FROM products
+WHERE price > 50;</code></pre>
+                        </div>
+                        <p class="example-note">This retrieves only products with a price greater than $50.</p>
+                    </div>
+                </div>
+
+                <div class="command-card">
+                    <h2 class="command-title">ORDER BY</h2>
+                    <p class="command-description">
+                        The ORDER BY clause sorts your results by one or more columns. You can sort in ascending (ASC) or descending (DESC) order.
+                    </p>
+                    <div class="code-block">
+                        <pre><code>SELECT column1, column2
+FROM table_name
+ORDER BY column1 ASC;</code></pre>
+                    </div>
+                    <div class="example-box">
+                        <h4 class="example-title">Example:</h4>
+                        <div class="code-block">
+                            <pre><code>SELECT product_name, price
+FROM products
+ORDER BY price DESC;</code></pre>
+                        </div>
+                        <p class="example-note">This retrieves all products sorted by price from highest to lowest.</p>
+                    </div>
+                </div>
+            </div>
+
+            <section class="combined-example">
+                <h2 class="section-heading">Putting It All Together</h2>
+                <p class="content-text">
+                    Here's a complete query that uses all four commands together:
+                </p>
+                <div class="code-block">
+                    <pre><code>SELECT product_name, category, price
+FROM products
+WHERE category = 'Electronics'
+  AND price < 1000
+ORDER BY price DESC;</code></pre>
+                </div>
+                <p class="content-text">
+                    This query retrieves the name, category, and price of all electronics products under $1000, sorted from most to least expensive.
+                </p>
+            </section>
+
+            <div class="next-steps">
+                <h2 class="section-heading">Ready to Practice?</h2>
+                <p class="content-text">Try writing your own SQL queries with our interactive practice tool!</p>
+                <a href="practice.html" class="btn btn-primary">Go to Practice Tool</a>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-section">
+                    <h3 class="footer-title">SQL Starter Hub</h3>
+                    <p class="footer-text">
+                        Learn SQL fundamentals with simple lessons, examples, and practice tools.
+                    </p>
+                </div>
+
+                <div class="footer-section">
+                    <h3 class="footer-title">Quick Links</h3>
+                    <nav class="footer-links">
+                        <a href="index.html">Home</a>
+                        <a href="what-is-sql.html">What Is SQL</a>
+                        <a href="basic-commands.html">Basic Commands</a>
+                        <a href="practice.html">Practice Tool</a>
+                        <a href="contact.html">Contact</a>
+                    </nav>
+                </div>
+
+                <div class="footer-section">
+                    <h3 class="footer-title">Contact</h3>
+                    <div class="footer-text">
+                        <p><strong>Client:</strong> Jaden Lee</p>
+                        <p><strong>Organization:</strong> Brilliant Tortoise</p>
+                        <p><a href="contact.html" class="footer-link">Send us a message</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
