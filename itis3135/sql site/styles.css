@@ -1,4 +1,4 @@
-/* ===== CSS Variables ===== */
+/* CSS Variables */
 :root {
     /* Colors */
     --primary: #2563eb;
@@ -29,7 +29,7 @@
     --radius: 0.5rem;
 }
 
-/* ===== Reset & Base Styles ===== */
+/* Reset & Base Styles */
 * {
     margin: 0;
     padding: 0;
@@ -54,7 +54,7 @@ main {
     flex: 1;
 }
 
-/* ===== Typography ===== */
+/* Typography */
 h1, h2, h3, h4, h5, h6 {
     font-weight: 700;
     line-height: 1.2;
@@ -98,7 +98,7 @@ code, pre {
     border-radius: 0.25rem;
 }
 
-/* ===== Layout ===== */
+/*  Layout */
 .container {
     max-width: 1200px;
     margin: 0 auto;
@@ -109,7 +109,7 @@ code, pre {
     padding: var(--spacing-3xl) 0;
 }
 
-/* ===== Header & Navigation ===== */
+/* Header */
 .header {
     background-color: var(--background);
     border-bottom: 1px solid var(--border);
@@ -176,7 +176,7 @@ code, pre {
     border-bottom: 2px solid var(--primary);
 }
 
-/* ===== Hero Section ===== */
+/*  Hero Section */
 .hero {
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     color: white;
@@ -206,7 +206,7 @@ code, pre {
     flex-wrap: wrap;
 }
 
-/* ===== Buttons ===== */
+/* Buttons */
 .btn {
     display: inline-flex;
     align-items: center;
@@ -294,7 +294,7 @@ code, pre {
     margin-bottom: 0;
 }
 
-/* ===== CTA Section ===== */
+/* CTA Section */
 .cta-section {
     padding: var(--spacing-3xl) 0;
     text-align: center;
@@ -311,7 +311,7 @@ code, pre {
     margin-bottom: var(--spacing-xl);
 }
 
-/* ===== Page Title ===== */
+/* Page Title */
 .page-title {
     font-size: 3rem;
     margin-bottom: var(--spacing-lg);
@@ -325,7 +325,7 @@ code, pre {
     line-height: 1.7;
 }
 
-/* ===== Content Sections ===== */
+/* Content Sections */
 .content-section {
     margin-bottom: var(--spacing-3xl);
 }
@@ -360,7 +360,7 @@ code, pre {
     color: var(--primary);
 }
 
-/* ===== Code Blocks ===== */
+/* Code Blocks */
 .code-block {
     background-color: #1e293b;
     color: #e2e8f0;
@@ -380,7 +380,7 @@ code, pre {
     line-height: 1.7;
 }
 
-/* ===== Operation Grid ===== */
+/* Operation Grid */
 .operation-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -406,7 +406,7 @@ code, pre {
     margin-bottom: var(--spacing-md);
 }
 
-/* ===== Commands Grid ===== */
+/* Commands Grid */
 .commands-grid {
     display: grid;
     gap: var(--spacing-2xl);
@@ -432,7 +432,7 @@ code, pre {
     line-height: 1.7;
 }
 
-/* ===== Example Box ===== */
+/* Example Box */
 .example-box {
     background-color: var(--background);
     padding: var(--spacing-lg);
@@ -454,7 +454,7 @@ code, pre {
     margin-bottom: 0;
 }
 
-/* ===== Combined Example ===== */
+/* Combined Example */
 .combined-example {
     background-color: var(--muted);
     padding: var(--spacing-2xl);
@@ -462,7 +462,7 @@ code, pre {
     margin: var(--spacing-2xl) 0;
 }
 
-/* ===== Next Steps ===== */
+/* Next Steps */
 .next-steps {
     background-color: var(--muted);
     padding: var(--spacing-2xl);
@@ -471,7 +471,7 @@ code, pre {
     text-align: center;
 }
 
-/* ===== Practice Section ===== */
+/* Practice Section */
 .practice-section {
     margin-bottom: var(--spacing-3xl);
 }
@@ -514,7 +514,7 @@ code, pre {
     background-color: var(--muted);
 }
 
-/* ===== Query Editor ===== */
+/* Query Editor */
 .query-editor {
     background-color: var(--background);
     padding: var(--spacing-xl);
@@ -540,7 +540,7 @@ code, pre {
     border-color: var(--primary);
 }
 
-/* ===== Query Result ===== */
+/* Query Result */
 .query-result {
     padding: var(--spacing-xl);
     border-radius: var(--radius);
@@ -576,7 +576,7 @@ code, pre {
     margin-right: var(--spacing-sm);
 }
 
-/* ===== Suggested Queries ===== */
+/* Suggested Queries */
 .suggested-queries {
     margin-top: var(--spacing-3xl);
 }
@@ -605,7 +605,7 @@ code, pre {
     border-color: var(--primary);
 }
 
-/* ===== Contact Page ===== */
+/* Contact Page */
 .contact-container {
     max-width: 1000px;
 }
@@ -688,7 +688,7 @@ code, pre {
     margin-bottom: 0;
 }
 
-/* ===== Contact Info ===== */
+/* Contact Info */
 .contact-info {
     display: flex;
     flex-direction: column;
@@ -738,7 +738,7 @@ code, pre {
     text-decoration: underline;
 }
 
-/* ===== Footer ===== */
+/* Footer */
 .footer {
     background-color: var(--foreground);
     color: white;
@@ -793,12 +793,12 @@ code, pre {
     text-decoration: underline;
 }
 
-/* ===== Utility Classes ===== */
+/* Utility Classes */
 .hidden {
     display: none;
 }
 
-/* ===== Responsive Design ===== */
+/* Responsive Design */
 @media (max-width: 768px) {
     .hero-title {
         font-size: 2rem;

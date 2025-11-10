@@ -8,7 +8,7 @@ const students = [
     { id: 6, name: "Frank Brown", grade: 82, major: "Engineering" }
 ];
 
-// ===== SQL Practice Tool =====
+// SQL Practice Tool 
 if (document.getElementById('runQueryBtn')) {
     const runQueryBtn = document.getElementById('runQueryBtn');
     const sqlQueryInput = document.getElementById('sqlQuery');
@@ -41,7 +41,7 @@ if (document.getElementById('runQueryBtn')) {
     });
 }
 
-// Simple SQL query parser
+// SQL query parser
 function executeQuery(query) {
     query = query.trim().toLowerCase();
     
@@ -213,7 +213,7 @@ function renderTable(data) {
     return html;
 }
 
-// ===== Contact Form Validation =====
+// Contact Form Validation 
 if (document.getElementById('contactForm')) {
     const contactForm = document.getElementById('contactForm');
     const submitBtn = document.getElementById('submitBtn');
@@ -283,7 +283,7 @@ if (document.getElementById('contactForm')) {
     });
 }
 
-// ===== Active Navigation Link =====
+// Active Navigation Link 
 document.addEventListener('DOMContentLoaded', function() {
     const currentPage = window.location.pathname.split('/').pop() || 'index.html';
     const navLinks = document.querySelectorAll('.nav-link');
