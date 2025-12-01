@@ -792,6 +792,36 @@ code, pre {
 .footer-link:hover {
     text-decoration: underline;
 }
+/* Video Widget */
+.video-widget {
+    margin: var(--spacing-2xl) 0;
+}
+
+.video-widget .section-heading {
+    margin-bottom: var(--spacing-sm);
+}
+
+.video-widget .content-text {
+    max-width: 600px;
+}
+
+.video-wrapper {
+    position: relative;
+    padding-bottom: 56.25%; 
+    height: 0;
+    overflow: hidden;
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+    margin-top: var(--spacing-md);
+}
+
+.video-wrapper iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
 
 /* Utility Classes */
 .hidden {
