@@ -43,7 +43,9 @@ if (document.getElementById('runQueryBtn')) {
 
 // SQL query parser
 function executeQuery(query) {
-    query = query.trim().toLowerCase();
+    // Keep original for errors, but work on a lowercased copy
+    let originalQuery = query.trim();
+    query = originalQuery.toLowerCase();
     
     // Only allow SELECT statements
     if (!query.startsWith('select')) {
@@ -52,6 +54,12 @@ function executeQuery(query) {
     
     // Remove semicolon if present
     query = query.replace(/;$/, '');
+    originalQuery = originalQuery.replace(/;$/, '');
+
+    // Only allow queries against the "students" table
+    if (!/from\s+students\b/.test(query)) {
+        throw new Error('In this practice tool, you must query the "students" table. Example: SELECT * FROM students;');
+    }
     
     // Parse SELECT clause
     const selectMatch = query.match(/select\s+(.+?)\s+from/);
@@ -108,14 +116,15 @@ function filterResults(data, whereClause) {
     return data.filter(row => {
         return conditions.every(condition => {
             // Parse condition (column operator value)
-            const match = condition.match(/(\w+)\s*(=|>|<|>=|<=|!=)\s*(.+)/);
+            // Order of operators matters: multi-char first
+            const match = condition.match(/(\w+)\s*(>=|<=|!=|=|>|<)\s*(.+)/);
             if (!match) return true;
             
             const [, col, operator, rawValue] = match;
             let value = rawValue.trim();
             
             // Remove quotes from string values
-            if (value.startsWith("'") || value.startsWith('"')) {
+            if ((value.startsWith("'") && value.endsWith("'")) || (value.startsWith('"') && value.endsWith('"'))) {
                 value = value.slice(1, -1);
             } else {
                 // Try to parse as number
@@ -126,10 +135,21 @@ function filterResults(data, whereClause) {
             }
             
             const rowValue = row[col];
+
+            // If the column does not exist on the row, ignore this condition
+            if (rowValue === undefined) return true;
             
             switch (operator) {
                 case '=':
+                    if (typeof rowValue === 'string' && typeof value === 'string') {
+                        return rowValue.toLowerCase() === value.toLowerCase();
+                    }
                     return rowValue == value;
+                case '!=':
+                    if (typeof rowValue === 'string' && typeof value === 'string') {
+                        return rowValue.toLowerCase() !== value.toLowerCase();
+                    }
+                    return rowValue != value;
                 case '>':
                     return rowValue > value;
                 case '<':
@@ -138,8 +158,6 @@ function filterResults(data, whereClause) {
                     return rowValue >= value;
                 case '<=':
                     return rowValue <= value;
-                case '!=':
-                    return rowValue != value;
                 default:
                     return true;
             }
@@ -153,7 +171,7 @@ function sortResults(data, column, direction) {
         const aVal = a[column];
         const bVal = b[column];
         
-        if (typeof aVal === 'string') {
+        if (typeof aVal === 'string' && typeof bVal === 'string') {
             return direction === 'asc' 
                 ? aVal.localeCompare(bVal)
                 : bVal.localeCompare(aVal);
@@ -283,11 +301,11 @@ if (document.getElementById('contactForm')) {
     });
 }
 
-// Active Navigation Link 
-document.addEventListener('DOMContentLoaded', function() {
+// Load shared header and footer components and set active navigation
+function setActiveNav() {
     const currentPage = window.location.pathname.split('/').pop() || 'index.html';
     const navLinks = document.querySelectorAll('.nav-link');
-    
+
     navLinks.forEach(link => {
         link.classList.remove('active');
         const href = link.getAttribute('href');
@@ -295,4 +313,39 @@ document.addEventListener('DOMContentLoaded', function() {
             link.classList.add('active');
         }
     });
+}
+
+function loadComponent(placeholderId, filePath, callback) {
+    const placeholder = document.getElementById(placeholderId);
+    if (!placeholder) {
+        if (typeof callback === 'function') {
+            callback();
+        }
+        return;
+    }
+
+    fetch(filePath)
+        .then(response => response.text())
+        .then(html => {
+            placeholder.innerHTML = html;
+
+            if (placeholderId === 'header-placeholder') {
+                setActiveNav();
+            }
+
+            if (typeof callback === 'function') {
+                callback();
+            }
+        })
+        .catch(error => {
+            console.error('Error loading component:', filePath, error);
+            if (typeof callback === 'function') {
+                callback();
+            }
+        });
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    loadComponent('header-placeholder', 'components/header.html');
+    loadComponent('footer-placeholder', 'components/footer.html');
 });

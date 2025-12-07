@@ -8,27 +8,9 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <header class="header">
-        <nav class="nav-container">
-            <div class="nav-content">
-                <a href="index.html" class="logo">
-                    <svg class="logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <ellipse cx="12" cy="5" rx="9" ry="3"></ellipse>
-                        <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path>
-                        <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path>
-                    </svg>
-                    <span class="logo-text">SQL Starter Hub</span>
-                </a>
-                <div class="nav-links">
-                    <a href="index.html" class="nav-link">Home</a>
-                    <a href="what-is-sql.html" class="nav-link active">What Is SQL</a>
-                    <a href="basic-commands.html" class="nav-link">Basic Commands</a>
-                    <a href="practice.html" class="nav-link">Practice Tool</a>
-                    <a href="contact.html" class="nav-link">Contact</a>
-                </div>
-            </div>
-        </nav>
-    </header>
+
+    <!-- Shared header loads here -->
+    <div id="header-placeholder"></div>
 
     <main class="content-page">
         <div class="container">
@@ -97,7 +79,7 @@ WHERE inactive_days > 365;</code></pre>
                     Imagine you run an online bookstore. You have a database table called <code class="inline-code">books</code> with information about each book. Here's how you might use SQL:
                 </p>
 
-                             <div class="code-block">
+                <div class="code-block">
                     <pre><code>SELECT title, author, price
 FROM books
 WHERE category = 'Science Fiction'
@@ -131,43 +113,13 @@ ORDER BY price ASC;</code></pre>
                     <p class="content-text">Ready to learn the essential SQL commands?</p>
                     <a href="basic-commands.html" class="btn btn-primary">Learn Basic Commands</a>
                 </div>
-   
+
             </section>
         </div>
     </main>
 
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-grid">
-                <div class="footer-section">
-                    <h3 class="footer-title">SQL Starter Hub</h3>
-                    <p class="footer-text">
-                        Learn SQL fundamentals with simple lessons, examples, and practice tools.
-                    </p>
-                </div>
-
-                <div class="footer-section">
-                    <h3 class="footer-title">Quick Links</h3>
-                    <nav class="footer-links">
-                        <a href="index.html">Home</a>
-                        <a href="what-is-sql.html">What Is SQL</a>
-                        <a href="basic-commands.html">Basic Commands</a>
-                        <a href="practice.html">Practice Tool</a>
-                        <a href="contact.html">Contact</a>
-                    </nav>
-                </div>
-
-                <div class="footer-section">
-                    <h3 class="footer-title">Contact</h3>
-                    <div class="footer-text">
-                        <p><strong>Client:</strong> Jaden Lee</p>
-                        <p><strong>Organization:</strong> Brilliant Tortoise</p>
-                        <p><a href="contact.html" class="footer-link">Send us a message</a></p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </footer>
+    <!-- Shared footer loads here -->
+    <div id="footer-placeholder"></div>
 
     <script src="script.js"></script>
 </body>
