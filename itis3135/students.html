@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="ITIS 3135 class introductions pulled from shared JSON." />
+  <title>ITIS3135 | Class Introductions</title>
+  <link rel="stylesheet" href="styles/default.css" />
+</head>
+<body>
+  <script src="scripts/HTMLInclude.js" defer></script>
+  <script src="scripts/students.js" defer></script>
+
+  <div data-include="components/header.html"></div>
+
+  <main class="container">
+    <h2 class="page-title">Class Introductions</h2>
+
+    <section class="card">
+      <p class="lead">
+        This page pulls all ITIS 3135 introductions from the shared JSON file and
+        lets you browse them like a slideshow.
+      </p>
+
+      <p id="students-status" class="muted"></p>
+
+      <!-- Search + count -->
+      <div
+        class="controls"
+        style="margin-top: 1rem; display: flex; flex-wrap: wrap; gap: 1rem; align-items: center;"
+      >
+        <label>
+          Search by name:
+          <input
+            id="students-name-search"
+            type="text"
+            placeholder="Type first or last name..."
+          />
+        </label>
+
+        <span id="students-count" class="muted">
+          0 introductions found
+        </span>
+      </div>
+
+      <!-- Checkboxes -->
+      <fieldset
+        style="margin-top: 1rem; display: flex; flex-wrap: wrap; gap: 1rem; border: 1px solid #ccc; padding: 0.75rem; border-radius: 6px;"
+      >
+        <legend>Show / hide parts of each introduction</legend>
+
+        <label><input type="checkbox" id="opt-name" checked /> Name</label>
+        <label><input type="checkbox" id="opt-mascot" checked /> Mascot</label>
+        <label><input type="checkbox" id="opt-image" checked /> Image</label>
+        <label><input type="checkbox" id="opt-statement" checked /> Personal Statement</label>
+        <label><input type="checkbox" id="opt-backgrounds" checked /> Backgrounds</label>
+        <label><input type="checkbox" id="opt-classes" checked /> Classes</label>
+        <label><input type="checkbox" id="opt-extra" checked /> Extra Info (Computer, Fun Fact, etc.)</label>
+        <label><input type="checkbox" id="opt-quote" checked /> Quote</label>
+        <label><input type="checkbox" id="opt-links" checked /> Links (CLT Web, GitHub, etc.)</label>
+      </fieldset>
+
+      <!-- Slideshow controls -->
+      <div
+        style="margin-top: 1rem; display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: center;"
+      >
+        <button type="button" id="students-prev">⬅ Previous</button>
+        <button type="button" id="students-next">Next ➡</button>
+        <span id="students-position" class="muted" style="margin-left: 0.5rem;">
+          Slide 0 of 0
+        </span>
+      </div>
+    </section>
+
+    <!-- Slideshow: one intro at a time -->
+    <section id="students-slideshow" style="margin-top: 1rem;"></section>
+  </main>
+
+  <div data-include="components/footer.html"></div>
+</body>
+</html>
