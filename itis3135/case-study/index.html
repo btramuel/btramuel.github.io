@@ -1,0 +1,1157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="UX case study: redesigning the UC Berkeley EECS website. By Brian Tramuel, Group 15 Capstone." />
+  <title>EECS Redesign Case Study | Brian Tramuel</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Source+Serif+4:wght@400;600;700&family=Source+Sans+3:wght@400;500;600;700&display=swap"
+    rel="stylesheet" />
+
+  <style>
+    /* ================================================================
+       Design tokens — pulled from the EECS redesign style system
+       so this case study reads as part of the same project family.
+       ================================================================ */
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy:        #1a2a4a;
+      --navy-dark:   #0f1e35;
+      --gold:        #FDB515;
+      --gold-deep:   #e0a010;
+      --pure-white:  #ffffff;
+
+      --bg:          #ffffff;
+      --bg-alt:      #f5f5f0;
+      --text:        #1a1a1a;
+      --muted:       #555555;
+      --border:      #dddddd;
+      --soft-border: #ececec;
+
+      --hero-bg: linear-gradient(135deg, #0a1628, #0f2044, #1a3060);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Source Sans 3', Arial, sans-serif;
+      color: var(--text);
+      background: var(--bg);
+      line-height: 1.6;
+      font-size: 1.05rem;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    /* ================================================================
+       Main nav — visually consistent with the EECS site nav
+       ================================================================ */
+    .main-nav {
+      background: var(--navy);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    .nav-inner {
+      max-width: 110rem;
+      margin: 0 auto;
+      padding: 0 2rem;
+      display: flex;
+      align-items: center;
+      height: 64px;
+      gap: 1.5rem;
+    }
+    .nav-logo {
+      border: 2px solid var(--gold);
+      color: var(--pure-white);
+      font-weight: 700;
+      font-size: 0.95rem;
+      padding: 0.32rem 0.8rem;
+      letter-spacing: 0.05em;
+    }
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 0.5rem;
+      flex: 1;
+    }
+    .nav-links a {
+      color: rgba(255,255,255,0.9);
+      font-weight: 500;
+      padding: 0.5rem 1rem;
+    }
+    .nav-links a:hover,
+    .nav-links a.active { color: var(--gold); }
+
+    .nav-back {
+      color: rgba(255,255,255,0.75);
+      font-size: 0.92rem;
+      border: 1px solid rgba(255,255,255,0.25);
+      padding: 0.35rem 0.85rem;
+      border-radius: 2px;
+      transition: all 0.2s;
+    }
+    .nav-back:hover {
+      border-color: var(--gold);
+      color: var(--gold);
+    }
+
+    /* ================================================================
+       Hero
+       ================================================================ */
+    .hero {
+      background: var(--hero-bg);
+      padding: 5rem 2rem;
+      color: var(--pure-white);
+    }
+    .hero-inner {
+      max-width: 80rem;
+      margin: 0 auto;
+    }
+    .hero-eyebrow {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.9rem;
+    }
+    .hero-eyebrow span { color: rgba(255,255,255,0.55); }
+    .hero h1 {
+      font-family: 'Source Serif 4', Georgia, serif;
+      font-size: 2.85rem;
+      font-weight: 600;
+      line-height: 1.15;
+      margin-bottom: 1.25rem;
+      max-width: 52rem;
+    }
+    .hero-tagline {
+      font-size: 1.1rem;
+      color: rgba(255,255,255,0.78);
+      max-width: 50rem;
+      margin-bottom: 2.5rem;
+    }
+    .hero-meta {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 1.25rem;
+      max-width: 60rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid rgba(255,255,255,0.15);
+    }
+    .meta-block dt {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.4rem;
+    }
+    .meta-block dd {
+      font-size: 0.95rem;
+      color: rgba(255,255,255,0.85);
+      line-height: 1.45;
+    }
+
+    /* ================================================================
+       Sections — alternating white / cream backgrounds, like EECS site
+       ================================================================ */
+    .section { padding: 5rem 2rem; }
+    .section-light { background: var(--bg); }
+    .section-alt   { background: var(--bg-alt); }
+    .section-inner {
+      max-width: 70rem;
+      margin: 0 auto;
+    }
+
+    .section-header {
+      margin-bottom: 2.5rem;
+      padding-bottom: 0.85rem;
+      border-bottom: 2px solid var(--gold);
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .section-header h2 {
+      font-family: 'Source Serif 4', Georgia, serif;
+      font-size: 2rem;
+      font-weight: 600;
+      color: var(--text);
+    }
+    .section-tag {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gold-deep);
+      padding: 0.3rem 0.65rem;
+      border: 1px solid var(--gold-deep);
+      border-radius: 2px;
+    }
+
+    /* Two-column layout for problem framing */
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: start;
+    }
+
+    /* Body prose */
+    .prose p {
+      margin-bottom: 1.1rem;
+      color: var(--text);
+      max-width: 42rem;
+    }
+    .prose p.lead {
+      font-size: 1.18rem;
+      color: var(--text);
+      line-height: 1.55;
+    }
+    .prose h3 {
+      font-family: 'Source Serif 4', Georgia, serif;
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin: 2rem 0 0.85rem;
+      color: var(--text);
+    }
+    .prose h3:first-child { margin-top: 0; }
+    .prose strong { color: var(--text); font-weight: 600; }
+
+    /* ================================================================
+       Problem callout cards — each Nielsen heuristic violated
+       ================================================================ */
+    .heuristic-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1rem;
+      margin-top: 2.5rem;
+    }
+    .heuristic-card {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-left: 4px solid var(--gold);
+      padding: 1.4rem 1.5rem;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .heuristic-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.06);
+    }
+    .heuristic-num {
+      font-family: 'Source Serif 4', Georgia, serif;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--gold-deep);
+      margin-bottom: 0.4rem;
+    }
+    .heuristic-card h4 {
+      font-family: 'Source Serif 4', Georgia, serif;
+      font-size: 1.15rem;
+      font-weight: 600;
+      margin-bottom: 0.55rem;
+      color: var(--text);
+    }
+    .heuristic-card p {
+      font-size: 0.95rem;
+      color: var(--muted);
+      line-height: 1.55;
+    }
+
+    /* ================================================================
+       Figures and image captions
+       ================================================================ */
+    figure {
+      margin: 2.5rem 0;
+    }
+    figure img {
+      display: block;
+      width: 100%;
+      height: auto;
+      border: 1px solid var(--border);
+      background: #fafafa;
+    }
+    figcaption {
+      margin-top: 0.85rem;
+      font-size: 0.9rem;
+      color: var(--muted);
+      line-height: 1.5;
+      padding-left: 0.9rem;
+      border-left: 3px solid var(--gold);
+    }
+    figcaption strong {
+      color: var(--text);
+      font-weight: 600;
+      display: block;
+      margin-bottom: 0.2rem;
+    }
+
+    /* Image grids - side by side */
+    .img-grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      margin: 2.5rem 0;
+    }
+    .img-grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.25rem;
+      margin: 2.5rem 0;
+    }
+    .img-grid-2 figure,
+    .img-grid-3 figure { margin: 0; }
+
+    /* mobile screenshot needs to be constrained — phone screens stretched
+       across half a desktop column look comically zoomed in */
+    figure.mobile-frame {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    figure.mobile-frame img {
+      max-width: 320px;
+      width: 100%;
+    }
+    figure.mobile-frame figcaption {
+      max-width: 100%;
+    }
+
+    /* Subhead within sections (used in Final Product) */
+    .subhead {
+      font-family: 'Source Serif 4', Georgia, serif;
+      font-size: 1.4rem;
+      font-weight: 600;
+      color: var(--navy);
+      margin: 3.5rem 0 0.6rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--soft-border);
+    }
+    .subhead-intro {
+      color: var(--muted);
+      max-width: 50rem;
+      margin-bottom: 1.5rem;
+      font-size: 1rem;
+    }
+
+    /* 3-col step sequence (RSVP form: error → filled → success) */
+    .step-sequence {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 1.5rem;
+      margin: 1.5rem 0 0;
+    }
+    .step-sequence figure { margin: 0; }
+    .step-sequence figcaption strong { font-size: 0.95rem; }
+    .step-sequence .step-num {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      color: var(--gold-deep);
+      margin-bottom: 0.4rem;
+    }
+
+    /* Before / After comparison */
+    .compare {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      margin: 2.5rem 0;
+      align-items: start;
+    }
+    .compare-col h4 {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      margin-bottom: 0.85rem;
+      padding-bottom: 0.4rem;
+      border-bottom: 2px solid var(--border);
+    }
+    .compare-col.before h4 { color: #b53333; border-bottom-color: #b53333; }
+    .compare-col.after  h4 { color: #1f8a4a; border-bottom-color: #1f8a4a; }
+    .compare-col img {
+      width: 100%;
+      border: 1px solid var(--border);
+      display: block;
+    }
+    .compare-col p {
+      margin-top: 0.75rem;
+      font-size: 0.92rem;
+      color: var(--muted);
+      line-height: 1.55;
+    }
+
+    /* ================================================================
+       Process steps - numbered timeline
+       ================================================================ */
+    .process-timeline {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      margin-top: 2rem;
+    }
+    .process-step {
+      display: grid;
+      grid-template-columns: 80px 1fr;
+      gap: 1.5rem;
+      padding: 1.75rem 0;
+      border-bottom: 1px solid var(--border);
+      align-items: start;
+    }
+    .process-step:first-child { border-top: 1px solid var(--border); }
+    .process-num {
+      font-family: 'Source Serif 4', Georgia, serif;
+      font-size: 2.4rem;
+      font-weight: 600;
+      color: var(--gold);
+      line-height: 1;
+    }
+    .process-step h3 {
+      font-family: 'Source Serif 4', Georgia, serif;
+      font-size: 1.4rem;
+      font-weight: 600;
+      margin-bottom: 0.6rem;
+      color: var(--text);
+    }
+    .process-step p {
+      color: var(--muted);
+      font-size: 1rem;
+      line-height: 1.6;
+      max-width: 42rem;
+    }
+    .process-step p + p { margin-top: 0.8rem; }
+
+    /* ================================================================
+       Testing findings table-like blocks
+       ================================================================ */
+    .finding {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      padding: 1.5rem 1.75rem;
+      margin-bottom: 1.25rem;
+    }
+    .finding-tag {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gold-deep);
+      margin-bottom: 0.5rem;
+    }
+    .finding h4 {
+      font-family: 'Source Serif 4', Georgia, serif;
+      font-size: 1.2rem;
+      font-weight: 600;
+      margin-bottom: 0.85rem;
+      color: var(--text);
+    }
+    .finding-body {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 0.75rem 1.25rem;
+      font-size: 0.95rem;
+    }
+    .finding-body dt {
+      font-weight: 700;
+      color: var(--navy);
+      font-size: 0.78rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding-top: 0.15rem;
+    }
+    .finding-body dd {
+      color: var(--muted);
+      line-height: 1.55;
+    }
+    .finding-body dd strong { color: var(--text); }
+
+    /* Quote */
+    blockquote {
+      border-left: 3px solid var(--gold);
+      padding: 0.5rem 0 0.5rem 1.25rem;
+      margin: 1.5rem 0;
+      font-family: 'Source Serif 4', Georgia, serif;
+      font-style: italic;
+      font-size: 1.15rem;
+      color: var(--text);
+      line-height: 1.5;
+    }
+    blockquote cite {
+      display: block;
+      margin-top: 0.6rem;
+      font-style: normal;
+      font-family: 'Source Sans 3', Arial, sans-serif;
+      font-size: 0.85rem;
+      color: var(--muted);
+      letter-spacing: 0.05em;
+    }
+    blockquote cite::before { content: "— "; }
+
+    /* ================================================================
+       CTA / Final - link to live site
+       ================================================================ */
+    .final-cta {
+      background: var(--navy);
+      color: var(--pure-white);
+      padding: 4.5rem 2rem;
+      text-align: center;
+    }
+    .final-cta h2 {
+      font-family: 'Source Serif 4', Georgia, serif;
+      font-size: 2.2rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      color: var(--pure-white);
+    }
+    .final-cta p {
+      font-size: 1.1rem;
+      color: rgba(255,255,255,0.78);
+      max-width: 38rem;
+      margin: 0 auto 2rem;
+    }
+    .cta-buttons {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .btn-primary, .btn-outline {
+      font-family: inherit;
+      font-size: 1rem;
+      font-weight: 600;
+      padding: 0.85rem 1.6rem;
+      border-radius: 2px;
+      transition: all 0.2s;
+      cursor: pointer;
+      display: inline-block;
+    }
+    .btn-primary {
+      background: var(--gold);
+      color: var(--navy-dark);
+      border: 2px solid var(--gold);
+    }
+    .btn-primary:hover { background: var(--gold-deep); border-color: var(--gold-deep); }
+    .btn-outline {
+      background: transparent;
+      color: var(--pure-white);
+      border: 2px solid rgba(255,255,255,0.55);
+    }
+    .btn-outline:hover { border-color: var(--gold); color: var(--gold); }
+
+    /* ================================================================
+       Reflection / Learnings
+       ================================================================ */
+    .learnings {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.25rem;
+      margin-top: 2rem;
+    }
+    .learning {
+      padding: 1.5rem;
+      border-top: 3px solid var(--gold);
+      background: var(--bg);
+    }
+    .learning h4 {
+      font-family: 'Source Serif 4', Georgia, serif;
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 0.6rem;
+      color: var(--text);
+    }
+    .learning p {
+      font-size: 0.95rem;
+      color: var(--muted);
+      line-height: 1.55;
+    }
+
+    /* ================================================================
+       Footer
+       ================================================================ */
+    footer.site-footer {
+      background: var(--navy);
+      color: var(--pure-white);
+      padding: 2.5rem 2rem 1.5rem;
+    }
+    .footer-inner {
+      max-width: 70rem;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .footer-name { font-weight: 600; letter-spacing: 0.02em; }
+    .footer-links {
+      display: flex;
+      gap: 1.5rem;
+      font-size: 0.9rem;
+    }
+    .footer-links a { color: rgba(255,255,255,0.75); }
+    .footer-links a:hover { color: var(--gold); }
+    .footer-bottom {
+      max-width: 70rem;
+      margin: 1.5rem auto 0;
+      padding-top: 1.25rem;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.45);
+    }
+
+    /* ================================================================
+       Responsive
+       ================================================================ */
+    @media (max-width: 900px) {
+      .two-col { grid-template-columns: 1fr; gap: 1.5rem; }
+      .compare { grid-template-columns: 1fr; }
+      .img-grid-2 { grid-template-columns: 1fr; }
+      .img-grid-3 { grid-template-columns: 1fr; }
+      .step-sequence { grid-template-columns: 1fr; }
+      .hero h1 { font-size: 2.1rem; }
+      .section { padding: 3.5rem 1.25rem; }
+      .hero { padding: 3.5rem 1.25rem; }
+      .nav-links { display: none; }
+      .process-step { grid-template-columns: 1fr; gap: 0.5rem; }
+      .process-num { font-size: 1.8rem; }
+      .finding-body { grid-template-columns: 1fr; gap: 0.3rem 0; }
+      .finding-body dt { padding-top: 0.6rem; }
+      .finding-body dt:first-child { padding-top: 0; }
+      .section-header { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- main nav -->
+  <nav class="main-nav" aria-label="Main navigation">
+    <div class="nav-inner">
+      <a href="../index.html" class="nav-logo">BT</a>
+      <ul class="nav-links">
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="#" class="active">EECS Case Study</a></li>
+      </ul>
+      <a href="../index.html" class="nav-back">All projects →</a>
+    </div>
+  </nav>
+
+  <!-- hero -->
+  <header class="hero">
+    <div class="hero-inner">
+      <p class="hero-eyebrow">Case Study <span>· Interaction Design Capstone, Spring 2026</span></p>
+      <h1>Redesigning the UC Berkeley EECS Website</h1>
+      <p class="hero-tagline">A semester long group project where we picked apart UC Berkeley's EECS website, and figured out why basic things felt so hard to do, and rebuilt it. Here's what was broken, what we tried, and what user testing taught us.</p>
+
+      <dl class="hero-meta">
+        <div class="meta-block">
+          <dt>Course</dt>
+          <dd>ITIS 4390 Capstone</dd>
+        </div>
+        <div class="meta-block">
+          <dt>Role</dt>
+          <dd>UX research, frontend dev, peer testing</dd>
+        </div>
+        <div class="meta-block">
+          <dt>Team</dt>
+          <dd>Group 15 — 4 members</dd>
+        </div>
+        <div class="meta-block">
+          <dt>Duration</dt>
+          <dd>~14 weeks</dd>
+        </div>
+        <div class="meta-block">
+          <dt>Tools</dt>
+          <dd>Figma, HTML/CSS/JS</dd>
+        </div>
+      </dl>
+    </div>
+  </header>
+
+  <!-- ============================================================
+       SECTION 1 - THE PROBLEM
+       ============================================================ -->
+  <section class="section section-light">
+    <div class="section-inner">
+      <div class="section-header">
+        <h2>The Problem</h2>
+        <span class="section-tag">01 · Define</span>
+      </div>
+
+      <div class="two-col">
+        <div class="prose">
+          <p class="lead">UC Berkeley's EECS site is the first place a prospective student, a current undergrad, or a visiting faculty member lands when they need something. And it makes a simple thing hard.</p>
+          <p>We started by going through it with Nielsen's 10 usability heuristics and The site failed five of them. And these weren't cosmetic gripes. They were the kind of failures that actively get in the way: you can't tell what's important on a page, events are buried, and moving between sections feels like guesswork.</p>
+          <p>Below are the five we flagged, and why each one matters for the people using this site.</p>
+        </div>
+        <figure>
+          <img src="images/original-research-page.jpg" alt="Original Berkeley EECS Research page showing buried sub-navigation and an open dropdown menu" />
+          <figcaption>
+            <strong>Original site, Research page</strong>
+            Click a nav item and a dropdown opens with no visible close button. Hovering away doesn't dismiss it. Acronyms like BEARS and ASE assume you already know what they mean.
+          </figcaption>
+        </figure>
+      </div>
+
+      <div class="heuristic-grid">
+        <div class="heuristic-card">
+          <div class="heuristic-num">Nielsen #1</div>
+          <h4>Visibility of System Status</h4>
+          <p>Click any nav link and the page goes white for a second before the new one shows up. No hover, no loading spinner, nothing. You can't tell if your click actually did anything.</p>
+        </div>
+        <div class="heuristic-card">
+          <div class="heuristic-num">Nielsen #2</div>
+          <h4>Match with the Real World</h4>
+          <p>The nav is full of acronyms, BEARS, ASE, EECS, internal stuff. If you don't already know what they mean, the menu is basically gibberish.</p>
+        </div>
+        <div class="heuristic-card">
+          <div class="heuristic-num">Nielsen #3</div>
+          <h4>User Control &amp; Freedom</h4>
+          <p>Once a dropdown opens, there's no obvious way to close it. Hovering away doesn't work. You have to click on dead space somewhere outside the menu, and most people don't think to try that.</p>
+        </div>
+        <div class="heuristic-card">
+          <div class="heuristic-num">Nielsen #4</div>
+          <h4>Consistency &amp; Standards</h4>
+          <p>Some menu items open new pages, others show dropdowns. Some dropdowns close themselves, others don't. Every menu interaction makes you re learn the rules.</p>
+        </div>
+        <div class="heuristic-card">
+          <div class="heuristic-num">Nielsen #8</div>
+          <h4>Aesthetic &amp; Minimalist Design</h4>
+          <p>The footer has redundant links, "For Students" and "For Undergrads," for example. The dropdowns and the "What's Happening" section are crammed with no breathing room.</p>
+        </div>
+      </div>
+
+      <figure>
+        <img src="images/original-home-loading-issue.jpg" alt="Original EECS home page with annotation showing the no-feedback button click problem" />
+        <figcaption>
+          <strong>Annotation from heuristic eval</strong>
+          The "Learn More About EECS" CTA and every nav button drops you onto a blank white screen for a second with no signal that anything's happening. This was the issue our team flagged the most.
+        </figcaption>
+      </figure>
+
+      <figure>
+        <img src="images/original-footer-acronyms.png" alt="Original EECS footer with red-highlighted acronyms like BEARS, My EECS Info, and ASEs" />
+        <figcaption>
+          <strong>Footer acronym audit</strong>
+          Red boxes mark acronyms with no expansion. The yellow box is the one place EECS does it right, "New Silicon Initiative (NSI)" which proves the pattern is doable site wide. They just don't do it.
+        </figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SECTION 2 - PROCESS
+       ============================================================ -->
+  <section class="section section-alt">
+    <div class="section-inner">
+      <div class="section-header">
+        <h2>Process</h2>
+        <span class="section-tag">02 · Design</span>
+      </div>
+
+      <div class="prose">
+        <p class="lead">We worked from rough sketches to wireframes to a fully interactive Figma prototype, and tested at every stage so we weren't just designing in our heads.</p>
+      </div>
+
+      <div class="process-timeline">
+
+        <div class="process-step">
+          <div class="process-num">01</div>
+          <div>
+            <h3>Define a design concept</h3>
+            <p>Before we touched a sketchpad, we wrote a quick concept statement so the whole team was on the same page. the Goal, fix the heuristic problems, lean hard on <strong>User Control &amp; Freedom</strong> and <strong>Aesthetic &amp; Minimalist Design</strong>, and make it feel calm and easy to scan on phone, tablet, and desktop.</p>
+            <p>That gave us five things to chase: more breathing room in dense sections, fewer acronyms, dropdowns that close cleanly, a visible loading state when you click a link, and a footer with fewer redundant links.</p>
+          </div>
+        </div>
+
+        <div class="process-step">
+          <div class="process-num">02</div>
+          <div>
+            <h3>Low fidelity sketches</h3>
+            <p>Pencil on paper for every key screen, desktop home, mobile home, dropdown menu, footer, and the loading screen we wanted to add. Sketching first kept us from liking the final decisions before we even knew if the structure made sense.</p>
+            <figure>
+              <img src="images/sketch-home.jpg" alt="Pencil sketch of the desktop home page showing nav bar, banner with title and CTA, and Upcoming Events list" />
+              <figcaption>
+                <strong>Desktop home initial sketch</strong>
+                Hero with one CTA, then a clean Upcoming Events list with a thumbnail, location/date, and a "Open event" button so people know what to do.
+              </figcaption>
+            </figure>
+          </div>
+        </div>
+
+        <div class="process-step">
+          <div class="process-num">03</div>
+          <div>
+            <h3>Mid fidelity wireframes (Figma)</h3>
+            <p>From sketches we moved into Figma wireframes for desktop and mobile. This is where we locked in on the hero size, nav placement, event card grid, news layout, without getting stuck on colors or final imagery yet.</p>
+            <p>This is also where dark mode showed up. We wanted to design it explicitly instead of adding it on at the end, since the toggle ended up being one of the most tested features.</p>
+            <div class="img-grid-2">
+              <figure>
+                <img src="images/wireframe-home-light.jpg" alt="Light mode desktop wireframe of the EECS redesign home page" />
+                <figcaption><strong>Light mode — desktop home</strong> Hero, Upcoming Events with RSVP buttons, Latest News as horizontal cards.</figcaption>
+              </figure>
+              <figure>
+                <img src="images/wireframe-home-darkmode.jpg" alt="Dark mode desktop wireframe of the EECS redesign home page" />
+                <figcaption><strong>Dark mode — desktop home</strong> Same layout, different theme. Toggle sits in the top right utility bar.</figcaption>
+              </figure>
+            </div>
+          </div>
+        </div>
+
+        <div class="process-step">
+          <div class="process-num">04</div>
+          <div>
+            <h3>Add the loading-state pattern</h3>
+            <p>The single biggest issue from the heuristic evaluation was that you'd click a nav link and just get a blank screen for a beat. So we designed an actual loading state, three animated dots and a "Taking you to [page name]…" message — so you always know your click registered and where you're headed.</p>
+            <figure>
+              <img src="images/wireframe-loading-screen.png" alt="Wireframe of the loading screen with three dots and a 'Taking you to [page name]' message" />
+              <figcaption>
+                <strong>Loading screen pattern</strong>
+                Three dot animation plus the destination page name. Replaces the original site's blank white flash with something that actually tells you what's happening.
+              </figcaption>
+            </figure>
+          </div>
+        </div>
+
+        <div class="process-step">
+          <div class="process-num">05</div>
+          <div>
+            <h3>Mobile from the start, not as an afterthought</h3>
+            <p>Mobile got its own wireframes from day one. Single column layout, hamburger nav, and big touch targets for events and news cards. A bunch of testing decisions later, especially where the dark mode toggle should live, only made sense because we'd treated mobile as its own thing instead of squishing the desktop version down.</p>
+            <div class="img-grid-2">
+              <figure class="mobile-frame">
+                <img src="images/wireframe-mobile-search.jpg" alt="Mobile wireframe showing search results with stacked result cards" />
+                <figcaption><strong>Mobile — search results</strong> Stacked cards, filter chips at the top, full width Go button.</figcaption>
+              </figure>
+              <figure>
+                <img src="images/wireframe-search-desktop.jpg" alt="Desktop wireframe of search results with sidebar filters" />
+                <figcaption><strong>Desktop — search results</strong> Result list on the left, related searches and category filters on the right.</figcaption>
+              </figure>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SECTION 3 - TESTING & ITERATION
+       ============================================================ -->
+  <section class="section section-light">
+    <div class="section-inner">
+      <div class="section-header">
+        <h2>Testing &amp; Iteration</h2>
+        <span class="section-tag">03 · Validate</span>
+      </div>
+
+      <div class="prose">
+        <p class="lead">We ran two rounds of usability testing. Each one caught things we honestly hadn't seen coming, and forced changes we wouldn't have made on our own.</p>
+      </div>
+
+      <h3 style="font-family: 'Source Serif 4', Georgia, serif; font-size: 1.4rem; font-weight: 600; margin: 2.5rem 0 1.25rem; color: var(--navy);">Round 1: Wireframe testing (4 peers, think-aloud)</h3>
+
+      <p style="margin-bottom: 1.5rem; color: var(--muted); max-width: 50rem;">Three tasks: <strong style="color:var(--text)">find a news article</strong>, <strong style="color:var(--text)">RSVP for an event</strong>, <strong style="color:var(--text)">switch to dark mode</strong>. Testers worked through the wireframes on their own with no help from us.</p>
+
+      <div class="finding">
+        <span class="finding-tag">Finding 1 · Mobile</span>
+        <h4>Dark mode toggle was in the wrong place on mobile</h4>
+        <dl class="finding-body">
+          <dt>What happened</dt>
+          <dd>A few testers just couldn't find the toggle on mobile. One literally said: <em>"I'd want it placed as an option in the hamburger menu as a setting."</em></dd>
+          <dt>Why it happened</dt>
+          <dd>On phones, people look for site settings inside the hamburger menu, not floating in the header bar. Our desktop pattern didn't carry over.</dd>
+          <dt>What we changed</dt>
+          <dd><strong>Moved the toggle inside the hamburger menu</strong> on mobile so it lives where people actually look for stuff like that.</dd>
+        </dl>
+      </div>
+
+      <div class="finding">
+        <span class="finding-tag">Finding 2 · Mobile</span>
+        <h4>People kept missing the RSVP button on mobile entirely</h4>
+        <dl class="finding-body">
+          <dt>What happened</dt>
+          <dd>Testers tapped the event thumbnail or the event card itself, never the actual RSVP button. The button was visible, just not where people instinctively went.</dd>
+          <dt>Why it happened</dt>
+          <dd>On a phone, the whole card looks tappable. Putting a separate button inside a tappable looking card just creates confusion.</dd>
+          <dt>What we changed</dt>
+          <dd><strong>Removed the standalone RSVP button on mobile</strong> and made the whole event card tappable. The button stays on desktop where mouse hover makes it work.</dd>
+        </dl>
+      </div>
+
+      <div class="finding">
+        <span class="finding-tag">Finding 3 · Desktop</span>
+        <h4>"RSVP / Details" tripped people up</h4>
+        <dl class="finding-body">
+          <dt>What happened</dt>
+          <dd>One tester spent a while looking for a separate booking button, they read "Details" as a different action than RSVP.</dd>
+          <dt>Why it happened</dt>
+          <dd>The slash made it look like two things. People scan, and "RSVP / Details" got read as "RSVP or Details, pick one."</dd>
+          <dt>What we changed</dt>
+          <dd><strong>Just made it "RSVP"</strong> on desktop. Less ambiguous, cleaner button.</dd>
+        </dl>
+      </div>
+
+      <h3 style="font-family: 'Source Serif 4', Georgia, serif; font-size: 1.4rem; font-weight: 600; margin: 3rem 0 1.25rem; color: var(--navy);">Round 2: High-fidelity prototype testing (3 participants)</h3>
+
+      <p style="margin-bottom: 1.5rem; color: var(--muted); max-width: 50rem;">After Round 1's revisions, we tested the interactive Figma prototype with new people on the same task set.</p>
+
+      <blockquote>
+        I'd naturally go to the Academics tab for an event RSVP, that's where I assume school stuff lives.
+        <cite>P1, on Task 2</cite>
+      </blockquote>
+
+      <div class="finding">
+        <span class="finding-tag">Finding 4 · Information architecture</span>
+        <h4>One path to RSVP wasn't enough</h4>
+        <dl class="finding-body">
+          <dt>What happened</dt>
+          <dd>P1 made <strong>6 misclicks</strong> hunting for RSVP under Academics before finding it on the home page. P2 and P3 had no problem but P1's behavior is exactly the kind of thing the site should support, not punish.</dd>
+          <dt>What we changed</dt>
+          <dd>Added an <strong>Events / RSVP entry under Academics</strong>, on top of the home page one. More than one path to the same task = less friction for people who think differently.</dd>
+        </dl>
+      </div>
+
+      <div class="finding">
+        <span class="finding-tag">Finding 5 · Form</span>
+        <h4>The RSVP form was missing a submit button</h4>
+        <dl class="finding-body">
+          <dt>What happened</dt>
+          <dd>P3 filled out the entire form, then had nowhere to go. Genuine prototype gap on our end, not a design choice.</dd>
+          <dt>What we changed</dt>
+          <dd>Added a labeled <strong>Submit RSVP</strong> button. Also split full name into first and last fields based on the same tester's suggestion.</dd>
+        </dl>
+      </div>
+
+      <div class="finding">
+        <span class="finding-tag">Finding 6 · Visual hierarchy</span>
+        <h4>The search page felt empty</h4>
+        <dl class="finding-body">
+          <dt>What happened</dt>
+          <dd>P1 said the page felt visually sparse and that nothing pulled their eye toward the search bar.</dd>
+          <dt>What we changed</dt>
+          <dd>Wrapped the search bar in a <strong>styled hero section</strong> so it's clearly the main thing on the page. Lower-priority content drops below the fold.</dd>
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SECTION 4 - FINAL PRODUCT
+       ============================================================ -->
+  <section class="section section-alt">
+    <div class="section-inner">
+      <div class="section-header">
+        <h2>Final Product</h2>
+        <span class="section-tag">04 · Build</span>
+      </div>
+
+      <div class="prose">
+        <p class="lead">After all that, we built the redesign as a working static site in HTML, CSS, and JavaScript. The screenshots below are from the real thing.</p>
+      </div>
+
+      <h3 class="subhead" style="margin-top: 2.5rem; padding-top: 0; border-top: none;">Home page</h3>
+      <p class="subhead-intro">Light and dark share the same components. Toggle is in the top right utility bar.</p>
+
+      <figure>
+        <img src="images/final-home-desktop.jpg" alt="Final EECS redesign home page in light mode" />
+        <figcaption>
+          <strong>Final home — desktop, light mode</strong>
+          Hero with clear branding up top, gold underlined section headers, and event/news cards lined up on a consistent grid. Navy and gold keep the Berkeley identity intact while fixing the cluttered feel of the original.
+        </figcaption>
+      </figure>
+
+      <figure>
+        <img src="images/final-home-dark.jpg" alt="Final EECS redesign home page in dark mode" />
+        <figcaption>
+          <strong>Final home — desktop, dark mode</strong>
+          Same layout, just darker. Gold accents pop more here. The toggle lives in the utility bar on desktop and in the hamburger menu on mobile.
+        </figcaption>
+      </figure>
+
+      <div style="display: flex; justify-content: center; gap: 2rem; margin: 2.5rem 0; flex-wrap: wrap;">
+        <figure class="mobile-frame" style="max-width: 300px;">
+          <img src="images/final-home-mobile-light.jpg" alt="Final EECS redesign home page on mobile, light mode" />
+          <figcaption>
+            <strong>Mobile — light mode</strong>
+            One column, full width tappable event cards, hamburger menu containing the dark mode toggle.
+          </figcaption>
+        </figure>
+        <figure class="mobile-frame" style="max-width: 300px;">
+          <img src="images/final-home-mobile-dark.jpg" alt="Final EECS redesign home page on mobile, dark mode" />
+          <figcaption>
+            <strong>Mobile — dark mode</strong>
+            Same layout, dark theme. Gold pops more on the RSVP buttons and section headers, which keeps the brand feel even in dark mode.
+          </figcaption>
+        </figure>
+      </div>
+
+      <h3 class="subhead">Search — typeahead with no-results state</h3>
+      <p class="subhead-intro">Search is client side typeahead, so results show up as you type. Matched terms get highlighted, results are grouped by source page, and we explicitly handle the empty case.</p>
+
+      <div class="img-grid-2">
+        <figure>
+          <img src="images/final-search-results.jpg" alt="Search dropdown showing matched results for the query 'Event' across multiple pages" />
+          <figcaption>
+            <strong>With results</strong>
+            Typing "Event" pulls matches from the home page (Upcoming Events) and the RSVP page, with the matched term highlighted in gold. Each result shows the page title, section, and a preview snippet so you know what you're clicking into.
+          </figcaption>
+        </figure>
+        <figure>
+          <img src="images/final-search-empty.jpg" alt="Search dropdown showing 'No results found for Monkey' message with a no-entry icon" />
+          <figcaption>
+            <strong>Empty state</strong>
+            "No results" has an icon and the search term echoed back. Easy to forget, a lot of quick built typeaheads just render nothing when there's no match, which is way more confusing.
+          </figcaption>
+        </figure>
+      </div>
+
+      <h3 class="subhead">RSVP form validation and submission</h3>
+      <p class="subhead-intro">This is the form Round 2 testing flagged. Submit button is in (Finding 5), and inline validation catches problems before submit so people aren't surprised by what's required.</p>
+
+      <div class="step-sequence">
+        <figure>
+          <span class="step-num">01 · ERROR</span>
+          <img src="images/final-rsvp-errors.jpg" alt="RSVP form with red borders and error messages on Full Name, Email, and Affiliation fields" />
+          <figcaption>
+            <strong>Inline errors</strong>
+            Each field validates when you click out of it. Errors show a red border and a clear message right under the field. They don't block you from continuing to fix them.
+          </figcaption>
+        </figure>
+        <figure>
+          <span class="step-num">02 · VALID</span>
+          <img src="images/final-rsvp-filled.jpg" alt="RSVP form with all fields filled out and showing green borders indicating valid input" />
+          <figcaption>
+            <strong>Valid turns green</strong>
+            Fix a field, the border turns green. Tiny detail, but it makes the form feel like it's actually paying attention.
+          </figcaption>
+        </figure>
+        <figure>
+          <span class="step-num">03 · SUCCESS</span>
+          <img src="images/final-rsvp-success.jpg" alt="RSVP submission success message confirming the RSVP has been submitted" />
+          <figcaption>
+            <strong>Success replaces the form</strong>
+            On submit, the form gets replaced with a confirmation card, no guessing whether it actually went through. Direct fix to the original site's "click a button, see nothing happen" pattern.
+          </figcaption>
+        </figure>
+      </div>
+
+      <h3 class="subhead">Across the site — does the design hold up?</h3>
+      <p class="subhead-intro">A redesign that only looks good on the home page is half a redesign. These three interior pages show whether the components, type, and color choices hold up across longer, denser, and form templates.</p>
+
+      <figure>
+        <img src="images/final-research-areas.jpg" alt="Final Research Areas page listing 14 research areas with each acronym expanded in parentheses (ARC, BIO, CIR, CPSDA, DBMS, EDUC, ENE, GR, HCI, IDNCS, PS, SEC, THY)" />
+        <figcaption>
+          <strong>Research Areas — direct fix to the acronym problem (Nielsen #2)</strong>
+          The original site threw acronyms like BEARS and ASE at you with zero explanation. Every research area on the redesign now spells the acronym out the first time it appears: <em>Computer Architecture &amp; Engineering (ARC)</em>, <em>Biosystems &amp; Computational Biology (BIO)</em>, <em>Cyber-Physical Systems and Design Automation (CPSDA)</em>. New people get the meaning, insiders still get the shorthand.
+        </figcaption>
+      </figure>
+
+      <figure>
+        <img src="images/final-academics.jpg" alt="Final Academics page showing undergraduate programs grid, graduate programs grid, and a featured courses table" />
+        <figcaption>
+          <strong>Academics — same components, denser content</strong>
+          Two column program cards under gold-underlined section headers, then a Featured Courses table with course code, title, and credit units. Same visual language as the home page, just applied to a content heavier page. The "Degree Requirements" outline button is the only secondary CTA we needed to introduce, and it still feels like part of the same design.
+        </figcaption>
+      </figure>
+
+      <figure>
+        <img src="images/final-apply.jpg" alt="Final Apply page with hero, three-column 'Choose Your Path' cards, deadline table, requirements grid, FAQ accordion, and a 'Ready to Apply?' CTA banner" />
+        <figcaption>
+          <strong>Apply — the most-feature page</strong>
+          Hero treatment from the home page carries through. Three "Choose Your Path" cards anchor the main task. The deadline table uses category tags (UNDERGRAD / GRADUATE) so you can scan it fast. Requirements split into four columns, then an FAQ accordion handles long tail questions without crowding the page. Final navy CTA banner restates the main action. Every component on this page reuses something from the home page's design system.
+        </figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SECTION 5 - REFLECTION
+       ============================================================ -->
+  <section class="section section-light">
+    <div class="section-inner">
+      <div class="section-header">
+        <h2>What I'd Do Differently</h2>
+        <span class="section-tag">05 · Reflect</span>
+      </div>
+
+      <div class="prose">
+        <p>Looking back, here's what I'd do differently next time:</p>
+      </div>
+
+      <div class="learnings">
+        <div class="learning">
+          <h4>Test mobile sooner</h4>
+          <p>Almost all the big revisions in Round 1 were mobile specific. If we'd built mobile prototypes first instead of after the desktop ones were already solid, we'd have caught the dark mode and RSVP issues a week earlier.</p>
+        </div>
+        <div class="learning">
+          <h4>More than 3 testers in Round 2</h4>
+          <p>Round 2 had 3 testers and one of them flagged a real issue, the RSVP-in Academics thing that the other two didn't. With only 3 people, that's the difference between a real problem and an outlier, we just didn't have enough data to know.</p>
+        </div>
+        <div class="learning">
+          <h4>Bigger paper sketches, sooner</h4>
+          <p>We jumped to Figma kind of fast. More time on paper sketches with the team in one room would've surfaced layout disagreements before we'd already invested time in mid fi components.</p>
+        </div>
+        <div class="learning">
+          <h4>Always have multiple paths to the same thing</h4>
+          <p>The single path RSVP flow was a real lesson. Different people hold different mental models about where things should live. Building redundant entry points isn't clutter, it's just respecting that not everyone thinks the same way.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       FINAL CTA
+       ============================================================ -->
+  <section class="final-cta">
+    <h2>See the live build</h2>
+    <p>Code's on GitHub. The build covers home, academics, research, RSVP form, search, dark mode, and full mobile responsive layouts.</p>
+    <div class="cta-buttons">
+      <a href="https://github.com/btramuel" class="btn-primary" target="_blank" rel="noopener noreferrer">View on GitHub →</a>
+      <a href="../index.html" class="btn-outline">Back to portfolio</a>
+    </div>
+  </section>
+
+  <!--  DEPLOYED SITE
+        =================================================
+  -->
+    <section class="final-cta">
+    <h2>See the Deployed Site</h2>
+    <p>Deployed on the Vercel platform. The build covers home, academics, research, RSVP form, search, dark mode, and full mobile responsive layouts.</p>
+    <div class="cta-buttons">
+      <a href="https://eecs-website-group-15-project.vercel.app" class="btn-primary" target="_blank" rel="noopener noreferrer">View live site →</a>
+      <a href="../index.html" class="btn-outline">Back to portfolio</a>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       FOOTER
+       ============================================================ -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <span class="footer-name">Brian Tramuel</span>
+      <div class="footer-links">
+        <a href="https://github.com/btramuel" target="_blank" rel="noopener noreferrer">GitHub</a>
+        <a href="https://www.linkedin.com/in/brian-grant-tramuel-882121264/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        <a href="../index.html">Portfolio</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      © 2026 Brian Tramuel · Computer Science, UNC Charlotte · Capstone Group 15
+    </div>
+  </footer>
+
+</body>
+</html>
